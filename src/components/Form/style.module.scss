@@ -1,0 +1,16 @@
+.form {
+  flex: 50%;
+  overflow: auto;
+  height: 100%;
+}
+.form::-webkit-scrollbar {
+  width: 5px;
+}
+.form::-webkit-scrollbar-track {
+  background-color: lightgray;
+  border-radius: 3px;
+}
+.form::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 3px;
+}
