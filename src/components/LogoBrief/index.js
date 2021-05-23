@@ -1,1 +1,1 @@
-export { default } from "./LogoBrief";
+export { default } from "./LogoBrief.jsx";

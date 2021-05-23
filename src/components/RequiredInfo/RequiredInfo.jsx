@@ -1,14 +1,14 @@
 import React from 'react'
 import './style.scss'
 
-const StrategyBrief = props => {
+const RequiredInfo = props => {
   return (
     <div>
-      StrategyBrief works!
+      RequiredInfo works!
     </div>
   )
 }
 
 
 
-export default StrategyBrief
+export default RequiredInfo

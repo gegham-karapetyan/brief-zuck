@@ -1,1 +1,1 @@
-export { default } from "./AdvertisingCampaignBrief";
+export { default } from "./AdvertisingCampaignBrief.jsx";

@@ -6,4 +6,8 @@
   margin-left: 10%;
 }
 .sidebarInner {
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-flow: column nowrap;
 }

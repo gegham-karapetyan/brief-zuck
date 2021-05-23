@@ -1,1 +1,1 @@
-export { default } from "./StrategyBrief";
+export { default } from "./StrategyBrief.jsx";

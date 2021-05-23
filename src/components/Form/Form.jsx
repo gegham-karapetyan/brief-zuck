@@ -18,19 +18,19 @@ const Form = (props) => {
         <Route path="/Advertising-Campaign-Brief">
           <AdvertisingCampaignBrief />
         </Route>
-        <Route path="Visual-Key-Visual-Brief">
+        <Route path="/Visual-Key-Visual-Brief">
           <VisualKeyVisualBrief />
         </Route>
-        <Route path="Commercial-Video-Brief">
+        <Route path="/Commercial-Video-Brief">
           <CommercialVideoBrief />
         </Route>
-        <Route path="Social-Media-Activation-Brief">
+        <Route path="/Social-Media-Activation-Brief">
           <SocialMediaActivationBrief />
         </Route>
-        <Route path="Strategy-Brief">
+        <Route path="/Strategy-Brief">
           <StrategyBrief />
         </Route>
-        <Route path="Logo-Brief">
+        <Route path="/Logo-Brief">
           <LogoBrief />
         </Route>
       </Switch>

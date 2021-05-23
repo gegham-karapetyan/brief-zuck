@@ -1,1 +1,1 @@
-export { default } from "./SocialMediaActivationBrief";
+export { default } from "./SocialMediaActivationBrief.jsx";

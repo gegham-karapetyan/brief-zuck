@@ -1,1 +1,1 @@
-export { default } from "./CommercialVideoBrief";
+export { default } from "./CommercialVideoBrief.jsx";

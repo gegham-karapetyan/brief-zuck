@@ -1,1 +1,1 @@
-export { default } from "./VisualKeyVisualBrief";
+export { default } from "./VisualKeyVisualBrief.jsx";
