@@ -1,4 +1,5 @@
 import React from "react";
+import Languages from "../Languages";
 import logo from "../../logo.svg";
 import "./style.scss";
 
@@ -8,10 +9,7 @@ const Hero = (props) => {
       <a href="https://zuckagency.com">
         <img src={logo} alt="logo" width="auto" />
       </a>
-      <h1>
-        “We just want something creative” <br />
-        is the worst brief ever.
-      </h1>
+      <Languages />
     </div>
   );
 };

@@ -11,7 +11,7 @@ const SideBar = (props) => {
         <Hero />
 
         <Menu />
-        <div>{props.data.lg}</div>
+
         <Footer />
       </div>
     </div>

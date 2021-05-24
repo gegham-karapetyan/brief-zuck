@@ -17,6 +17,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 14px;
 }
 
 code {
@@ -30,17 +31,25 @@ code {
   src: url("./fonts/PFCentroSansPro-Regular.woff2") format("woff2"),
     url("./fonts/PFCentroSansPro-Regular.woff") format("woff");
 }
-@font-face {
-  font-family: "PFCentroSansPro-Italic";
 
-  src: url("./fonts/PFCentroSansPro-Italic.woff2") format("woff2"),
-    url("./fonts/PFCentroSansPro-Italic.woff") format("woff");
-}
 @font-face {
   font-family: "PFCentroSansPro-Bold";
 
   src: url("./fonts/PFCentroSansPro-Bold.woff2") format("woff2"),
     url("./fonts/PFCentroSansPro-Bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "mardoto-bold";
+
+  src: url("./fonts/MARDOTO-BOLD.woff2") format("woff2"),
+    url("./fonts/MARDOTO-BOLD.woff") format("woff");
+}
+@font-face {
+  font-family: "mardoto-regular";
+
+  src: url("./fonts/MARDOTO-REGULAR.woff2") format("woff2"),
+    url("./fonts/MARDOTO-REGULAR.woff") format("woff");
 }
 
 #root {

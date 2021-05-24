@@ -11,6 +11,10 @@ import * as style from "./style.module.scss";
 const Form = (props) => {
   return (
     <form className={style.form}>
+      <h1>
+        “We just want something creative” <br />
+        is the worst brief ever.
+      </h1>
       <Switch>
         <Route exact path="/">
           <Redirect to="/Advertising-Campaign-Brief" />

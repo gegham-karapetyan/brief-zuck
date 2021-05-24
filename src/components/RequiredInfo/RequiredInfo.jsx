@@ -1,14 +1,13 @@
-import React from 'react'
-import './style.scss'
+import React from "react";
+import "./style.scss";
 
-const RequiredInfo = props => {
+const RequiredInfo = (props) => {
   return (
-    <div>
-      RequiredInfo works!
+    <div className="requiredInfo">
+      <p>* - required fields</p>
+      <p>Աստղանիշով նշված դաշտերը չլրացնելու դեպքում հայտը չի ուղարկվի</p>
     </div>
-  )
-}
+  );
+};
 
-
-
-export default RequiredInfo
+export default RequiredInfo;

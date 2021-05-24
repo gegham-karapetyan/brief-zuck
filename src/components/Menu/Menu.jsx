@@ -12,6 +12,7 @@ const Menu = () => {
   };
   return (
     <menu>
+      <div className="label">Ընտրել բրիֆը՝</div>
       <div onClick={onClick} className="option">
         <div className="selected">{value}</div>
         <div className={`accordionIcon ${open ? "open" : ""}`}></div>

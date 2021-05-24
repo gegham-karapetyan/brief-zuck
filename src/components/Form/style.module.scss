@@ -1,7 +1,12 @@
 .form {
   flex: 50%;
   overflow: auto;
-  height: 100%;
+
+  max-height: 100%;
+  margin: 10% 0;
+  & > h1 {
+    margin-bottom: 125px;
+  }
 }
 .form::-webkit-scrollbar {
   width: 5px;

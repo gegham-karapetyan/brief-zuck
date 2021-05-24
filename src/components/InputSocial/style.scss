@@ -1,0 +1,39 @@
+.socialInput {
+  display: flex;
+  width: 100%;
+  flex-flow: column nowrap;
+  position: relative;
+  width: 70%;
+  max-width: 560px;
+  margin: 105px 0;
+
+  & .socialInputLabel {
+    position: absolute;
+    cursor: pointer;
+    margin: 0;
+    top: -15px;
+    left: 0;
+    transition: all 0.1s linear;
+    &.focused {
+      top: -40px;
+    }
+  }
+  & > div.focused {
+    margin-bottom: 0px;
+  }
+  & input {
+    width: 100%;
+    border: none;
+    padding-bottom: 10px;
+    outline: none;
+
+    background-color: transparent;
+    border-bottom: 1px solid black;
+  }
+}
+.en {
+  font-family: inherit;
+}
+.am {
+  font-family: "mardoto-bold";
+}

@@ -1,0 +1,9 @@
+.requiredInfo {
+  max-width: 280px;
+  & > p:first-of-type {
+    font-weight: bold;
+  }
+  & > p:last-of-type {
+    font-family: "mardoto-regular";
+  }
+}

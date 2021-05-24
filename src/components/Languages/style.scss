@@ -1,0 +1,13 @@
+.languages {
+  margin-top: 70px;
+  & button {
+    outline: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    &.active {
+      font-weight: bold;
+      text-decoration: underline;
+    }
+  }
+}

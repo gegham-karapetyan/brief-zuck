@@ -1,5 +1,10 @@
 menu {
   padding: 0;
+  min-width: 240px;
+  & .label {
+    font-family: "mardoto-bold";
+    margin-bottom: 20px;
+  }
 }
 
 nav {
@@ -47,4 +52,5 @@ nav {
 }
 .open {
   transform: rotate(135deg);
+  margin-top: 7px;
 }

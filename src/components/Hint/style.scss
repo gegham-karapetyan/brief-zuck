@@ -1,0 +1,16 @@
+.hint {
+  position: relative;
+  cursor: help;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 15px;
+}
+.hintText {
+  position: absolute;
+  padding: 15px;
+  display: inline-block;
+  left: 50%;
+  bottom: 100%;
+  background: #fff8f4;
+  border: 1px solid black;
+}
