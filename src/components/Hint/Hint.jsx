@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import hintIcon from "../../info_black_24dp.svg";
 import "./style.scss";
 
-const HintText = (text) => {
+export const HintText = (text) => {
   return <div className="hintText">{text}</div>;
 };
 
@@ -21,7 +21,7 @@ const Hint = (props) => {
         onMouseOver={onMouseOver}
         onMouseLeave={onMouseLeave}
         src={hintIcon}
-        width="90%"
+        width="60%"
         alt="hint"
       />
       {active && HintText("somet ext")}

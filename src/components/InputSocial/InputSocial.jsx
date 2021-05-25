@@ -11,18 +11,23 @@ const InputSocial = (props) => {
   const onFocus = () => {
     setFocused("focused");
   };
-  console.log(urls);
+
   const onBlur = (e) => {
     let val = e.target.value;
 
     if (!val.trim() && !SocialUrls.length) setFocused("");
     else if (isURL(val)) {
-      console.log(isURL);
       SocialUrls = [...SocialUrls, { val: val, id: Math.random() }];
       e.target.value = "";
       setUrls(SocialUrls);
     } else console.log("invalid");
   };
+
+  const onDelete = (id) => {
+    SocialUrls = SocialUrls.filter((url) => url.id !== id);
+    setUrls(SocialUrls);
+  };
+
   return (
     <div className={`socialInput ${props.name.lg}`}>
       <label
@@ -30,9 +35,18 @@ const InputSocial = (props) => {
         htmlFor="socialInput"
       >{`${props.name.name}${props.name.required ? "*" : ""}`}</label>
 
-      {urls && <UrlBlock urls={urls} />}
+      {urls && <UrlBlock onClick={onDelete} urls={urls} />}
 
-      <input id="socialInput" onFocus={onFocus} onBlur={onBlur} type="text" />
+      <input
+        id="socialInput"
+        onKeyUp={(e) => {
+          if (e.code === "Enter") onBlur(e);
+        }}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        autoComplete="off"
+        type="text"
+      />
     </div>
   );
 };

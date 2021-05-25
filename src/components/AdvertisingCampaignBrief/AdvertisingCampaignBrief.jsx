@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import { selectBriefAC } from "../../redux/selectBriefReducer";
 import InputText from "../InputText";
 import InputSocial from "../InputSocial";
+import CampaignCheckboxes from "../CampaignCheckboxes";
+import InputRange from "../InputRange";
 
 const AdvertisingCampaignBrief = (props) => {
   const dispatch = useDispatch();
@@ -38,6 +40,16 @@ const AdvertisingCampaignBrief = (props) => {
           lg: "am",
         }}
       />
+      <InputText
+        name={{
+          name: "Ամփոփ նկարագիր ",
+          required: false,
+          hint: true,
+          lg: "am",
+        }}
+      />
+      <CampaignCheckboxes name={"Արշավի տեսակ "} />
+      <InputRange />
     </div>
   );
 };

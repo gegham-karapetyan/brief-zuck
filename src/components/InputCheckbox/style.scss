@@ -1,0 +1,17 @@
+.inputCheckbox {
+  display: inline-flex;
+  border: 1px solid black;
+  padding: 12px 17px;
+  align-items: center;
+  font-family: "mardoto-regular";
+  cursor: pointer;
+
+  & .checkmarkContainer {
+    width: 16px;
+    height: 16px;
+    margin-right: 17px;
+    background-color: transparent;
+    border-radius: 6px;
+    border: 1px solid black;
+  }
+}

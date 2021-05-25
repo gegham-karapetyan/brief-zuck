@@ -3,10 +3,15 @@
   overflow: auto;
 
   max-height: 100%;
-  margin: 10% 0;
+  padding: 10% 0;
   & > h1 {
     margin-bottom: 125px;
   }
+}
+.wrapper {
+  width: 100%;
+  padding-right: 10px;
+  max-width: 560px;
 }
 .form::-webkit-scrollbar {
   width: 5px;

@@ -6,8 +6,10 @@ const UrlBlock = (props) => {
     <div className="urlsBlocks">
       {props.urls.map((url) => (
         <div className="urlBlock" key={url.id}>
-          <span>{url.val}</span>
-          <span>&#10005;</span>
+          <span className="urlLink">{url.val}</span>
+          <span onClick={() => props.onClick(url.id)} className="closeBtn">
+            &#10005;
+          </span>
         </div>
       ))}
     </div>
