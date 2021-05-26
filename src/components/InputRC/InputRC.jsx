@@ -3,18 +3,31 @@ import Slider, { Range } from "rc-slider";
 import "rc-slider/assets/index.css";
 import "./style.scss";
 
-const createSliderWithTooltip = Slider.createSliderWithTooltip;
-
-//const Range = createSliderWithTooltip(Slider.Range);
-
-const InputRange = (props) => {
+export const InputRange = (props) => {
   return (
     <div>
       <Range
         defaultValue={[24, 44]}
+        allowCross={false}
         railStyle={{ height: "1px", backgroundColor: "gray" }}
         trackStyle={[{ height: 3, backgroundColor: "black" }]}
         handleStyle={[style, style]}
+        onChange={(e) => props.onChange(e)}
+      />
+    </div>
+  );
+};
+export const InputSlider = (props) => {
+  return (
+    <div>
+      <Slider
+        value={props.value}
+        railStyle={{ height: "1px", backgroundColor: "gray" }}
+        trackStyle={[{ height: 3, backgroundColor: "black" }]}
+        handleStyle={[style, style]}
+        onChange={(e) => {
+          props.onChange(e);
+        }}
       />
     </div>
   );
@@ -29,5 +42,3 @@ const style = {
   borderColor: "black",
   boxShadow: "none",
 };
-
-export default InputRange;

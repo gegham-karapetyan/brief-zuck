@@ -5,7 +5,8 @@ import { selectBriefAC } from "../../redux/selectBriefReducer";
 import InputText from "../InputText";
 import InputSocial from "../InputSocial";
 import CampaignCheckboxes from "../CampaignCheckboxes";
-import InputRange from "../InputRange";
+import TargetGroup from "../TargetGroup";
+import HyperactiveBuyers from "../HyperactiveBuyers";
 
 const AdvertisingCampaignBrief = (props) => {
   const dispatch = useDispatch();
@@ -49,7 +50,105 @@ const AdvertisingCampaignBrief = (props) => {
         }}
       />
       <CampaignCheckboxes name={"Արշավի տեսակ "} />
-      <InputRange />
+      <TargetGroup />
+      <HyperactiveBuyers />
+      <InputText
+        name={{
+          name: "Հավելյալ տեղեկատվություն թիրախի մասին ",
+          required: false,
+          hint: true,
+          lg: "am",
+        }}
+      />
+      <InputText
+        name={{
+          name: "Սպառողների ներկայիս վարքագիծ ",
+          required: false,
+          hint: false,
+          lg: "am",
+        }}
+      />
+      <InputText
+        name={{
+          name: "Սպառողների ներկայիս կարծիք ",
+          required: false,
+          hint: false,
+          lg: "am",
+        }}
+      />
+      <InputText
+        name={{
+          name: "Սպառողների ցանկալի վարքագիծ (արշավի իրականացումից հետո) ",
+          required: false,
+          hint: false,
+          lg: "am",
+        }}
+      />
+      <InputText
+        name={{
+          name: "USP (unique selling proposition) /Brand promise  ",
+          required: true,
+          hint: true,
+          lg: "am",
+        }}
+      />
+      <InputText
+        name={{
+          name: "Insight/Consumer Insight  ",
+          required: true,
+          hint: true,
+          lg: "am",
+        }}
+      />
+      <InputText
+        name={{
+          name: "Գովազդային արշավի հիմնական ուղերձ (մեսիջ) ",
+          required: true,
+          hint: false,
+          lg: "am",
+        }}
+      />
+      <InputText
+        name={{
+          name: "Գովազդային արշավի երկրորդային ուղերձ (մեսիջ)  ",
+          required: true,
+          hint: false,
+          lg: "am",
+        }}
+      />
+      <InputText
+        name={{
+          name: "RTB (reason to believe)   ",
+
+          required: false,
+          hint: true,
+          lg: "am",
+        }}
+      />
+      <InputText
+        name={{
+          name: "Barrier  ",
+          required: false,
+          hint: true,
+          lg: "am",
+        }}
+      />
+      <InputText
+        name={{
+          name: "Գովազդային արշավի/կոմունիկացիայի տարրեր, որոնք պարտադիր են   ",
+          required: true,
+          hint: true,
+          lg: "am",
+        }}
+      />
+      <InputText
+        name={{
+          name: "Գովազդային արշավի/կոմունիկացիայի տարրեր, որոնք բացառվում են  ",
+          required: true,
+          hint: true,
+          lg: "am",
+        }}
+      />
     </div>
   );
 };

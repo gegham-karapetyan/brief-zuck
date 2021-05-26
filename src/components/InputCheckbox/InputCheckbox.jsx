@@ -4,8 +4,13 @@ import "./style.scss";
 
 const InputCheckbox = (props) => {
   const [checked, setChecked] = useState(false);
-  const onChange = () => {
+
+  const onChange = (e) => {
     setChecked(!checked);
+
+    if (e.target.name === "Other") {
+      props.addNewInput(!checked);
+    }
   };
   return (
     <label
