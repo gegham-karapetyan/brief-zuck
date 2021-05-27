@@ -3,18 +3,23 @@ import InputRadio from "../InputRadio";
 import { InputRange } from "../InputRC";
 import "./style.scss";
 
+const isEqual = (obj1, obj2) => {
+  return JSON.stringify(obj1) === JSON.stringify(obj2);
+};
+
+const reset = { checkedMan: false, checkedWoman: false };
+
 const HyperactiveBuyers = (props) => {
   const [age, setAge] = useState([24, 44]);
-  const [checked, setChecked] = useState({
-    checkedMan: false,
-    checkedWoman: false,
-  });
+  const [checked, setChecked] = useState(reset);
 
   const onChangeRadio = (name) => {
     if (name === "Տղամարդիկ") {
-      setChecked({ checkedMan: true, checkedWoman: false });
+      const newChecked = { checkedMan: true, checkedWoman: false };
+      isEqual(checked, newChecked) ? setChecked(reset) : setChecked(newChecked);
     } else {
-      setChecked({ checkedMan: false, checkedWoman: true });
+      const newChecked = { checkedMan: false, checkedWoman: true };
+      isEqual(checked, newChecked) ? setChecked(reset) : setChecked(newChecked);
     }
   };
 

@@ -13,20 +13,16 @@ const InputCheckbox = (props) => {
     }
   };
   return (
-    <label
-      className="inputCheckbox"
-      style={{ borderColor: checked ? "black" : "gray" }}
-    >
+    <label className="inputCheckbox" style={{ opacity: checked ? "1" : "0.5" }}>
       <div
         className="checkmarkContainer"
         style={{
           backgroundColor: checked ? "black" : "transparent",
-          borderColor: checked ? "black" : "gray",
         }}
       >
         <div style={checkmark}></div>
       </div>
-      <div style={{ opacity: checked ? 1 : 0.5 }}>{props.name}</div>
+      <div>{props.name}</div>
 
       <input
         type="checkbox"

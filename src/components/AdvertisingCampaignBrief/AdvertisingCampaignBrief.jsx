@@ -4,9 +4,10 @@ import { useDispatch } from "react-redux";
 import { selectBriefAC } from "../../redux/selectBriefReducer";
 import InputText from "../InputText";
 import InputSocial from "../InputSocial";
-import CampaignCheckboxes from "../CampaignCheckboxes";
+import CheckboxesGroup from "../CheckboxesGroup";
 import TargetGroup from "../TargetGroup";
 import HyperactiveBuyers from "../HyperactiveBuyers";
+import Textarea from "../Textarea";
 
 const AdvertisingCampaignBrief = (props) => {
   const dispatch = useDispatch();
@@ -35,13 +36,13 @@ const AdvertisingCampaignBrief = (props) => {
       />
       <InputSocial
         name={{
-          name: "Կայք, Ֆեյսբուք, Ինստագրամ, և այլն  ",
+          name: "Կայք, Ֆեյսբուք, Ինստագրամ, և այլն  *",
           required: true,
           hint: true,
           lg: "am",
         }}
       />
-      <InputText
+      <Textarea
         name={{
           name: "Ամփոփ նկարագիր ",
           required: false,
@@ -49,10 +50,26 @@ const AdvertisingCampaignBrief = (props) => {
           lg: "am",
         }}
       />
-      <CampaignCheckboxes name={"Արշավի տեսակ "} />
+      <CheckboxesGroup
+        name={"Արշավի տեսակ "}
+        data={[
+          "Traditional media/image campaign",
+          "Teaser campaign",
+          "Seasonal push campaign",
+          "Product/service launch campaign",
+          "Brand awareness campaign",
+          "Rebranding campaign",
+          "Brand launch campaign",
+          "Ecommerce campaign",
+          "Corporate social responsibility (SCR) campaign",
+          "Contest marketing campaign",
+          "Lead generation campaign",
+          "Other",
+        ]}
+      />
       <TargetGroup />
       <HyperactiveBuyers />
-      <InputText
+      <Textarea
         name={{
           name: "Հավելյալ տեղեկատվություն թիրախի մասին ",
           required: false,
@@ -60,7 +77,7 @@ const AdvertisingCampaignBrief = (props) => {
           lg: "am",
         }}
       />
-      <InputText
+      <Textarea
         name={{
           name: "Սպառողների ներկայիս վարքագիծ ",
           required: false,
@@ -68,7 +85,7 @@ const AdvertisingCampaignBrief = (props) => {
           lg: "am",
         }}
       />
-      <InputText
+      <Textarea
         name={{
           name: "Սպառողների ներկայիս կարծիք ",
           required: false,
@@ -76,7 +93,7 @@ const AdvertisingCampaignBrief = (props) => {
           lg: "am",
         }}
       />
-      <InputText
+      <Textarea
         name={{
           name: "Սպառողների ցանկալի վարքագիծ (արշավի իրականացումից հետո) ",
           required: false,
@@ -84,7 +101,7 @@ const AdvertisingCampaignBrief = (props) => {
           lg: "am",
         }}
       />
-      <InputText
+      <Textarea
         name={{
           name: "USP (unique selling proposition) /Brand promise  ",
           required: true,
@@ -92,7 +109,7 @@ const AdvertisingCampaignBrief = (props) => {
           lg: "am",
         }}
       />
-      <InputText
+      <Textarea
         name={{
           name: "Insight/Consumer Insight  ",
           required: true,
@@ -100,7 +117,7 @@ const AdvertisingCampaignBrief = (props) => {
           lg: "am",
         }}
       />
-      <InputText
+      <Textarea
         name={{
           name: "Գովազդային արշավի հիմնական ուղերձ (մեսիջ) ",
           required: true,
@@ -108,7 +125,7 @@ const AdvertisingCampaignBrief = (props) => {
           lg: "am",
         }}
       />
-      <InputText
+      <Textarea
         name={{
           name: "Գովազդային արշավի երկրորդային ուղերձ (մեսիջ)  ",
           required: true,
@@ -116,7 +133,7 @@ const AdvertisingCampaignBrief = (props) => {
           lg: "am",
         }}
       />
-      <InputText
+      <Textarea
         name={{
           name: "RTB (reason to believe)   ",
 
@@ -125,7 +142,7 @@ const AdvertisingCampaignBrief = (props) => {
           lg: "am",
         }}
       />
-      <InputText
+      <Textarea
         name={{
           name: "Barrier  ",
           required: false,
@@ -133,7 +150,7 @@ const AdvertisingCampaignBrief = (props) => {
           lg: "am",
         }}
       />
-      <InputText
+      <Textarea
         name={{
           name: "Գովազդային արշավի/կոմունիկացիայի տարրեր, որոնք պարտադիր են   ",
           required: true,
@@ -141,7 +158,7 @@ const AdvertisingCampaignBrief = (props) => {
           lg: "am",
         }}
       />
-      <InputText
+      <Textarea
         name={{
           name: "Գովազդային արշավի/կոմունիկացիայի տարրեր, որոնք բացառվում են  ",
           required: true,

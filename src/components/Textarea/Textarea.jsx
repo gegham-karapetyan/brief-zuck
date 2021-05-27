@@ -1,13 +1,10 @@
 import React, { useState } from "react";
+import TextareaAutosize from "react-autosize-textarea";
 import PropTypes from "prop-types";
 import Hint from "../Hint";
 import "./style.scss";
 
-const parser = (text) => {
-  return <></>;
-};
-
-const InputText = (props) => {
+const Textarea = (props) => {
   const [focused, setFocused] = useState("");
   const onFocus = () => {
     setFocused("focused");
@@ -17,15 +14,14 @@ const InputText = (props) => {
   };
   return (
     <div>
-      <label className={`textInput ${props.name.lg}`}>
-        <div className={`textInputLabel ${focused}`}>
+      <label className={`textarea ${props.name.lg}`}>
+        <div className={`textareaLabel ${focused}`}>
           {`${props.name.name}${props.name.required ? "*" : ""}`}
           {props.name.hint && <Hint text="some text" />}
         </div>
-        <input
+        <TextareaAutosize
           onFocus={onFocus}
           onBlur={onBlur}
-          type="text"
           name={props.name.name}
         />
       </label>
@@ -33,7 +29,7 @@ const InputText = (props) => {
   );
 };
 
-InputText.propTypes = {
+Textarea.propTypes = {
   name: PropTypes.shape({
     name: PropTypes.string.isRequired,
     lg: PropTypes.string.isRequired,
@@ -42,4 +38,4 @@ InputText.propTypes = {
   }),
 };
 
-export default InputText;
+export default Textarea;
