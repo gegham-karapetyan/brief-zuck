@@ -8,11 +8,11 @@
   & .textInputLabel {
     position: absolute;
     cursor: pointer;
-    top: 0px;
+    bottom: 5px;
     left: 0;
     transition: all 0.1s linear;
     &.focused {
-      top: -30px;
+      bottom: 30px;
     }
   }
   & > div.focused {

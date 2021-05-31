@@ -8,10 +8,13 @@
   }
   .container {
     display: flex;
+    flex-flow: row wrap;
+    row-gap: 10px;
   }
 
   .ageBlock {
     flex: 50%;
+    min-width: 80px;
     .age {
       margin-bottom: 12px;
     }

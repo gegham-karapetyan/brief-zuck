@@ -7,35 +7,39 @@ import "./style.scss";
 const Menu = () => {
   const [open, setOpen] = useState(false);
   const value = useSelector(briefType);
-  const onClick = () => {
+  const toggleMenu = () => {
     setOpen(!open);
   };
   return (
     <menu>
       <div className="label">Ընտրել բրիֆը՝</div>
-      <div onClick={onClick} className="option">
+      <div onClick={toggleMenu} className="option">
         <div className="selected">{value}</div>
         <div className={`accordionIcon ${open ? "open" : ""}`}></div>
       </div>
       <nav>
         {open &&
           [
-            <Link key="1" to="/Advertising-Campaign-Brief">
+            <Link onClick={toggleMenu} key="1" to="/Advertising-Campaign-Brief">
               Advertising Campaign Brief
             </Link>,
-            <Link key="2" to="/Visual-Key-Visual-Brief">
+            <Link onClick={toggleMenu} key="2" to="/Visual-Key-Visual-Brief">
               Visual / Key Visual Brief
             </Link>,
-            <Link key="3" to="/Commercial-Video-Brief">
+            <Link onClick={toggleMenu} key="3" to="/Commercial-Video-Brief">
               Commercial Video Brief
             </Link>,
-            <Link key="4" to="/Social-Media-Activation-Brief">
+            <Link
+              onClick={toggleMenu}
+              key="4"
+              to="/Social-Media-Activation-Brief"
+            >
               Social Media Activation Brief
             </Link>,
-            <Link key="5" to="/Strategy-Brief">
+            <Link onClick={toggleMenu} key="5" to="/Strategy-Brief">
               Strategy Brief
             </Link>,
-            <Link key="6" to="/Logo-Brief">
+            <Link onClick={toggleMenu} key="6" to="/Logo-Brief">
               Logo Brief
             </Link>,
           ].filter(

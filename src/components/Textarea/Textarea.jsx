@@ -6,11 +6,18 @@ import "./style.scss";
 
 const Textarea = (props) => {
   const [focused, setFocused] = useState("");
+  const [value, setValue] = useState("");
+  const onChange = (e) => {
+    setValue(e.target.value);
+  };
   const onFocus = () => {
     setFocused("focused");
   };
   const onBlur = (e) => {
-    if (!e.target.value.trim()) setFocused("");
+    if (!e.target.value.trim()) {
+      setFocused("");
+      setValue("");
+    }
   };
   return (
     <div>
@@ -20,8 +27,10 @@ const Textarea = (props) => {
           {props.name.hint && <Hint text="some text" />}
         </div>
         <TextareaAutosize
+          onChange={onChange}
           onFocus={onFocus}
           onBlur={onBlur}
+          value={value}
           name={props.name.name}
         />
       </label>

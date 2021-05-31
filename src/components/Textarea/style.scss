@@ -5,18 +5,15 @@
   margin: 90px 0;
 
   & .textareaLabel {
-    position: absolute;
     cursor: pointer;
-    top: 0px;
+    margin-bottom: -20px;
     left: 0;
     transition: all 0.1s linear;
     &.focused {
-      top: -30px;
+      margin-bottom: 0px;
     }
   }
-  & > div.focused {
-    margin-bottom: 0px;
-  }
+
   & textarea {
     width: 100%;
     border: none;
