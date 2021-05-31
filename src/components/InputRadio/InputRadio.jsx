@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import "./style.scss";
 
 const InputRadio = (props) => {
@@ -32,5 +33,12 @@ const styleUnChecked = {
   color: "black",
   opacity: 0.5,
 };
+
+InputRadio.propTypes = PropTypes.shape({
+  name: PropTypes.string.isRequired,
+  checked: PropTypes.bool,
+
+  hint: PropTypes.bool,
+});
 
 export default InputRadio;

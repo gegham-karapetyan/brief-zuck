@@ -8,6 +8,7 @@ import CheckboxesGroup from "../CheckboxesGroup";
 import TargetGroup from "../TargetGroup";
 import HyperactiveBuyers from "../HyperactiveBuyers";
 import Textarea from "../Textarea";
+import CampaignScalability from "../CampaignScalability";
 
 const AdvertisingCampaignBrief = (props) => {
   const dispatch = useDispatch();
@@ -166,6 +167,7 @@ const AdvertisingCampaignBrief = (props) => {
           lg: "am",
         }}
       />
+      <CampaignScalability />
     </div>
   );
 };
