@@ -24,7 +24,10 @@ const Hint = (props) => {
         width="60%"
         alt="hint"
       />
-      {active && HintText("somet ext")}
+      {active &&
+        HintText(
+          "lorem dffgh dsifg sdfigh idfg sdfig isdf dfg ifffffffffffffffffffffffffffffffff ffffffffffffffffffffffffffffffffffffff fffffffffffffffffffffffffffffff fffffffffffffffff fffffffsdfig dsfng isdfgsdfg idfgdfigdf idfgdfgd dfgdfgind fi gsdfg isfdig nsdfngisdfi ngisdnfgn"
+        )}
     </span>
   );
 };

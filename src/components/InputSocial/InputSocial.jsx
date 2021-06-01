@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import UrlBlock from "./UrlBlock";
 import { isURL } from "validator";
-import "./style.scss";
 
-let SocialUrls = [];
+import "./style.scss";
 
 const InputSocial = (props) => {
   const [focused, setFocused] = useState("");
@@ -16,21 +15,19 @@ const InputSocial = (props) => {
   const onBlur = (e) => {
     let val = e.target.value;
 
-    if (!val.trim() && !SocialUrls.length) {
+    if (!val.trim() && !urls.length) {
       setFocused("");
       setInvalid({ borderColor: "red" });
     } else if (isURL(val)) {
-      SocialUrls = [...SocialUrls, { val: val, id: Math.random() }];
       setInvalid({ borderColor: "black" });
       e.target.value = "";
-      setUrls(SocialUrls);
-    } else if (!SocialUrls.length) setInvalid({ borderColor: "red" });
+      setUrls((prev) => [...prev, { val: val, id: Math.random() }]);
+    } else if (!urls.length) setInvalid({ borderColor: "red" });
   };
 
   const onDelete = (id) => {
-    SocialUrls = SocialUrls.filter((url) => url.id !== id);
-    setUrls(SocialUrls);
-    if (!SocialUrls.length) {
+    setUrls((prev) => prev.filter((url) => url.id !== id));
+    if (!urls.length) {
       setFocused("");
       setInvalid({ borderColor: "red" });
     }
@@ -38,7 +35,10 @@ const InputSocial = (props) => {
 
   return (
     <div className={`socialInput ${props.name.lg}`}>
-      <label className={`socialInputLabel ${focused}`} htmlFor="socialInput">
+      <label
+        className={`socialInputLabel ${focused}`}
+        htmlFor={props.name.name}
+      >
         {props.name.name}
       </label>
 
@@ -46,10 +46,11 @@ const InputSocial = (props) => {
 
       <input
         style={valid}
-        id="socialInput"
+        id={props.name.name}
         onKeyUp={(e) => {
           if (e.code === "Enter") onBlur(e);
         }}
+        placeholder={focused && "Paste your link and press ENTER"}
         onFocus={onFocus}
         onBlur={onBlur}
         autoComplete="off"

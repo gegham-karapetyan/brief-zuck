@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import selectBriefReducer from "./selectBriefReducer";
-console.log(selectBriefReducer);
+
 export const store = configureStore(
   {
     reducer: {

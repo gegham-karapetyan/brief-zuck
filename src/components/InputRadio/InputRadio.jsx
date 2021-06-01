@@ -8,7 +8,7 @@ const InputRadio = (props) => {
       className="inputRadio"
       style={props.checked ? styleChecked : styleUnChecked}
     >
-      <div>{props.name}</div>
+      <span>{props.name}</span>
 
       <input
         type="checkbox"
@@ -34,11 +34,11 @@ const styleUnChecked = {
   opacity: 0.5,
 };
 
-InputRadio.propTypes = PropTypes.shape({
+InputRadio.propTypes = {
   name: PropTypes.string.isRequired,
   checked: PropTypes.bool,
 
   hint: PropTypes.bool,
-});
+};
 
 export default InputRadio;

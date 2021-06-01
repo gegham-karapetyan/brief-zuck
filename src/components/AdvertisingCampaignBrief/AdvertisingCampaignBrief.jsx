@@ -54,17 +54,17 @@ const AdvertisingCampaignBrief = (props) => {
       <CheckboxesGroup
         name={"Արշավի տեսակ "}
         data={[
-          "Traditional media/image campaign",
-          "Teaser campaign",
-          "Seasonal push campaign",
-          "Product/service launch campaign",
           "Brand awareness campaign",
-          "Rebranding campaign",
           "Brand launch campaign",
-          "Ecommerce campaign",
-          "Corporate social responsibility (SCR) campaign",
+          "Product/service launch campaign",
+          "Rebranding campaign",
+          "Seasonal push campaign",
+          "Corporate social responsibility (CSR) campaign",
           "Contest marketing campaign",
+          "Ecommerce campaign",
           "Lead generation campaign",
+          "Teaser campaign",
+
           "Other",
         ]}
       />
@@ -168,6 +168,47 @@ const AdvertisingCampaignBrief = (props) => {
         }}
       />
       <CampaignScalability />
+      <InputSocial
+        name={{
+          name: "Պատկերացումներ մրցակիցների մասին  (հղումներ)",
+          required: false,
+          hint: false,
+          lg: "am",
+        }}
+      />
+      <Textarea
+        name={{
+          name: "Գործակալության առաջադրանքը",
+          required: false,
+          hint: false,
+          lg: "am",
+        }}
+      />
+      <Textarea
+        name={{
+          name: "KPIs (Key Performance Indicators)",
+          required: false,
+          hint: true,
+          lg: "am",
+        }}
+      />
+      {/* will be added calendare */}
+      <InputSocial
+        name={{
+          name: "Նմանատիպ աշխատանք, որը դուր է գալիս (հղումներ) ",
+          required: false,
+          hint: true,
+          lg: "am",
+        }}
+      />
+      <InputSocial
+        name={{
+          name: "Նմանատիպ աշխատանք, որը դուր չի գալիս  (հղումներ) ",
+          required: false,
+          hint: true,
+          lg: "am",
+        }}
+      />
     </div>
   );
 };
