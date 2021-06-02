@@ -6,11 +6,12 @@
 
   & .textareaLabel {
     cursor: pointer;
-    margin-bottom: -20px;
+    position: absolute;
+    top: 0px;
     left: 0;
     transition: all 0.1s linear;
     &.focused {
-      margin-bottom: 0px;
+      top: -25px;
     }
   }
 
