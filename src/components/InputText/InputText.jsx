@@ -3,10 +3,6 @@ import PropTypes from "prop-types";
 import Hint from "../Hint";
 import "./style.scss";
 
-const parser = (text) => {
-  return <></>;
-};
-
 const InputText = (props) => {
   const [focused, setFocused] = useState("");
   const onFocus = () => {
