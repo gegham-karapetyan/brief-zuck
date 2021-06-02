@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+
 import InputRadio from "../InputRadio";
 import CheckboxesGroup from "../CheckboxesGroup";
 import RadioGroup from "../RadioGroup";
@@ -54,7 +54,5 @@ const CampaignScalability = (props) => {
     </div>
   );
 };
-
-CampaignScalability.propTypes = {};
 
 export default CampaignScalability;
