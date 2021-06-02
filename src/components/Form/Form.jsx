@@ -20,6 +20,9 @@ const Form = (props) => {
           <Route exact path="/">
             <Redirect to="/Advertising-Campaign-Brief" />
           </Route>
+          <Route exact path="/index.html">
+            <Redirect to="/Advertising-Campaign-Brief" />
+          </Route>
           <Route path="/Advertising-Campaign-Brief">
             <AdvertisingCampaignBrief />
           </Route>
