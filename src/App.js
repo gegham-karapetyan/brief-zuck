@@ -20,7 +20,7 @@ function App() {
   }, []);
   return (
     <div className="App" data={data}>
-      <Router>
+      <Router basename="/">
         <SideBar data={data} />
         <Form />
       </Router>
