@@ -1,56 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-import Calendar from "react-calendar";
+
+import Input1 from "./Input1";
+import Input2 from "./Input1";
 //import "react-calendar/dist/Calendar.css";
-import "./style.scss";
-
-const Languages = {
-  am: ["ԿՐ", "ԵԿ", "ԵՔ", "ՉՔ", "ՀԳ", "ՈՒԲ", "ՇԲ"],
-};
-
-function formatDate(date, lg) {
-  let i = date.getDay();
-  return Languages[lg][i];
-}
+import "./stylexx.scss";
 
 const DataPicker = (props) => {
+  const [minDate2, changeMinDate2] = useState(new Date());
+  const a = (date) => {
+    const newDate = new Date(date);
+    newDate.setMonth(date.getMonth() + 1);
+    //console.log("date", date.getMonth());
+    // date.setMonth(date.getMonth() + 1);
+    changeMinDate2(newDate);
+  };
+  const b = (d) => {
+    console.log("d :::: ", d);
+  };
+  console.log("value1 ", minDate2);
   return (
-    <Calendar
-      returnValue="range"
-      selectRange={true}
-      minDate={new Date()}
-      next2Label={null}
-      prev2Label={null}
-      showDoubleView={true}
-      formatShortWeekday={(locale, date) => formatDate(date, "am")}
-      tileContent={({ activeStartDate, date, view }) => {
-        console.log(view);
-      }}
-      nextLabel={
-        <div
-          style={{
-            display: "inline-block",
-            width: "10px",
-            height: "10px",
-            borderRight: "1px solid black",
-            borderTop: "1px solid black",
-            transform: "rotate(45deg)",
-          }}
-        ></div>
-      }
-      prevLabel={
-        <div
-          style={{
-            display: "inline-block",
-            width: "10px",
-            height: "10px",
-            borderLeft: "1px solid black",
-            borderBottom: "1px solid black",
-            transform: "rotate(45deg)",
-          }}
-        ></div>
-      }
-    />
+    <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <Input1 minDate={new Date()} changeMinDate={a} />
+      <Input2 minDate={minDate2} changeMinDate={b} />
+    </div>
   );
 };
 

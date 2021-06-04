@@ -1,14 +1,16 @@
 import React, { useEffect } from "react";
-import "./style.scss";
+
 import { useDispatch } from "react-redux";
 import { selectBriefAC } from "../../redux/selectBriefReducer";
-import InputText from "../InputText";
-import InputSocial from "../InputSocial";
-import CheckboxesGroup from "../CheckboxesGroup";
-import TargetGroup from "../TargetGroup";
-import HyperactiveBuyers from "../HyperactiveBuyers";
-import Textarea from "../Textarea";
-import CampaignScalability from "../CampaignScalability";
+import InputText from "../../components/InputText";
+import InputSocial from "../../components/InputSocial";
+import CheckboxesGroup from "../../components/CheckboxesGroup";
+import TargetGroup from "../../components/TargetGroup";
+import HyperactiveBuyers from "../../components/HyperactiveBuyers";
+import Textarea from "../../components/Textarea";
+import CampaignScalability from "../../components/CampaignScalability";
+
+import "./style.scss";
 
 const AdvertisingCampaignBrief = (props) => {
   const dispatch = useDispatch();

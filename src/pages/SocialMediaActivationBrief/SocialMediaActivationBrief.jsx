@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import DataPicker from "../DataPicker";
+import DataPicker from "../../components/DataPicker";
 import { selectBriefAC } from "../../redux/selectBriefReducer";
 //import "./style.scss";
 

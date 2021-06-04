@@ -1,11 +1,11 @@
 import React from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
-import AdvertisingCampaignBrief from "../AdvertisingCampaignBrief";
-import VisualKeyVisualBrief from "../VisualKeyVisualBrief";
-import CommercialVideoBrief from "../CommercialVideoBrief";
-import SocialMediaActivationBrief from "../SocialMediaActivationBrief";
-import StrategyBrief from "../StrategyBrief";
-import LogoBrief from "../LogoBrief";
+import AdvertisingCampaignBrief from "../../pages/AdvertisingCampaignBrief";
+import VisualKeyVisualBrief from "../../pages/VisualKeyVisualBrief";
+import CommercialVideoBrief from "../../pages/CommercialVideoBrief";
+import SocialMediaActivationBrief from "../../pages/SocialMediaActivationBrief";
+import StrategyBrief from "../../pages/StrategyBrief";
+import LogoBrief from "../../pages/LogoBrief";
 import * as style from "./style.module.scss";
 
 const Form = (props) => {
