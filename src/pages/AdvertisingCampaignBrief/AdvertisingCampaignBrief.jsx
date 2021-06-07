@@ -20,23 +20,10 @@ const AdvertisingCampaignBrief = (props) => {
 
   return (
     <div>
-      <InputText
-        name={{ name: "Բրենդ ", required: true, hint: true, lg: "am" }}
-      />
-      <InputText
-        name={{
-          name: "Անուն Ազգանուն ",
-          required: true,
-          hint: true,
-          lg: "am",
-        }}
-      />
-      <InputText
-        name={{ name: "Էլ. հասցե ", required: true, hint: true, lg: "am" }}
-      />
-      <InputText
-        name={{ name: "Հաստիք ", required: true, hint: true, lg: "am" }}
-      />
+      <InputText name="Բրենդ " required={true} hint={true} lg="am" />
+      <InputText name="Անուն Ազգանուն " required={true} hint={true} lg="am" />
+      <InputText name="Էլ. հասցե " required={true} hint={true} lg="am" />
+      <InputText name="Հաստիք " required={true} hint={true} lg="am" />
       <InputSocial
         name={{
           name: "Կայք, Ֆեյսբուք, Ինստագրամ, և այլն  *",

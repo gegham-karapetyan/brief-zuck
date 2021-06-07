@@ -1,0 +1,20 @@
+.navigation-block {
+  display: flex;
+  justify-content: space-between;
+  button {
+    display: inline-block;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 10px;
+  }
+  .prev-nav-label,
+  .next-nav-label {
+    width: 240px;
+    border-bottom: 1px solid black;
+  }
+  .next-nav-label {
+    text-align: end;
+  }
+}

@@ -1,43 +1,45 @@
 import React, { useState } from "react";
+import isDate from "validator/es/lib/isDate";
 import PropTypes from "prop-types";
-import Hint from "../Hint";
 import "./style.scss";
 
 const InputText = (props) => {
   const [focused, setFocused] = useState("");
+
+  const [value, setValue] = useState(props.value || "");
+  console.log("value ::: ", value);
   const onFocus = () => {
     if (props.onFocus) props.onFocus(true);
     setFocused("focused");
   };
   const onBlur = (e) => {
+    console.log(props);
     if (!e.target.value.trim()) setFocused("");
+  };
+
+  const onChange = (e) => {
+    let value = e.target.value;
+    setValue(value);
+    if (isDate(value, { format: "DD/MM/YYYY", delimiters: ["/", "\\", "-"] })) {
+      props.updateCalendar(value);
+    }
   };
   return (
     <div>
       <label className={`textInput ${props.lg || "en"}`}>
-        <div className={`textInputLabel ${focused}`}>
-          {`${props.name}${props.required ? "*" : ""}`}
-          {props.hint && <Hint text="some text" />}
-        </div>
+        <div className={`textInputLabel ${focused}`}>{props.name}</div>
         <input
-          placeholder={props.placeholder}
+          onChange={onChange}
+          placeholder={focused && "DD/MM/YYYY"}
           onFocus={onFocus}
           onBlur={onBlur}
           type="text"
+          value={value}
           name={props.name}
         />
       </label>
     </div>
   );
-};
-
-InputText.propTypes = {
-  name: PropTypes.string.isRequired,
-  lg: PropTypes.string,
-  required: PropTypes.bool,
-  hint: PropTypes.bool,
-  onFocus: PropTypes.func,
-  placeholder: PropTypes.string,
 };
 
 export default InputText;

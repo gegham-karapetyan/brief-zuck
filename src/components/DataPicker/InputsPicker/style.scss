@@ -1,0 +1,15 @@
+.data-picker-block {
+  width: 100%;
+  .input-block {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+
+    > div {
+      width: 240px;
+    }
+  }
+  label {
+    margin-bottom: 0;
+  }
+}
