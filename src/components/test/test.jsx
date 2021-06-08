@@ -1,37 +1,23 @@
-import React, { useReducer } from "react";
+import React, { useState } from "react";
 import { DateRangeInput } from "@datepicker-react/styled";
 
-const initialState = {
-  startDate: null,
-  endDate: null,
-  focusedInput: null,
-};
+import { useDispatch } from "react-redux";
+import { updateValue } from "./createTestSlice";
+import Buttons from "./Buttons";
 
-function reducer(state, action) {
-  switch (action.type) {
-    case "focusChange":
-      return { ...state, focusedInput: action.payload };
-    case "dateChange":
-      return action.payload;
-    default:
-      throw new Error();
-  }
-}
+const Test = () => {
+  const dispatch = useDispatch();
+  const [value, setValue] = useState("");
 
-function Test() {
-  const [state, dispatch] = useReducer(reducer, initialState);
-
+  const onChange = (e) => {
+    setValue(e.target.value);
+    dispatch(updateValue(e.target.value));
+  };
   return (
-    <DateRangeInput
-      onDatesChange={(data) => dispatch({ type: "dateChange", payload: data })}
-      onFocusChange={(focusedInput) =>
-        dispatch({ type: "focusChange", payload: focusedInput })
-      }
-      minBookingDate={new Date()}
-      startDate={state.startDate} // Date or null
-      endDate={state.endDate} // Date or null
-      focusedInput={state.focusedInput} // START_DATE, END_DATE or null
-    />
+    <div>
+      <input type="text" onChange={onChange} value={value} />
+      <Buttons />
+    </div>
   );
-}
+};
 export default Test;

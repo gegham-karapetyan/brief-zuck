@@ -3,12 +3,31 @@ import PropTypes from "prop-types";
 
 import "./style.scss";
 
-const Languages = {
-  am: ["ԿՐ", "ԵԿ", "ԵՔ", "ՉՔ", "ՀԳ", "ՈՒԲ", "ՇԲ"],
-};
-function formatDate(date, lg) {
-  let i = date.getDay();
-  return Languages[lg][i];
+const MONTH = [
+  "Հունվար",
+  "Փետրվար",
+  "Մարտ",
+  "Ապրիլ",
+  "Մայիս",
+  "Հունիս",
+  "Հուլիս",
+  "Օգոստոս",
+  "Սեպտեմբեր",
+  "Հոկտեմբեր",
+  "Նոյեմբեր",
+  "Դեկտեմբեր",
+];
+
+function formatCurrentDate(date, lg) {
+  date = new Date(date);
+  let i = date.getMonth();
+  return MONTH[i] + " " + date.getFullYear();
+}
+function formatNextDate(date, lg) {
+  date = new Date(date);
+  date.setMonth(date.getMonth() + 1);
+  let i = date.getMonth();
+  return MONTH[i] + " " + date.getFullYear();
 }
 
 const PickerNavigation = ({ prevMonth, nextMonth, activeDate }) => {
@@ -27,10 +46,10 @@ const PickerNavigation = ({ prevMonth, nextMonth, activeDate }) => {
             }}
           ></div>
         </button>
-        <span className="nav-label">{activeDate.getMonth()}</span>
+        <span className="nav-label">{formatCurrentDate(activeDate)}</span>
       </div>
       <div className="next-nav-label">
-        <span className="nav-label">{activeDate.getMonth()}</span>
+        <span className="nav-label">{formatNextDate(activeDate)}</span>
         <button onClick={nextMonth}>
           <div
             style={{

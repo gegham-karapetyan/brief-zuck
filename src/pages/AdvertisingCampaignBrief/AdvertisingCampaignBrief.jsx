@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 import { useDispatch } from "react-redux";
-import { selectBriefAC } from "../../redux/selectBriefReducer";
+import { selectBriefAC } from "../../features/selectBriefReducer";
 import InputText from "../../components/InputText";
 import InputSocial from "../../components/InputSocial";
 import CheckboxesGroup from "../../components/CheckboxesGroup";

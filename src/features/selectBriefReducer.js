@@ -16,4 +16,5 @@ const selectBriefSlice = createSlice({
 
 export const { selectBrief: selectBriefAC } = selectBriefSlice.actions;
 export const briefType = (state) => state.selected.value;
+
 export default selectBriefSlice.reducer;

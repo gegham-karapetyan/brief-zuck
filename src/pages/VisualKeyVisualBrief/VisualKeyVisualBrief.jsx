@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { selectBriefAC } from "../../redux/selectBriefReducer";
+import { selectBriefAC } from "../../features/selectBriefReducer";
 import "./style.scss";
 
 const VisualKeyVisualBrief = (props) => {

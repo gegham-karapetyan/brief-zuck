@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { selectBriefAC } from "../../redux/selectBriefReducer";
+import { selectBriefAC } from "../../features/selectBriefReducer";
 
 import DayPickerInput from "../../components/DayPickerInput";
 import "react-day-picker/lib/style.css";

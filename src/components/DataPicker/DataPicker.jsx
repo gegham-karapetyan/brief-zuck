@@ -3,6 +3,12 @@ import PropTypes from "prop-types";
 import Calendar from "react-calendar";
 import InputsPicker from "./InputsPicker";
 import PickerNavigation from "./PickerNavigationav";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  CALENDAR_VALUE,
+  updateStartDateInputValue,
+  updateEndDateInputValue,
+} from "../../features/createSliceDataPicker";
 import "./stylexx.scss";
 
 const dateParse = (value) => {
@@ -13,6 +19,10 @@ const dateParse = (value) => {
   newDate.setYear(tmp[2]);
 
   return newDate;
+};
+
+const dateToString = (date) => {
+  return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
 };
 
 const setNextMonth = (date) => {
@@ -32,9 +42,12 @@ function formatDate(date, lg) {
 }
 
 const DataPicker = (props) => {
-  const [value, onChange] = useState(null);
+  const [value, setValue] = useState(null);
   const [activeDate, setActiveDate] = useState(new Date());
-  const [focused, setFocused] = useState(false);
+  const [focused, setFocused] = useState("");
+  const activeDateStart = useSelector(CALENDAR_VALUE);
+
+  const dispatch = useDispatch();
 
   const prevMonth = (e) => {
     e.preventDefault();
@@ -53,6 +66,12 @@ const DataPicker = (props) => {
       return newDate;
     });
   };
+  const onChange = (date) => {
+    console.log("date : ", date);
+    dispatch(updateStartDateInputValue(dateToString(date[0])));
+    dispatch(updateEndDateInputValue(dateToString(date[1])));
+    setValue(date);
+  };
 
   const updateCalendar = (value) => {
     setActiveDate(dateParse(value));
@@ -61,6 +80,7 @@ const DataPicker = (props) => {
     <div className="data-picker-block">
       <InputsPicker
         updateCalendar={updateCalendar}
+        focused={focused}
         onFocus={setFocused}
         value={value}
       />
@@ -73,17 +93,15 @@ const DataPicker = (props) => {
           />
           <Calendar
             onChange={onChange}
-            activeStartDate={activeDate}
+            activeStartDate={dateParse(activeDateStart)}
             value={value}
+            //value={dateParse(activeDateStart)}
             selectRange={true}
             minDate={props.minDate}
             next2Label={null}
-            onViewChange={(a) => console.log("ViewChange: ", a)}
-            onClickMonth={(a) => console.log("Month: ", a)}
-            onDrillUp={(a) => console.log("DrillUp: ", a)}
-            onActiveStartDateChange={(a) => {
-              console.log("ActiveStartDateChange :", a);
-            }}
+            // onActiveStartDateChange={(a) => {
+            //   console.log("ActiveStartDateChange :", a);
+            // }}
             prev2Label={null}
             showDoubleView={true}
             showNeighboringMonth={true}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { briefType } from "../../redux/selectBriefReducer";
+import { briefType } from "../../features/selectBriefReducer";
 import "./style.scss";
 
 const Menu = () => {

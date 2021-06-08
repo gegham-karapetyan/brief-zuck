@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import DataPicker from "../../components/DataPicker";
-import { selectBriefAC } from "../../redux/selectBriefReducer";
+import { selectBriefAC } from "../../features/selectBriefReducer";
 //import "./style.scss";
 
 const SocialMediaActivationBrief = (props) => {

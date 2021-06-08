@@ -1,13 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
+import { VALUE } from "../createTestSlice";
 import "./style.scss";
 
-const Buttons = ({ values }) => {
+const Buttons = () => {
+  const value = useSelector(VALUE);
   return (
     <>
-      {values.map((value) => (
-        <button>{value}</button>
-      ))}
+      <button>{value}</button>
     </>
   );
 };
