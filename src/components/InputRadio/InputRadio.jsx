@@ -5,7 +5,7 @@ import "./style.scss";
 const InputRadio = (props) => {
   return (
     <label
-      className="inputRadio"
+      className={`inputRadio ${props.className && props.className}`}
       style={props.checked ? styleChecked : styleUnChecked}
     >
       <span>{props.name}</span>

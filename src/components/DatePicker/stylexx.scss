@@ -1,3 +1,9 @@
+.custom-calendar {
+  & .label {
+    margin-bottom: 80px;
+  }
+}
+
 .react-calendar {
   width: 240px;
   max-width: 100%;

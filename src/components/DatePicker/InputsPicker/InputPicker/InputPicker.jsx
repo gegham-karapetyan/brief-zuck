@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import "./style.scss";
 
 const InputText = (props) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const onFocus = () => {
     props.onFocus("focused");
@@ -19,11 +19,18 @@ const InputText = (props) => {
   const onChange = (e) => {
     let value = e.target.value;
 
-    dispatch(props.updateValue(value));
+    props.updateValue(value);
 
     // setValue(value);
-    if (isDate(value, { format: "DD/MM/YYYY", delimiters: ["/", "\\", "-"] })) {
-      dispatch(props.updateCalendar(value));
+    if (
+      isDate(value, {
+        format: "DD/MM/YYYY",
+        delimiters: ["/", "\\", "-"],
+        strictMode: true,
+      })
+    ) {
+      props.updateCalendar();
+      props.updateCalendarActivStartValue(value);
     }
   };
   return (
@@ -32,6 +39,7 @@ const InputText = (props) => {
         <div className={`textInputLabel ${props.focused}`}>{props.name}</div>
         <input
           onChange={onChange}
+          autoComplete="off"
           placeholder={props.focused && "DD/MM/YYYY"}
           onFocus={onFocus}
           onBlur={onBlur}

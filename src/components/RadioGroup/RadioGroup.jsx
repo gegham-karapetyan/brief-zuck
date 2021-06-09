@@ -16,9 +16,6 @@ const RadioGroup = (props) => {
   const [additionalInput, setAdditionalInput] = useState(false);
   const [checked, setChecked] = useState(initialCheckedData);
 
-  const addNewInput = (checked) => {
-    setAdditionalInput(checked);
-  };
   const onChange = (name) => {
     setChecked({ ...initialCheckedData, ...{ [name]: true } });
     if (name === "Other") {
@@ -34,19 +31,16 @@ const RadioGroup = (props) => {
             key={name}
             checked={checked[name]}
             onChange={onChange}
-            addNewInput={addNewInput}
             name={name}
           />
         ))}
       </div>
       {additionalInput && (
         <InpuTtext
-          name={{
-            name: "Other description",
-            lg: "am",
-            required: false,
-            hint: false,
-          }}
+          name="Other description"
+          lg="am"
+          required={false}
+          hint={false}
         />
       )}
     </div>

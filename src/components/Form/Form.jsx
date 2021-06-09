@@ -10,7 +10,7 @@ import * as style from "./style.module.scss";
 
 const Form = (props) => {
   return (
-    <form className={style.form}>
+    <div className={style.form}>
       <div className={style.wrapper}>
         <h1>
           “We just want something creative” <br />
@@ -43,7 +43,7 @@ const Form = (props) => {
           </Route>
         </Switch>
       </div>
-    </form>
+    </div>
   );
 };
 

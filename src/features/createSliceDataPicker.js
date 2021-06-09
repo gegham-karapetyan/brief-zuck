@@ -3,8 +3,10 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   input: { startValue: "", endValue: "" },
   calendar: {
-    value: "08/06/2021",
-    activeStartDate: "08/06/2021",
+    value: [],
+    activeStartDate: `${new Date().getDate()}/${
+      new Date().getMonth() + 1
+    }/${new Date().getFullYear()}`,
   },
 };
 
@@ -20,7 +22,10 @@ const createSliceDataPicker = createSlice({
     },
 
     updateCalendarValue: (state, action) => {
-      state.calendar.value = action.payload;
+      let startValue = state.input.startValue;
+      let endValue = state.input.endValue;
+      // state.calendar.activeStartDate = startValue;
+      if (startValue && endValue) state.calendar.value = [startValue, endValue];
     },
     updateCalendarActiveStartDate: (state, action) => {
       state.calendar.activeStartDate = action.payload;

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { updateCalendarActiveStartDate } from "../../../features/createSliceDataPicker";
 
 import "./style.scss";
 
@@ -18,6 +20,10 @@ const MONTH = [
   "Դեկտեմբեր",
 ];
 
+const dateToString = (date) => {
+  return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+};
+
 function formatCurrentDate(date, lg) {
   date = new Date(date);
   let i = date.getMonth();
@@ -30,7 +36,24 @@ function formatNextDate(date, lg) {
   return MONTH[i] + " " + date.getFullYear();
 }
 
-const PickerNavigation = ({ prevMonth, nextMonth, activeDate }) => {
+const PickerNavigation = ({ activeStartDate }) => {
+  const dispatch = useDispatch();
+
+  const prevMonth = (e) => {
+    e.preventDefault();
+
+    let newDate = new Date(activeStartDate);
+    newDate.setMonth(activeStartDate.getMonth() - 1);
+    dispatch(updateCalendarActiveStartDate(dateToString(newDate)));
+  };
+  const nextMonth = (e) => {
+    e.preventDefault();
+
+    let newDate = new Date(activeStartDate);
+    newDate.setMonth(activeStartDate.getMonth() + 1);
+    dispatch(updateCalendarActiveStartDate(dateToString(newDate)));
+  };
+
   return (
     <div className="navigation-block">
       <div className="prev-nav-label">
@@ -46,10 +69,10 @@ const PickerNavigation = ({ prevMonth, nextMonth, activeDate }) => {
             }}
           ></div>
         </button>
-        <span className="nav-label">{formatCurrentDate(activeDate)}</span>
+        <span className="nav-label">{formatCurrentDate(activeStartDate)}</span>
       </div>
       <div className="next-nav-label">
-        <span className="nav-label">{formatNextDate(activeDate)}</span>
+        <span className="nav-label">{formatNextDate(activeStartDate)}</span>
         <button onClick={nextMonth}>
           <div
             style={{

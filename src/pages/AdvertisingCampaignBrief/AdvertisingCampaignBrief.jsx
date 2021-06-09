@@ -9,7 +9,9 @@ import TargetGroup from "../../components/TargetGroup";
 import HyperactiveBuyers from "../../components/HyperactiveBuyers";
 import Textarea from "../../components/Textarea";
 import CampaignScalability from "../../components/CampaignScalability";
+import DatePicker from "../../components/DatePicker";
 
+import CampaignBudget from "../../components/CampaignBudget";
 import "./style.scss";
 
 const AdvertisingCampaignBrief = (props) => {
@@ -41,7 +43,7 @@ const AdvertisingCampaignBrief = (props) => {
         }}
       />
       <CheckboxesGroup
-        name={"Արշավի տեսակ "}
+        name={"Արշավի տեսակ * "}
         data={[
           "Brand awareness campaign",
           "Brand launch campaign",
@@ -181,7 +183,8 @@ const AdvertisingCampaignBrief = (props) => {
           lg: "am",
         }}
       />
-      {/* will be added calendare */}
+      <DatePicker name="Գովազդային արշավի իրականացման ժամկետներ *" />
+      <CampaignBudget />
       <InputSocial
         name={{
           name: "Նմանատիպ աշխատանք, որը դուր է գալիս (հղումներ) ",

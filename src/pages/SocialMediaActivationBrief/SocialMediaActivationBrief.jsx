@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import DataPicker from "../../components/DataPicker";
+import DatePicker from "../../components/DatePicker";
 import { selectBriefAC } from "../../features/selectBriefReducer";
 //import "./style.scss";
 
@@ -11,7 +11,7 @@ const SocialMediaActivationBrief = (props) => {
   });
   return (
     <div>
-      <DataPicker />
+      <DatePicker />
     </div>
   );
 };
