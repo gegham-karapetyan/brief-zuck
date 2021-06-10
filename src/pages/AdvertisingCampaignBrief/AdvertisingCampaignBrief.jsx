@@ -13,6 +13,7 @@ import DatePicker from "../../components/DatePicker";
 
 import CampaignBudget from "../../components/CampaignBudget";
 import "./style.scss";
+import FilesBox from "../../components/FilesBox";
 
 const AdvertisingCampaignBrief = (props) => {
   const dispatch = useDispatch();
@@ -22,25 +23,24 @@ const AdvertisingCampaignBrief = (props) => {
 
   return (
     <div>
-      <InputText name="Բրենդ " required={true} hint={true} lg="am" />
-      <InputText name="Անուն Ազգանուն " required={true} hint={true} lg="am" />
-      <InputText name="Էլ. հասցե " required={true} hint={true} lg="am" />
-      <InputText name="Հաստիք " required={true} hint={true} lg="am" />
+      <InputText name="Բրենդ " required={true} hint={false} lg="am" />
+      <InputText name="Անուն Ազգանուն " required={true} hint={false} lg="am" />
+      <InputText name="Էլ. հասցե " required={true} hint={false} lg="am" />
+      <InputText name="Հաստիք " required={true} hint={false} lg="am" />
       <InputSocial
-        name={{
-          name: "Կայք, Ֆեյսբուք, Ինստագրամ, և այլն  *",
-          required: true,
-          hint: true,
-          lg: "am",
-        }}
+        name="Կայք, Ֆեյսբուք, Ինստագրամ, և այլն  *"
+        required={true}
+        hint={false}
+        lg="am"
       />
       <Textarea
-        name={{
-          name: "Ամփոփ նկարագիր ",
-          required: false,
-          hint: true,
-          lg: "am",
-        }}
+        name="Ամփոփ նկարագիր "
+        required={false}
+        hintText={
+          "բիզնես նպատակ, արշավի իրականացման նպատակ, տեղեկատվություն բրենդի և/կամ ծառայության, պրոդուկտի մասին"
+        }
+        hint={true}
+        lg="am"
       />
       <CheckboxesGroup
         name={"Արշավի տեսակ * "}
@@ -62,145 +62,131 @@ const AdvertisingCampaignBrief = (props) => {
       <TargetGroup />
       <HyperactiveBuyers />
       <Textarea
-        name={{
-          name: "Հավելյալ տեղեկատվություն թիրախի մասին ",
-          required: false,
-          hint: true,
-          lg: "am",
-        }}
+        name="Հավելյալ տեղեկատվություն թիրախի մասին "
+        required={false}
+        hint={true}
+        hintText={
+          "Աշխհարագրություն, հետաքրքրություններ, մասնագիտություն, սովորույթներ և այլն։"
+        }
+        lg="am"
       />
       <Textarea
-        name={{
-          name: "Սպառողների ներկայիս վարքագիծ ",
-          required: false,
-          hint: false,
-          lg: "am",
-        }}
+        name="Սպառողների ներկայիս վարքագիծ "
+        required={false}
+        hint={false}
+        lg="am"
       />
       <Textarea
-        name={{
-          name: "Սպառողների ներկայիս կարծիք ",
-          required: false,
-          hint: false,
-          lg: "am",
-        }}
+        name="Սպառողների ներկայիս կարծիք "
+        required={false}
+        hint={false}
+        lg="am"
       />
       <Textarea
-        name={{
-          name: "Սպառողների ցանկալի վարքագիծ (արշավի իրականացումից հետո) ",
-          required: false,
-          hint: false,
-          lg: "am",
-        }}
+        name="Սպառողների ցանկալի վարքագիծ (արշավի իրականացումից հետո) "
+        required={false}
+        hint={false}
+        lg="am"
       />
       <Textarea
-        name={{
-          name: "USP (unique selling proposition) /Brand promise  ",
-          required: true,
-          hint: true,
-          lg: "am",
-        }}
+        name="USP (unique selling proposition) /Brand promise  "
+        required={true}
+        hint={true}
+        hintText={
+          <>
+            <div>
+              բրենդը/պրոդուկտը/ծառայությունը վաճառող եզակիություն, բրենդի
+              խոստում
+            </div>
+            <br></br>
+            <b>Օրինակ`</b> «Մենք կառաքենք ձեր պիցցան 15 րոպեում, եթե ուշացնենք,
+            կստանաք այն անվճար»։
+          </>
+        }
+        lg="am"
       />
       <Textarea
-        name={{
-          name: "Insight/Consumer Insight  ",
-          required: true,
-          hint: true,
-          lg: "am",
-        }}
+        name="Insight/Consumer Insight  "
+        required={true}
+        hint={true}
+        hintText={
+          <>
+            խորքային համոզմունք, որի առանցքի շուրջ կարելի է ստեղծել կոմունիկացիա
+            <p>Insight</p> <b>Օրինակ՝</b> Մարդիկ միշտ փնտրում են հարմար առիթ
+            կտրվել աշխատանքից և ընդմիջում անել: <p>Consumer Insight</p>{" "}
+            <b>Օրինակ՝ </b>
+            հետազոտությունը ցույց է տվել, որ սպառողը դժվարությամբ է բացում մեր
+            ապրանքի փաթեթավորումը, մենք ստեղծել ենք նոր փաթեթավորում, որը ավելի
+            հեշտ է բացվում։
+          </>
+        }
+        lg="am"
       />
       <Textarea
-        name={{
-          name: "Գովազդային արշավի հիմնական ուղերձ (մեսիջ) ",
-          required: true,
-          hint: false,
-          lg: "am",
-        }}
+        name="Գովազդային արշավի հիմնական ուղերձ (մեսիջ) "
+        required={true}
+        hint={false}
+        lg="am"
       />
       <Textarea
-        name={{
-          name: "Գովազդային արշավի երկրորդային ուղերձ (մեսիջ)  ",
-          required: true,
-          hint: false,
-          lg: "am",
-        }}
+        name="Գովազդային արշավի երկրորդային ուղերձ (մեսիջ)  "
+        required={true}
+        hint={false}
+        lg="am"
       />
       <Textarea
-        name={{
-          name: "RTB (reason to believe)   ",
-
-          required: false,
-          hint: true,
-          lg: "am",
-        }}
+        name="RTB (reason to believe)   "
+        required={false}
+        hint={true}
+        lg="am"
+      />
+      <Textarea name="Barrier  " required={false} hint={true} lg="am" />
+      <Textarea
+        name="Գովազդային արշավի/կոմունիկացիայի տարրեր, որոնք պարտադիր են   "
+        required={true}
+        hint={true}
+        lg="am"
       />
       <Textarea
-        name={{
-          name: "Barrier  ",
-          required: false,
-          hint: true,
-          lg: "am",
-        }}
-      />
-      <Textarea
-        name={{
-          name: "Գովազդային արշավի/կոմունիկացիայի տարրեր, որոնք պարտադիր են   ",
-          required: true,
-          hint: true,
-          lg: "am",
-        }}
-      />
-      <Textarea
-        name={{
-          name: "Գովազդային արշավի/կոմունիկացիայի տարրեր, որոնք բացառվում են  ",
-          required: true,
-          hint: true,
-          lg: "am",
-        }}
+        name="Գովազդային արշավի/կոմունիկացիայի տարրեր, որոնք բացառվում են  "
+        required={true}
+        hint={true}
+        lg="am"
       />
       <CampaignScalability />
       <InputSocial
-        name={{
-          name: "Պատկերացումներ մրցակիցների մասին  (հղումներ)",
-          required: false,
-          hint: false,
-          lg: "am",
-        }}
+        name="Պատկերացումներ մրցակիցների մասին  (հղումներ)"
+        required={false}
+        hint={false}
+        lg="am"
       />
       <Textarea
-        name={{
-          name: "Գործակալության առաջադրանքը",
-          required: false,
-          hint: false,
-          lg: "am",
-        }}
+        name="Գործակալության առաջադրանքը"
+        required={false}
+        hint={false}
+        lg="am"
       />
       <Textarea
-        name={{
-          name: "KPIs (Key Performance Indicators)",
-          required: false,
-          hint: true,
-          lg: "am",
-        }}
+        name="KPIs (Key Performance Indicators)"
+        required={false}
+        hint={true}
+        lg="am"
       />
       <DatePicker name="Գովազդային արշավի իրականացման ժամկետներ *" />
       <CampaignBudget />
       <InputSocial
-        name={{
-          name: "Նմանատիպ աշխատանք, որը դուր է գալիս (հղումներ) ",
-          required: false,
-          hint: true,
-          lg: "am",
-        }}
+        name="Նմանատիպ աշխատանք, որը դուր է գալիս (հղումներ) "
+        required={false}
+        hint={true}
+        lg="am"
       />
       <InputSocial
-        name={{
-          name: "Նմանատիպ աշխատանք, որը դուր չի գալիս  (հղումներ) ",
-          required: false,
-          hint: true,
-          lg: "am",
-        }}
+        name="Նմանատիպ աշխատանք, որը դուր չի գալիս  (հղումներ) "
+        required={false}
+        hint={true}
+        lg="am"
       />
+      <FilesBox name="Հավելյալ տեղեկատվություն" lg="am" />
     </div>
   );
 };

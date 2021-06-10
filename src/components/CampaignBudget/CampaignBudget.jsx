@@ -5,7 +5,7 @@ import InputRadio from "../InputRadio";
 import "./style.scss";
 
 const CampaignBudget = (props) => {
-  const [value, setValue] = useState([100, 200]);
+  const [value, setValue] = useState([24, 44]);
   const [currency, setCurrency] = useState({
     USD: true,
     AMD: false,
@@ -56,7 +56,7 @@ const CampaignBudget = (props) => {
           value[1] * 500
         }`}</span>
       </div>
-      <div className="gender-age">
+      <div>
         <InputRange onChange={onChange} />
       </div>
     </div>

@@ -18,12 +18,10 @@ const CampaignCheckboxes = (props) => {
       </div>
       {additionalInput && (
         <Textarea
-          name={{
-            name: "Other description",
-            lg: "am",
-            required: false,
-            hint: false,
-          }}
+          name="Other description"
+          lg="am"
+          required={false}
+          hint={false}
         />
       )}
     </div>

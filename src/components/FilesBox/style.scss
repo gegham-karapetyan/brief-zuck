@@ -1,0 +1,36 @@
+.files-box {
+  display: block;
+  position: relative;
+  width: 100%;
+  margin: 60px 0 90px 0;
+
+  & .header {
+    cursor: pointer;
+    position: absolute;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    top: 0px;
+    left: 0;
+    transition: all 0.1s linear;
+    &.focused {
+      top: -25px;
+    }
+  }
+
+  & textarea {
+    width: 100%;
+    border: none;
+    padding-bottom: 10px;
+    outline: none;
+    resize: none;
+    background-color: transparent;
+    border-bottom: 1px solid black;
+  }
+}
+.en {
+  font-family: inherit;
+}
+.am {
+  font-family: "mardoto-bold";
+}

@@ -21,17 +21,17 @@ const Textarea = (props) => {
   };
   return (
     <div>
-      <label className={`textarea ${props.name.lg}`}>
+      <label className={`textarea ${props.lg}`}>
         <div className={`textareaLabel ${focused}`}>
-          {`${props.name.name}${props.name.required ? "*" : ""}`}
-          {props.name.hint && <Hint text="some text" />}
+          {props.name}
+          {props.hint && <Hint hintText={props.hintText} />}
         </div>
         <TextareaAutosize
           onChange={onChange}
           onFocus={onFocus}
           onBlur={onBlur}
           value={value}
-          name={props.name.name}
+          name={props.name}
         />
       </label>
     </div>
@@ -39,12 +39,10 @@ const Textarea = (props) => {
 };
 
 Textarea.propTypes = {
-  name: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    lg: PropTypes.string.isRequired,
-    required: PropTypes.bool,
-    hint: PropTypes.bool,
-  }),
+  name: PropTypes.string.isRequired,
+  lg: PropTypes.string.isRequired,
+  required: PropTypes.bool,
+  hint: PropTypes.bool,
 };
 
 export default Textarea;

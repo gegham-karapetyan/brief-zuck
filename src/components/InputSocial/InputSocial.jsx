@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import UrlBlock from "./UrlBlock";
+import PropTypes from "prop-types";
 import { isURL } from "validator";
 
 import "./style.scss";
 
-const InputSocial = (props) => {
+const InputSocial = ({ name, lg }) => {
   const [focused, setFocused] = useState("");
   const [valid, setInvalid] = useState({ borderColor: "black" });
   const [urls, setUrls] = useState([]);
@@ -34,19 +35,16 @@ const InputSocial = (props) => {
   };
 
   return (
-    <div className={`socialInput ${props.name.lg}`}>
-      <label
-        className={`socialInputLabel ${focused}`}
-        htmlFor={props.name.name}
-      >
-        {props.name.name}
+    <div className={`socialInput ${lg}`}>
+      <label className={`socialInputLabel ${focused}`} htmlFor={name}>
+        {name}
       </label>
 
       {urls && <UrlBlock onClick={onDelete} urls={urls} />}
 
       <input
         style={valid}
-        id={props.name.name}
+        id={name}
         onKeyUp={(e) => {
           if (e.code === "Enter") onBlur(e);
         }}
@@ -58,6 +56,11 @@ const InputSocial = (props) => {
       />
     </div>
   );
+};
+
+InputSocial.propTypes = {
+  name: PropTypes.string.isRequired,
+  lg: PropTypes.string.isRequired,
 };
 
 export default InputSocial;

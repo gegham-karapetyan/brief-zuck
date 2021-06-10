@@ -6,11 +6,28 @@
   margin-left: 15px;
 }
 .hintText {
-  position: absolute;
+  position: fixed;
+  font-family: "mardoto-regular";
+  z-index: 1000;
   padding: 15px;
   display: inline-block;
-  left: 0%;
-  bottom: 100%;
+  left: 0;
+  top: 0;
+  min-width: 50px;
+  max-width: 330px;
+  transform: translate(-50%, -180%);
   background: #fff8f4;
   border: 1px solid black;
+  .tail {
+    position: absolute;
+    left: 50%;
+
+    bottom: 0%;
+    transform: rotate(45deg) translate(25%, 50%);
+    width: 20px;
+    height: 20px;
+    background: #fff8f4;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+  }
 }

@@ -16,7 +16,7 @@ const InputText = (props) => {
     <div>
       <label className={`textInput ${props.lg || "en"}`}>
         <div className={`textInputLabel ${focused}`}>
-          {`${props.name}${props.required ? "*" : ""}`}
+          {props.name}
           {props.hint && <Hint text="some text" />}
         </div>
         <input
