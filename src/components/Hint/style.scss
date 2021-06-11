@@ -11,17 +11,17 @@
   z-index: 1000;
   padding: 15px;
   display: inline-block;
-  left: 0;
-  top: 0;
-  min-width: 50px;
+  // left: 0;
+  // top: 0;
+  min-width: 100px;
   max-width: 330px;
-  transform: translate(-50%, -180%);
-  background: #fff8f4;
+  transform: translate(-50%, -100%);
+  opacity: 1 !important;
+  background: #fff8f4 !important;
   border: 1px solid black;
   .tail {
     position: absolute;
     left: 50%;
-
     bottom: 0%;
     transform: rotate(45deg) translate(25%, 50%);
     width: 20px;
@@ -29,5 +29,17 @@
     background: #fff8f4;
     border-right: 1px solid black;
     border-bottom: 1px solid black;
+  }
+}
+.hint--checkbox {
+  transform: translate(0%, -100%);
+  .tail {
+    left: 40px;
+  }
+}
+.hint--radio {
+  transform: translate(0%, -100%);
+  .tail {
+    left: 10px;
   }
 }

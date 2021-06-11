@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import Hint from "../Hint";
+// import Hint from "../Hint";
 import "./style.scss";
 
-const InputText = (props) => {
+const InputText = ({ name, lg, placeholder, onFocus }) => {
   const [focused, setFocused] = useState("");
-  const onFocus = () => {
-    if (props.onFocus) props.onFocus(true);
+  const focusHandler = () => {
+    if (onFocus) onFocus(true);
     setFocused("focused");
   };
   const onBlur = (e) => {
@@ -14,17 +14,17 @@ const InputText = (props) => {
   };
   return (
     <div>
-      <label className={`textInput ${props.lg || "en"}`}>
+      <label className={`textInput ${lg || "en"}`}>
         <div className={`textInputLabel ${focused}`}>
-          {props.name}
-          {props.hint && <Hint text="some text" />}
+          {name[lg]}
+          {/* {hint && <Hint text="some text" />} */}
         </div>
         <input
-          placeholder={props.placeholder}
-          onFocus={onFocus}
+          placeholder={placeholder}
+          onFocus={focusHandler}
           onBlur={onBlur}
           type="text"
-          name={props.name}
+          name={name.en}
         />
       </label>
     </div>
@@ -32,7 +32,7 @@ const InputText = (props) => {
 };
 
 InputText.propTypes = {
-  name: PropTypes.string.isRequired,
+  name: PropTypes.object.isRequired,
   lg: PropTypes.string,
   required: PropTypes.bool,
   hint: PropTypes.bool,

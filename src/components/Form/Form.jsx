@@ -6,9 +6,10 @@ import CommercialVideoBrief from "../../pages/CommercialVideoBrief";
 import SocialMediaActivationBrief from "../../pages/SocialMediaActivationBrief";
 import StrategyBrief from "../../pages/StrategyBrief";
 import LogoBrief from "../../pages/LogoBrief";
+
 import * as style from "./style.module.scss";
 
-const Form = (props) => {
+const Form = ({ lg }) => {
   return (
     <div className={style.form}>
       <div className={style.wrapper}>
@@ -20,11 +21,9 @@ const Form = (props) => {
           <Route exact path="/">
             <Redirect to="/Advertising-Campaign-Brief" />
           </Route>
-          <Route exact path="/index.html">
-            <Redirect to="/Advertising-Campaign-Brief" />
-          </Route>
+
           <Route path="/Advertising-Campaign-Brief">
-            <AdvertisingCampaignBrief />
+            <AdvertisingCampaignBrief lg={lg} />
           </Route>
           <Route path="/Visual-Key-Visual-Brief">
             <VisualKeyVisualBrief />
@@ -40,6 +39,9 @@ const Form = (props) => {
           </Route>
           <Route path="/Logo-Brief">
             <LogoBrief />
+          </Route>
+          <Route path="*">
+            <Redirect to="/" />
           </Route>
         </Switch>
       </div>

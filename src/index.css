@@ -58,3 +58,11 @@ code {
   padding: 30px;
   font-family: "PFCentroSansPro-Regular";
 }
+
+.am {
+  font-family: "mardoto-bold";
+}
+.ru,
+.en {
+  font-family: "PFCentroSansPro-Bold";
+}

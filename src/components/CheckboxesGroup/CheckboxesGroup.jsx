@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Textarea from "../Textarea";
 import InputCheckbox from "../InputCheckbox";
+import PropTypes from "prop-types";
 import "./style.scss";
 
 const CampaignCheckboxes = (props) => {
@@ -10,10 +11,15 @@ const CampaignCheckboxes = (props) => {
   };
   return (
     <div className={"checkboxesGroup"}>
-      <div className="label">{props.name}</div>
+      <div className="title">{props.title}</div>
       <div className={"container"}>
-        {props.data.map((name) => (
-          <InputCheckbox key={name} addNewInput={addNewInput} name={name} />
+        {props.data.map((item) => (
+          <InputCheckbox
+            key={item.name}
+            addNewInput={addNewInput}
+            name={item.name}
+            hintText={item.hintText[props.lg]}
+          />
         ))}
       </div>
       {additionalInput && (
@@ -26,6 +32,12 @@ const CampaignCheckboxes = (props) => {
       )}
     </div>
   );
+};
+
+CampaignCheckboxes.propTypes = {
+  data: PropTypes.array,
+  title: PropTypes.string,
+  lg: PropTypes.string,
 };
 
 export default CampaignCheckboxes;

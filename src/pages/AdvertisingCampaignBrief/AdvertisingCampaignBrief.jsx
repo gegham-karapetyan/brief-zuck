@@ -8,14 +8,16 @@ import CheckboxesGroup from "../../components/CheckboxesGroup";
 import TargetGroup from "../../components/TargetGroup";
 import HyperactiveBuyers from "../../components/HyperactiveBuyers";
 import Textarea from "../../components/Textarea";
-import CampaignScalability from "../../components/CampaignScalability";
+import MassMedia from "../../components/MassMedia";
 import DatePicker from "../../components/DatePicker";
-
-import CampaignBudget from "../../components/CampaignBudget";
-import "./style.scss";
 import FilesBox from "../../components/FilesBox";
+import CampaignBudget from "../../components/CampaignBudget";
 
-const AdvertisingCampaignBrief = (props) => {
+import campaignTypes from "./data/CampaignTypes";
+import massMedia from "./data/MassMedia";
+import "./style.scss";
+
+const AdvertisingCampaignBrief = ({ lg }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(selectBriefAC("Advertising Campaign Brief"));
@@ -23,15 +25,45 @@ const AdvertisingCampaignBrief = (props) => {
 
   return (
     <div>
-      <InputText name="Բրենդ " required={true} hint={false} lg="am" />
-      <InputText name="Անուն Ազգանուն " required={true} hint={false} lg="am" />
-      <InputText name="Էլ. հասցե " required={true} hint={false} lg="am" />
-      <InputText name="Հաստիք " required={true} hint={false} lg="am" />
+      <InputText
+        name={{ am: "Բրենդ *", en: "", ru: "Бренд *" }}
+        required={true}
+        hint={false}
+        lg={lg}
+      />
+      <InputText
+        name={{ am: "Անուն Ազգանուն *", en: "", ru: "ФИО *" }}
+        required={true}
+        hint={false}
+        lg={lg}
+      />
+      <InputText
+        name={{
+          am: "Էլ. հասցե *",
+          en: "",
+          ru: "Адрес эл.почты, номер телефона *",
+        }}
+        required={true}
+        hint={false}
+        lg={lg}
+      />
+      <InputText
+        name={{ am: "Հաստիք *", en: "", ru: "Должность *" }}
+        required={true}
+        hint={false}
+        lg={lg}
+      />
+      <InputText
+        name={{ am: "Հեռախոսահամար *", en: "", ru: "Номер телефона *" }}
+        required={true}
+        hint={false}
+        lg={lg}
+      />
       <InputSocial
         name="Կայք, Ֆեյսբուք, Ինստագրամ, և այլն  *"
         required={true}
         hint={false}
-        lg="am"
+        lg={lg}
       />
       <Textarea
         name="Ամփոփ նկարագիր "
@@ -40,25 +72,9 @@ const AdvertisingCampaignBrief = (props) => {
           "բիզնես նպատակ, արշավի իրականացման նպատակ, տեղեկատվություն բրենդի և/կամ ծառայության, պրոդուկտի մասին"
         }
         hint={true}
-        lg="am"
+        lg={lg}
       />
-      <CheckboxesGroup
-        name={"Արշավի տեսակ * "}
-        data={[
-          "Brand awareness campaign",
-          "Brand launch campaign",
-          "Product/service launch campaign",
-          "Rebranding campaign",
-          "Seasonal push campaign",
-          "Corporate social responsibility (CSR) campaign",
-          "Contest marketing campaign",
-          "Ecommerce campaign",
-          "Lead generation campaign",
-          "Teaser campaign",
-
-          "Other",
-        ]}
-      />
+      <CheckboxesGroup title={"Արշավի տեսակ * "} lg={lg} data={campaignTypes} />
       <TargetGroup />
       <HyperactiveBuyers />
       <Textarea
@@ -68,28 +84,28 @@ const AdvertisingCampaignBrief = (props) => {
         hintText={
           "Աշխհարագրություն, հետաքրքրություններ, մասնագիտություն, սովորույթներ և այլն։"
         }
-        lg="am"
+        lg={lg}
       />
       <Textarea
         name="Սպառողների ներկայիս վարքագիծ "
         required={false}
         hint={false}
-        lg="am"
+        lg={lg}
       />
       <Textarea
         name="Սպառողների ներկայիս կարծիք "
         required={false}
         hint={false}
-        lg="am"
+        lg={lg}
       />
       <Textarea
         name="Սպառողների ցանկալի վարքագիծ (արշավի իրականացումից հետո) "
         required={false}
         hint={false}
-        lg="am"
+        lg={lg}
       />
       <Textarea
-        name="USP (unique selling proposition) /Brand promise  "
+        name="USP (unique selling proposition) /Brand promise * "
         required={true}
         hint={true}
         hintText={
@@ -103,10 +119,10 @@ const AdvertisingCampaignBrief = (props) => {
             կստանաք այն անվճար»։
           </>
         }
-        lg="am"
+        lg={lg}
       />
       <Textarea
-        name="Insight/Consumer Insight  "
+        name="Insight/Consumer Insight * "
         required={true}
         hint={true}
         hintText={
@@ -120,57 +136,101 @@ const AdvertisingCampaignBrief = (props) => {
             հեշտ է բացվում։
           </>
         }
-        lg="am"
+        lg={lg}
       />
       <Textarea
         name="Գովազդային արշավի հիմնական ուղերձ (մեսիջ) "
         required={true}
         hint={false}
-        lg="am"
+        lg={lg}
       />
       <Textarea
         name="Գովազդային արշավի երկրորդային ուղերձ (մեսիջ)  "
         required={true}
         hint={false}
-        lg="am"
+        lg={lg}
       />
       <Textarea
         name="RTB (reason to believe)   "
         required={false}
         hint={true}
-        lg="am"
+        hintText={
+          <>
+            ինչու պետք է հավատան մեսիջին/առաջարկին <br />
+            <br />
+            <b>Օրինակ`</b> «Մեր կաթնամթերքը համապատասխանում է ամենախիստ էկո
+            ստանդարտներին, քանի որ մեր ֆերմաներից ու արտադրամասից 230 կմ
+            շառավղով հեռավորության վրա չկան ո՛չ գործարաններ, ո՛չ էլ խոշոր
+            քաղաքներ»։
+          </>
+        }
+        lg={lg}
       />
-      <Textarea name="Barrier  " required={false} hint={true} lg="am" />
+      <Textarea
+        name="Barrier  "
+        required={false}
+        hint={true}
+        lg={lg}
+        hintText={
+          <>
+            բրենդին/սպառողին խանգարող ցանկացած հանգամանք/ներ
+            <br />
+            <br />
+            <b>Օրինակ`</b> ընկալում կամ համոզմունք, որ պրոդուկտը կամ մատուցվող
+            ծառայությունն ունեն ուռճացված գին:
+          </>
+        }
+      />
       <Textarea
         name="Գովազդային արշավի/կոմունիկացիայի տարրեր, որոնք պարտադիր են   "
         required={true}
         hint={true}
-        lg="am"
+        hintText={
+          <>
+            <b>Օրինակ`</b> կազմակերպության/ հովանավորների տարբերանշաններ,
+            իրավական զգուշացումներ, բրենդինգի տարրեր, օրենսդրական նկարագրեր և
+            այլն:
+          </>
+        }
+        lg={lg}
       />
       <Textarea
         name="Գովազդային արշավի/կոմունիկացիայի տարրեր, որոնք բացառվում են  "
         required={true}
         hint={true}
-        lg="am"
+        hintText={
+          <>
+            <b>Օրինակ`</b> օրենսդրական սահմանափակումներ, որոշակի գույների կամ
+            արտահայտությունների օգտագործում, երեխաների առկայություն գովազդային
+            կոմունիկացիայում, ծխախոտի/ալկոհոլի առկայություն և այլն:
+          </>
+        }
+        lg={lg}
       />
-      <CampaignScalability />
+      <MassMedia title="Մեդիաներ *" data={massMedia} lg={lg} />
       <InputSocial
         name="Պատկերացումներ մրցակիցների մասին  (հղումներ)"
         required={false}
         hint={false}
-        lg="am"
+        lg={lg}
       />
       <Textarea
         name="Գործակալության առաջադրանքը"
         required={false}
         hint={false}
-        lg="am"
+        lg={lg}
       />
       <Textarea
         name="KPIs (Key Performance Indicators)"
         required={false}
         hint={true}
-        lg="am"
+        hintText={
+          <>
+            ինչպե՞ս է գնահատվելու գովազդային արշավի հաջողությունը, ո՞ր
+            ցուցանիշներն են դրա համար լինելու չափորոշիչային
+          </>
+        }
+        lg={lg}
       />
       <DatePicker name="Գովազդային արշավի իրականացման ժամկետներ *" />
       <CampaignBudget />
@@ -178,15 +238,15 @@ const AdvertisingCampaignBrief = (props) => {
         name="Նմանատիպ աշխատանք, որը դուր է գալիս (հղումներ) "
         required={false}
         hint={true}
-        lg="am"
+        lg={lg}
       />
       <InputSocial
         name="Նմանատիպ աշխատանք, որը դուր չի գալիս  (հղումներ) "
         required={false}
         hint={true}
-        lg="am"
+        lg={lg}
       />
-      <FilesBox name="Հավելյալ տեղեկատվություն" lg="am" />
+      <FilesBox name="Հավելյալ տեղեկատվություն" lg={lg} />
     </div>
   );
 };

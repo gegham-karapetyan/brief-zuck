@@ -1,11 +1,16 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setLanguage } from "../../features/createSliceLanguages";
 import "./style.scss";
 const AllLg = ["EN", "AM", "RU"];
 
 const Languages = (props) => {
+  const dispatch = useDispatch();
   const [active, setActive] = useState("EN");
   const onClilck = (e) => {
-    setActive(e.target.textContent);
+    const lg = e.target.textContent;
+    setActive(lg);
+    dispatch(setLanguage(lg.toLowerCase()));
   };
   return (
     <div className="languages">

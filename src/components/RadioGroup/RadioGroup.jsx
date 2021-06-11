@@ -6,7 +6,7 @@ import "./style.scss";
 function arrayToObj(arr, defaultValue = false) {
   let obj = {};
   arr.forEach((element) => {
-    obj[element] = defaultValue;
+    obj[element["name"]] = defaultValue;
   });
   return obj;
 }
@@ -24,14 +24,15 @@ const RadioGroup = (props) => {
   };
   return (
     <div className={"radioGroup"}>
-      <div className="label">{props.name}</div>
+      <div className="title">{props.title}</div>
       <div className={"container"}>
-        {props.data.map((name) => (
+        {props.data.map((item) => (
           <InputRadio
-            key={name}
-            checked={checked[name]}
+            key={item.name}
+            checked={checked[item.name]}
+            hintText={item.hintText[props.lg]}
             onChange={onChange}
-            name={name}
+            name={item.name}
           />
         ))}
       </div>

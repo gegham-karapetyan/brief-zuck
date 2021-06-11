@@ -5,20 +5,8 @@ import CheckboxesGroup from "../CheckboxesGroup";
 import RadioGroup from "../RadioGroup";
 import "./style.scss";
 
-const data = [
-  "TV",
-  "OOH",
-  "Social Media",
-  "Digital",
-  "Print & Publishing",
-  "Guerrilla",
-  "Influencer/Celebrity/KOL",
-  "Product Placement",
-  "Use Of Technology",
-  "Other",
-];
-
-const CampaignScalability = (props) => {
+const MassMedia = ({ data, title, lg }) => {
+  console.log("porps,  ;", data[0][0].name);
   const [checked, setChecked] = useState({ single: false, multi: true });
   const onChange = (d) => {
     if (d === "Integrated Campaign") {
@@ -28,31 +16,33 @@ const CampaignScalability = (props) => {
     }
   };
   return (
-    <div className="CampaignScalability">
+    <div className="massMedia">
       <div className="controller">
         <div className="label">Արշավի մասշտաբայնություն *</div>
         <div className="container">
           <InputRadio
-            name="Single Channel Campaign"
+            name={data[0][0].name}
             checked={checked.single}
+            hintText={data[0][0].hintText[lg]}
             onChange={onChange}
           />
           <InputRadio
-            name="Integrated Campaign"
+            name={data[0][1].name}
             checked={checked.multi}
+            hintText={data[0][1].hintText[lg]}
             onChange={onChange}
           />
         </div>
       </div>
       <div>
         {checked.multi ? (
-          <CheckboxesGroup name="Մեդիաներ *" data={data} />
+          <CheckboxesGroup lg={lg} title={title} data={data[1]} />
         ) : (
-          <RadioGroup name="Մեդիաներ *" data={data} />
+          <RadioGroup lg={lg} title={title} data={data[1]} />
         )}
       </div>
     </div>
   );
 };
 
-export default CampaignScalability;
+export default MassMedia;
