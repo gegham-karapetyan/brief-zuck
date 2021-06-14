@@ -9,11 +9,7 @@ const SocialMediaActivationBrief = (props) => {
   useEffect(() => {
     dispatch(selectBriefAC("Social Media Activation Brief"));
   });
-  return (
-    <div>
-      <DatePicker />
-    </div>
-  );
+  return <div>hello</div>;
 };
 
 export default SocialMediaActivationBrief;
