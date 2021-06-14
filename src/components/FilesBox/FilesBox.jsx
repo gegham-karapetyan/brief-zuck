@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+
 import InputFile from "../InputFile";
 import TextareaAutosize from "react-autosize-textarea";
 import "./style.scss";
 import DynamicBox from "../DynamicBox";
 
-const FilesBox = (props) => {
+const FilesBox = ({ name, lg, title }) => {
   const [focused, setFocused] = useState("");
   const [items, setItems] = useState([]);
   const [value, setValue] = useState("");
@@ -43,8 +43,8 @@ const FilesBox = (props) => {
   return (
     <div className="files-box">
       <div className={`header ${focused}`}>
-        <label className={props.lg} htmlFor={props.name}>
-          {props.name}
+        <label className={lg} htmlFor={name}>
+          {title[lg]}
         </label>
 
         <InputFile onChange={addFile} />
@@ -55,13 +55,11 @@ const FilesBox = (props) => {
         onFocus={onFocus}
         onBlur={onBlur}
         value={value}
-        name={props.name}
-        id={props.name}
+        name={name}
+        id={name}
       />
     </div>
   );
 };
-
-FilesBox.propTypes = {};
 
 export default FilesBox;

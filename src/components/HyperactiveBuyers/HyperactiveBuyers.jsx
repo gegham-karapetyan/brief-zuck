@@ -9,12 +9,12 @@ const isEqual = (obj1, obj2) => {
 
 const reset = { checkedMan: false, checkedWoman: false };
 
-const HyperactiveBuyers = (props) => {
+const HyperactiveBuyers = ({ lg, title }) => {
   const [age, setAge] = useState([24, 44]);
   const [checked, setChecked] = useState(reset);
 
   const onChangeRadio = (name) => {
-    if (name === "Տղամարդիկ") {
+    if (name === "Men") {
       const newChecked = { checkedMan: true, checkedWoman: false };
       isEqual(checked, newChecked) ? setChecked(reset) : setChecked(newChecked);
     } else {
@@ -29,22 +29,37 @@ const HyperactiveBuyers = (props) => {
   const ageFormated = age.join("-");
   return (
     <div className="HyperactiveBuyerPersona">
-      <div className="label">Hyperactive buyer persona</div>
+      <div className="label">{title[lg][0]}</div>
       <div className="container">
         <InputRadio
           checked={checked.checkedMan}
           onChange={onChangeRadio}
-          name="Տղամարդիկ"
+          name="Men"
+          title={{
+            am: "Տղամարդիկ",
+            en: "Men",
+            ru: "",
+          }}
+          lg={lg}
         />
         <InputRadio
           checked={checked.checkedWoman}
           onChange={onChangeRadio}
-          name="Կանայք"
+          name="Women"
+          title={{
+            am: "Կանայք",
+            en: "Women",
+            ru: "",
+          }}
+          lg={lg}
         />
 
         <div className="ageBlock">
           <div className="age">
-            Տարիք՝ <span className="output">{age.join("-")} տ․</span>{" "}
+            {title[lg][1]}{" "}
+            <span className="output">
+              {age.join("-")} {title[lg][2]}
+            </span>{" "}
             <input type="hidden" name="Man Age" value={ageFormated} />
           </div>
           <div className="gender-age">

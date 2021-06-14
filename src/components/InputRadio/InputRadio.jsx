@@ -3,7 +3,15 @@ import PropTypes from "prop-types";
 import { HintText } from "../Hint/Hint";
 import "./style.scss";
 
-const InputRadio = (props) => {
+const InputRadio = ({
+  className,
+  hintText,
+  checked,
+  name,
+  lg,
+  title,
+  onChange,
+}) => {
   const [active, setActive] = useState([false, 0]);
 
   const elemRef = useRef();
@@ -17,10 +25,10 @@ const InputRadio = (props) => {
   };
   return (
     <>
-      {props.hintText && active[0] && (
+      {hintText && active[0] && (
         <HintText
           additionalClass="hint--radio"
-          hintText={props.hintText}
+          hintText={hintText}
           left={active[1]}
           top={active[2]}
         />
@@ -29,18 +37,18 @@ const InputRadio = (props) => {
         ref={elemRef}
         onMouseOver={onMouseOver}
         onMouseLeave={onMouseLeave}
-        className={`inputRadio ${props.className && props.className}`}
-        style={props.checked ? styleChecked : styleUnChecked}
+        className={`inputRadio ${className && className}`}
+        style={checked ? styleChecked : styleUnChecked}
       >
-        <span>{props.name}</span>
+        <span>{title[lg]}</span>
 
         <input
           type="checkbox"
           onChange={() => {
-            props.onChange(props.name);
+            onChange(name);
           }}
-          checked={props.checked}
-          name={props.name}
+          checked={checked}
+          name={name}
           style={{ opacity: 0, height: 0, width: 0 }}
         />
       </label>

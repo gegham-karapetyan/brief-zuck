@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { InputSlider, InputRange } from "../../InputRC";
 import "./style.scss";
 
-const SubGroupWoman = (props) => {
+const SubGroupWoman = ({ currentPoint, onChange, title, lg }) => {
   const [age, setAge] = useState([24, 44]);
 
   const onChangeAge = (num) => {
@@ -13,14 +13,17 @@ const SubGroupWoman = (props) => {
   return (
     <div className="subgroup woman">
       <div className="gender">
-        Կանայք՝ <span className="output">{props.currentPoint} %</span>
-        <input type="hidden" name="Woman" value={props.currentPoint} />
+        {title[lg][0]} <span className="output">{currentPoint} %</span>
+        <input type="hidden" name="Woman" value={currentPoint} />
       </div>
       <div className="percentage">
-        <InputSlider value={props.currentPoint} onChange={props.onChange} />
+        <InputSlider value={currentPoint} onChange={onChange} />
       </div>
       <div className="age">
-        Տարիք՝ <span className="output">{age.join("-")} տ․</span>{" "}
+        {title[lg][1]}{" "}
+        <span className="output">
+          {age.join("-")} {title[lg][2]}
+        </span>{" "}
         <input type="hidden" name="Man Age" value={ageFormated} />
       </div>
       <div className="gender-age">

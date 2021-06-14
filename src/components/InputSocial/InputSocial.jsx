@@ -5,7 +5,7 @@ import { isURL } from "validator";
 
 import "./style.scss";
 
-const InputSocial = ({ name, lg }) => {
+const InputSocial = ({ name, lg, title }) => {
   const [focused, setFocused] = useState("");
   const [valid, setInvalid] = useState({ borderColor: "black" });
   const [urls, setUrls] = useState([]);
@@ -37,7 +37,7 @@ const InputSocial = ({ name, lg }) => {
   return (
     <div className={`socialInput ${lg}`}>
       <label className={`socialInputLabel ${focused}`} htmlFor={name}>
-        {name}
+        {title[lg]}
       </label>
 
       {urls && <UrlBlock onClick={onDelete} urls={urls} />}
@@ -59,6 +59,7 @@ const InputSocial = ({ name, lg }) => {
 };
 
 InputSocial.propTypes = {
+  title: PropTypes.object.isRequired,
   name: PropTypes.string.isRequired,
   lg: PropTypes.string.isRequired,
 };

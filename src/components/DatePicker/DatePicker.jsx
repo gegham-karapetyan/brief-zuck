@@ -41,7 +41,7 @@ function formatDate(date, lg) {
   return Languages[lg][i];
 }
 
-const DatePicker = (props) => {
+const DatePicker = ({ minDate, title, lg }) => {
   const [focused, setFocused] = useState("");
 
   const activeStartDate = useSelector(CALENDAR_ACTIVE_START_DATE);
@@ -58,7 +58,7 @@ const DatePicker = (props) => {
 
   return (
     <div className="custom-calendar">
-      <div className="label am">{props.name}</div>
+      <div className={`label ${lg}`}>{title[lg]}</div>
       <div className="data-picker-block">
         <InputsPicker focused={focused} onFocus={setFocused} value={value} />
         {focused && (
@@ -72,13 +72,13 @@ const DatePicker = (props) => {
               activeStartDate={dateParse(activeStartDate)}
               value={value}
               selectRange={true}
-              minDate={props.minDate}
+              minDate={minDate}
               next2Label={null}
               prev2Label={null}
               showDoubleView={true}
               showNeighboringMonth={true}
               showNavigation={false}
-              formatShortWeekday={(locale, date) => formatDate(date, "am")}
+              formatShortWeekday={(locale, date) => formatDate(date, lg)}
             />
           </div>
         )}

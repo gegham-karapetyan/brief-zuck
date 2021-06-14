@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Hint from "../Hint";
 import "./style.scss";
 
-const Textarea = (props) => {
+const Textarea = ({ title, lg, name, hintText }) => {
   const [focused, setFocused] = useState("");
   const [value, setValue] = useState("");
   const onChange = (e) => {
@@ -21,17 +21,17 @@ const Textarea = (props) => {
   };
   return (
     <div>
-      <label className={`textarea ${props.lg}`}>
+      <label className={`textarea ${lg}`}>
         <div className={`textareaLabel ${focused}`}>
-          {props.name}
-          {props.hint && <Hint hintText={props.hintText} />}
+          {title[lg]}
+          {hintText && <Hint hintText={hintText[lg]} />}
         </div>
         <TextareaAutosize
           onChange={onChange}
           onFocus={onFocus}
           onBlur={onBlur}
           value={value}
-          name={props.name}
+          name={name}
         />
       </label>
     </div>
@@ -39,6 +39,7 @@ const Textarea = (props) => {
 };
 
 Textarea.propTypes = {
+  title: PropTypes.object,
   name: PropTypes.string.isRequired,
   lg: PropTypes.string.isRequired,
   required: PropTypes.bool,

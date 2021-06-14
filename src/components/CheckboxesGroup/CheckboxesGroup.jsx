@@ -4,27 +4,32 @@ import InputCheckbox from "../InputCheckbox";
 import PropTypes from "prop-types";
 import "./style.scss";
 
-const CampaignCheckboxes = (props) => {
+const CampaignCheckboxes = ({ title, lg, data }) => {
   const [additionalInput, setAdditionalInput] = useState(false);
   const addNewInput = (checked) => {
     setAdditionalInput(checked);
   };
   return (
     <div className={"checkboxesGroup"}>
-      <div className="title">{props.title}</div>
+      <div className="title">{title[lg]}</div>
       <div className={"container"}>
-        {props.data.map((item) => (
+        {data.map((item) => (
           <InputCheckbox
             key={item.name}
             addNewInput={addNewInput}
             name={item.name}
-            hintText={item.hintText[props.lg]}
+            hintText={item.hintText[lg]}
           />
         ))}
       </div>
       {additionalInput && (
         <Textarea
           name="Other description"
+          title={{
+            am: "Other description",
+            en: "Other description",
+            ru: "",
+          }}
           lg="am"
           required={false}
           hint={false}
@@ -36,7 +41,7 @@ const CampaignCheckboxes = (props) => {
 
 CampaignCheckboxes.propTypes = {
   data: PropTypes.array,
-  title: PropTypes.string,
+  title: PropTypes.object.isRequired,
   lg: PropTypes.string,
 };
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import InpuTtext from "../InputText";
+import InputText from "../InputText";
 import InputRadio from "../InputRadio";
 import "./style.scss";
 
@@ -24,7 +24,7 @@ const RadioGroup = (props) => {
   };
   return (
     <div className={"radioGroup"}>
-      <div className="title">{props.title}</div>
+      <div className="title">{props.title[props.lg]}</div>
       <div className={"container"}>
         {props.data.map((item) => (
           <InputRadio
@@ -33,11 +33,18 @@ const RadioGroup = (props) => {
             hintText={item.hintText[props.lg]}
             onChange={onChange}
             name={item.name}
+            lg={props.lg}
+            title={item.title}
           />
         ))}
       </div>
       {additionalInput && (
-        <InpuTtext
+        <InputText
+          title={{
+            am: "Other description",
+            en: "Other description",
+            ru: "",
+          }}
           name="Other description"
           lg="am"
           required={false}

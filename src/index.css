@@ -66,3 +66,6 @@ code {
 .en {
   font-family: "PFCentroSansPro-Bold";
 }
+label {
+  cursor: pointer;
+}

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 // import Hint from "../Hint";
 import "./style.scss";
 
-const InputText = ({ name, lg, placeholder, onFocus }) => {
+const InputText = ({ name, lg, placeholder, onFocus, title }) => {
   const [focused, setFocused] = useState("");
   const focusHandler = () => {
     if (onFocus) onFocus(true);
@@ -15,16 +15,13 @@ const InputText = ({ name, lg, placeholder, onFocus }) => {
   return (
     <div>
       <label className={`textInput ${lg || "en"}`}>
-        <div className={`textInputLabel ${focused}`}>
-          {name[lg]}
-          {/* {hint && <Hint text="some text" />} */}
-        </div>
+        <div className={`textInputLabel ${focused}`}>{title[lg]}</div>
         <input
           placeholder={placeholder}
           onFocus={focusHandler}
           onBlur={onBlur}
           type="text"
-          name={name.en}
+          name={name}
         />
       </label>
     </div>
@@ -32,7 +29,8 @@ const InputText = ({ name, lg, placeholder, onFocus }) => {
 };
 
 InputText.propTypes = {
-  name: PropTypes.object.isRequired,
+  title: PropTypes.object.isRequired,
+  name: PropTypes.string,
   lg: PropTypes.string,
   required: PropTypes.bool,
   hint: PropTypes.bool,
