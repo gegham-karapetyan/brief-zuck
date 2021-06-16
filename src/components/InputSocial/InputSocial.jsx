@@ -22,12 +22,20 @@ const InputSocial = ({ name, lg, title }) => {
     } else if (isURL(val)) {
       setInvalid({ borderColor: "black" });
       e.target.value = "";
-      setUrls((prev) => [...prev, { val: val, id: Math.random() }]);
+      setUrls((prev) => {
+        const newData = [...prev, { val: val, id: Math.random() }];
+        window.sendingData[name] = newData.map((url) => url.val);
+        return newData;
+      });
     } else if (!urls.length) setInvalid({ borderColor: "red" });
   };
 
   const onDelete = (id) => {
-    setUrls((prev) => prev.filter((url) => url.id !== id));
+    setUrls((prev) => {
+      const newData = prev.filter((url) => url.id !== id);
+      window.sendingData[name] = newData.map((url) => url.val);
+      return newData;
+    });
     if (!urls.length) {
       setFocused("");
       setInvalid({ borderColor: "red" });

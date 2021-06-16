@@ -35,7 +35,7 @@ const InputText = (props) => {
   };
   return (
     <div>
-      <label className={`textInput ${props.lg || "en"}`}>
+      <label className={`textInput`}>
         <div className={`textInputLabel ${props.focused}`}>{props.name}</div>
         <input
           onChange={onChange}

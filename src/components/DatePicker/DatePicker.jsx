@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+
 import Calendar from "react-calendar";
 import InputsPicker from "./InputsPicker";
 import PickerNavigation from "./PickerNavigationav";
@@ -35,13 +35,15 @@ const dateToString = (date) => {
 
 const Languages = {
   am: ["ԿՐ", "ԵԿ", "ԵՔ", "ՉՔ", "ՀԳ", "ՈՒԲ", "ՇԲ"],
+  en: ["ԿՐ", "ԵԿ", "ԵՔ", "ՉՔ", "ՀԳ", "ՈՒԲ", "ՇԲ"],
+  ru: ["ԿՐ", "ԵԿ", "ԵՔ", "ՉՔ", "ՀԳ", "ՈՒԲ", "ՇԲ"],
 };
 function formatDate(date, lg) {
   let i = date.getDay();
   return Languages[lg][i];
 }
 
-const DatePicker = ({ minDate, title, lg }) => {
+const DatePicker = ({ title, lg }) => {
   const [focused, setFocused] = useState("");
 
   const activeStartDate = useSelector(CALENDAR_ACTIVE_START_DATE);
@@ -63,7 +65,10 @@ const DatePicker = ({ minDate, title, lg }) => {
         <InputsPicker focused={focused} onFocus={setFocused} value={value} />
         {focused && (
           <div className="data-picker">
-            <PickerNavigation activeStartDate={dateParse(activeStartDate)} />
+            <PickerNavigation
+              lg={lg}
+              activeStartDate={dateParse(activeStartDate)}
+            />
             <Calendar
               onClickDay={(value, event) =>
                 console.log("clicked value ->", value)
@@ -72,7 +77,7 @@ const DatePicker = ({ minDate, title, lg }) => {
               activeStartDate={dateParse(activeStartDate)}
               value={value}
               selectRange={true}
-              minDate={minDate}
+              minDate={new Date()}
               next2Label={null}
               prev2Label={null}
               showDoubleView={true}

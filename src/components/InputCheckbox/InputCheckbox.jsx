@@ -4,9 +4,7 @@ import { HintText } from "../Hint/Hint";
 
 import "./style.scss";
 
-const InputCheckbox = (props) => {
-  const [checked, setChecked] = useState(false);
-
+const InputCheckbox = ({ name, hintText, onChange, checked }) => {
   const [active, setActive] = useState([false, 0]);
 
   const elemRef = useRef();
@@ -19,19 +17,12 @@ const InputCheckbox = (props) => {
     setActive([false, 0, 0]);
   };
 
-  const onChange = (e) => {
-    setChecked(!checked);
-
-    if (e.target.name === "Other") {
-      props.addNewInput(!checked);
-    }
-  };
   return (
     <>
-      {props.hintText && active[0] && (
+      {hintText && active[0] && (
         <HintText
           additionalClass="hint--checkbox"
-          hintText={props.hintText}
+          hintText={hintText}
           left={active[1]}
           top={active[2]}
         />
@@ -51,13 +42,13 @@ const InputCheckbox = (props) => {
         >
           <div style={checkmark}></div>
         </div>
-        <div>{props.name}</div>
+        <div>{name}</div>
 
         <input
           type="checkbox"
           onChange={onChange}
           checked={checked}
-          name={props.name}
+          name={name}
           style={{ opacity: 0, height: 0, width: 0 }}
         />
       </label>

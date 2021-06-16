@@ -1,22 +1,51 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { updateForm } from "../../features/createSliceForm";
 // import Hint from "../Hint";
 import "./style.scss";
+import { useEffect } from "react";
 
-const InputText = ({ name, lg, placeholder, onFocus, title }) => {
+const InputText = ({ name, lg, placeholder, title, required, isValid }) => {
   const [focused, setFocused] = useState("");
+  const [invalid, setInvalid] = useState("");
+  const [value, setValue] = useState("");
   const focusHandler = () => {
-    if (onFocus) onFocus(true);
     setFocused("focused");
   };
+
+  const dispatch = useDispatch();
+
   const onBlur = (e) => {
-    if (!e.target.value.trim()) setFocused("");
+    let value = e.target.value.trim();
+    if (!value) setFocused("");
+    // if (!invalid) {
+    //   window.sendingData[name] = value;
+    // }
+  };
+
+  const onChange = (e) => {
+    let value = e.target.value;
+    setValue(value);
+    dispatch(updateForm({ value, isValid: true, name }));
+    if (required) {
+      if (!isValid(value)) {
+        dispatch(updateForm({ value, isValid: false, name }));
+        setInvalid("invalid");
+      } else {
+        setInvalid("");
+        dispatch(updateForm({ value, isValid: true, name }));
+      }
+    }
   };
   return (
     <div>
       <label className={`textInput ${lg || "en"}`}>
         <div className={`textInputLabel ${focused}`}>{title[lg]}</div>
         <input
+          value={value}
+          onChange={onChange}
+          className={invalid}
           placeholder={placeholder}
           onFocus={focusHandler}
           onBlur={onBlur}

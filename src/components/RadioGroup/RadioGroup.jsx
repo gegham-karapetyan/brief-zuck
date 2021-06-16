@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import InputText from "../InputText";
+import Textarea from "../Textarea";
 import InputRadio from "../InputRadio";
 import "./style.scss";
+import { useEffect } from "react";
 
 function arrayToObj(arr, defaultValue = false) {
   let obj = {};
@@ -17,11 +18,16 @@ const RadioGroup = (props) => {
   const [checked, setChecked] = useState(initialCheckedData);
 
   const onChange = (name) => {
-    setChecked({ ...initialCheckedData, ...{ [name]: true } });
+    const newState = { ...initialCheckedData, ...{ [name]: true } };
+    setChecked(newState);
+    window.sendingData[props.name] = newState;
     if (name === "Other") {
       setAdditionalInput(true);
     } else setAdditionalInput(false);
   };
+  useEffect(() => {
+    window.sendingData[props.name] = {};
+  }, []);
   return (
     <div className={"radioGroup"}>
       <div className="title">{props.title[props.lg]}</div>
@@ -39,13 +45,13 @@ const RadioGroup = (props) => {
         ))}
       </div>
       {additionalInput && (
-        <InputText
+        <Textarea
+          name="Other description"
           title={{
             am: "Other description",
             en: "Other description",
             ru: "",
           }}
-          name="Other description"
           lg="am"
           required={false}
           hint={false}

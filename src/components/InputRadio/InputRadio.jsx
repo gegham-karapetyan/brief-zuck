@@ -27,7 +27,7 @@ const InputRadio = ({
     <>
       {hintText && active[0] && (
         <HintText
-          additionalClass="hint--radio"
+          additionalClass="hint--checkbox"
           hintText={hintText}
           left={active[1]}
           top={active[2]}

@@ -1,13 +1,16 @@
+import isEmpty from "../../../utils/isEmpty";
+
 const TextareValues = [
   {
     key: 7,
-    name: "Brief Description *",
+    name: "Brief Description",
     title: {
       am: "Ամփոփ նկարագիր *",
       en: "Brief Description *",
       ru: "",
     },
-    required: false,
+    required: true,
+    isValid: isEmpty,
     hintText: {
       am: "բիզնես նպատակ, արշավի իրականացման նպատակ, տեղեկատվություն բրենդի և/կամ ծառայության, պրոդուկտի մասին",
     },
@@ -22,6 +25,7 @@ const TextareValues = [
     },
     name: "Additional information about the target",
     required: false,
+
     hint: true,
     hintText: {
       am: "Աշխհարագրություն, հետաքրքրություններ, մասնագիտություն, սովորույթներ և այլն։",
@@ -35,7 +39,7 @@ const TextareValues = [
       en: "Current Consumer Behaviour",
       ru: "",
     },
-    name: "Current Consumer Behaviour ",
+    name: "Current Consumer Behaviour",
     required: false,
     hint: false,
   },
@@ -48,7 +52,7 @@ const TextareValues = [
       en: "Current Consumer Opinion",
       ru: "",
     },
-    name: "Current Consumer Opinion ",
+    name: "Current Consumer Opinion",
     required: false,
     hint: false,
   },
@@ -73,7 +77,7 @@ const TextareValues = [
       ),
       ru: "",
     },
-    name: "Desired Consumer Opinion (after campaign implementation) ",
+    name: "Desired Consumer Opinion (after campaign implementation)",
     required: false,
     hint: false,
   },
@@ -100,8 +104,9 @@ const TextareValues = [
       ),
       ru: "",
     },
-    name: "USP (unique selling proposition) /Brand promise * ",
+    name: "USP (unique selling proposition) /Brand promise",
     required: true,
+    isValid: isEmpty,
     hint: true,
     hintText: {
       am: (
@@ -118,13 +123,14 @@ const TextareValues = [
   },
   {
     key: 16,
-    name: "Insight/Consumer Insight * ",
+    name: "Insight/Consumer Insight",
     title: {
       am: "Insight/Consumer Insight * ",
       en: "Insight/Consumer Insight * ",
       ru: "",
     },
     required: true,
+    isValid: isEmpty,
     hint: true,
     hintText: {
       am: (
@@ -153,8 +159,9 @@ const TextareValues = [
       en: "Primary Message *",
       ru: "",
     },
-    name: "Primary Message *",
+    name: "Primary Message",
     required: true,
+    isValid: isEmpty,
     hint: false,
   },
   {
@@ -169,8 +176,9 @@ const TextareValues = [
       en: "Secondary Message *",
       ru: "",
     },
-    name: "Secondary Message *",
+    name: "Secondary Message",
     required: true,
+    isValid: isEmpty,
     hint: false,
   },
   {
@@ -194,7 +202,7 @@ const TextareValues = [
       ),
       ru: "",
     },
-    name: "RTB (reason to believe)   ",
+    name: "RTB (reason to believe)",
     required: false,
     hint: true,
     hintText: {
@@ -216,7 +224,7 @@ const TextareValues = [
       en: "Barrier  ",
       ru: "",
     },
-    name: "Barrier  ",
+    name: "Barrier",
     required: false,
     hint: true,
 
@@ -239,8 +247,9 @@ const TextareValues = [
       en: "Advertising campaign / communication elements that are mandatory *",
       ru: "",
     },
-    name: "Advertising campaign / communication elements that are mandatory *",
+    name: "Advertising campaign / communication elements that are mandatory",
     required: true,
+    isValid: isEmpty,
     hint: true,
     hintText: {
       am: (
@@ -258,8 +267,9 @@ const TextareValues = [
       en: "Advertising campaign / communication elements that are prohibited *",
       ru: "",
     },
-    name: "Advertising campaign / communication elements that are prohibited * ",
+    name: "Advertising campaign / communication elements that are prohibited",
     required: true,
+    isValid: isEmpty,
     hint: true,
     hintText: {
       am: (
@@ -279,8 +289,9 @@ const TextareValues = [
       en: "Agency Tasks *",
       ru: "",
     },
-    name: "Agency Tasks *",
+    name: "Agency Tasks",
     required: false,
+    isValid: isEmpty,
     hint: false,
   },
   {

@@ -5,20 +5,50 @@ import { updateCalendarActiveStartDate } from "../../../features/createSliceData
 
 import "./style.scss";
 
-const MONTH = [
-  "Հունվար",
-  "Փետրվար",
-  "Մարտ",
-  "Ապրիլ",
-  "Մայիս",
-  "Հունիս",
-  "Հուլիս",
-  "Օգոստոս",
-  "Սեպտեմբեր",
-  "Հոկտեմբեր",
-  "Նոյեմբեր",
-  "Դեկտեմբեր",
-];
+const MONTH = {
+  am: [
+    "Հունվար",
+    "Փետրվար",
+    "Մարտ",
+    "Ապրիլ",
+    "Մայիս",
+    "Հունիս",
+    "Հուլիս",
+    "Օգոստոս",
+    "Սեպտեմբեր",
+    "Հոկտեմբեր",
+    "Նոյեմբեր",
+    "Դեկտեմբեր",
+  ],
+  en: [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ],
+  ru: [
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь",
+  ],
+};
 
 const dateToString = (date) => {
   return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
@@ -27,16 +57,16 @@ const dateToString = (date) => {
 function formatCurrentDate(date, lg) {
   date = new Date(date);
   let i = date.getMonth();
-  return MONTH[i] + " " + date.getFullYear();
+  return MONTH[lg][i] + " " + date.getFullYear();
 }
 function formatNextDate(date, lg) {
   date = new Date(date);
   date.setMonth(date.getMonth() + 1);
   let i = date.getMonth();
-  return MONTH[i] + " " + date.getFullYear();
+  return MONTH[lg][i] + " " + date.getFullYear();
 }
 
-const PickerNavigation = ({ activeStartDate }) => {
+const PickerNavigation = ({ activeStartDate, lg }) => {
   const dispatch = useDispatch();
 
   const prevMonth = (e) => {
@@ -44,6 +74,7 @@ const PickerNavigation = ({ activeStartDate }) => {
 
     let newDate = new Date(activeStartDate);
     newDate.setMonth(activeStartDate.getMonth() - 1);
+
     dispatch(updateCalendarActiveStartDate(dateToString(newDate)));
   };
   const nextMonth = (e) => {
@@ -69,10 +100,14 @@ const PickerNavigation = ({ activeStartDate }) => {
             }}
           ></div>
         </button>
-        <span className="nav-label">{formatCurrentDate(activeStartDate)}</span>
+        <span className={`nav-label`}>
+          {formatCurrentDate(activeStartDate, lg)}
+        </span>
       </div>
       <div className="next-nav-label">
-        <span className="nav-label">{formatNextDate(activeStartDate)}</span>
+        <span className={`nav-label`}>
+          {formatNextDate(activeStartDate, lg)}
+        </span>
         <button onClick={nextMonth}>
           <div
             style={{

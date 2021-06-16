@@ -23,5 +23,8 @@
     resize: none;
     background-color: transparent;
     border-bottom: 1px solid black;
+    &.invalid {
+      border-bottom: 1px solid red;
+    }
   }
 }

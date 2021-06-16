@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 
 import { useDispatch } from "react-redux";
 import { selectBriefAC } from "../../features/selectBriefReducer";
+import { createFields } from "../../features/createSliceForm";
 import InputText from "../../components/InputText";
 import InputSocial from "../../components/InputSocial";
 import CheckboxesGroup from "../../components/CheckboxesGroup";
@@ -20,12 +21,24 @@ import massMedia from "./data/MassMedia";
 import textInputsValues from "./data/TextInputsValues";
 import textareaValues from "./data/TextareaValues";
 import inputSocialValues from "./data/InputSocialvalues";
+
 import "./style.scss";
 
 const AdvertisingCampaignBrief = ({ lg }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(selectBriefAC("Advertising Campaign Brief"));
+    window.sendingData = {
+      type: "Advertising Campaign Brief",
+      "Campagin Type": {},
+      "Target Group": {},
+      "Hyperactive Buyers": {},
+      "Campaign Range": {},
+      "Campaign Implementation Timeframe": {},
+      "Campaign Budget": {},
+      "Additional Information": {},
+      Media: {},
+    };
   });
 
   return (
@@ -38,9 +51,11 @@ const AdvertisingCampaignBrief = ({ lg }) => {
         )
         .concat([
           <CheckboxesGroup
+            name="Campaign Type"
             key={8}
             title={{ am: "Արշավի տեսակ * ", en: "Campaign Type *", ru: "" }}
             lg={lg}
+            require={true}
             data={campaignTypes}
           />,
           <TargetGroup
@@ -51,6 +66,7 @@ const AdvertisingCampaignBrief = ({ lg }) => {
               ru: "",
             }}
             lg={lg}
+            name="Target Audience"
           />,
           <HyperactiveBuyers
             key={10}
@@ -60,6 +76,7 @@ const AdvertisingCampaignBrief = ({ lg }) => {
               ru: ["Hyperactive buyer persona", "Age", "age"],
             }}
             lg={lg}
+            name="Hyperactive Buyers"
           />,
           <MassMedia
             key={24}
@@ -68,6 +85,7 @@ const AdvertisingCampaignBrief = ({ lg }) => {
               en: "Campaign Range * ",
               ru: "",
             }}
+            name="Campaign Range"
             data={massMedia}
             lg={lg}
           />,
@@ -79,6 +97,7 @@ const AdvertisingCampaignBrief = ({ lg }) => {
               en: "Campaign Implementation Timeframe *",
               ru: "",
             }}
+            name="Campaign Implementation Timeframe"
           />,
           <CampaignBudget
             key={29}
@@ -105,10 +124,11 @@ const AdvertisingCampaignBrief = ({ lg }) => {
               },
             ]}
             lg={lg}
+            name="Campaign Budget"
           />,
           <FilesBox
             key={32}
-            name="Additional Information "
+            name="Additional Information"
             title={{
               am: "Հավելյալ տեղեկատվություն",
               en: "Additional Information",

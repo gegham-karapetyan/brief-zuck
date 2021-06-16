@@ -1,14 +1,18 @@
 import React, { useState } from "react";
-
+import { useDispatch } from "react-redux";
+import { updateForm } from "../../features/createSliceForm";
 import InputRadio from "../InputRadio";
 import CheckboxesGroup from "../CheckboxesGroup";
 import RadioGroup from "../RadioGroup";
 import "./style.scss";
 
-const MassMedia = ({ data, title, lg }) => {
+const MassMedia = ({ data, title, lg, name }) => {
   const [checked, setChecked] = useState({ single: false, multi: true });
-  const onChange = (d) => {
-    if (d === "Integrated Campaign") {
+  const dispatch = useDispatch();
+  const onChange = (inputName) => {
+    dispatch(updateForm({ value: inputName, isValid: true, name }));
+    dispatch(updateForm({ value: {}, isValid: false, name: "Media" }));
+    if (inputName === "Integrated Campaign") {
       setChecked({ single: false, multi: true });
     } else {
       setChecked({ single: true, multi: false });
@@ -40,6 +44,8 @@ const MassMedia = ({ data, title, lg }) => {
       <div>
         {checked.multi ? (
           <CheckboxesGroup
+            name="Media"
+            require={true}
             lg={lg}
             title={{
               am: "Մեդիաներ *",
@@ -50,12 +56,14 @@ const MassMedia = ({ data, title, lg }) => {
           />
         ) : (
           <RadioGroup
+            name="Media"
             lg={lg}
             title={{
               am: "Մեդիաներ *",
               en: "Media *",
               ru: "",
             }}
+            require={true}
             data={data[1]}
           />
         )}
