@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import { updateForm } from "../../features/createSliceForm";
+
 import Calendar from "react-calendar";
 import InputsPicker from "./InputsPicker";
 import PickerNavigation from "./PickerNavigationav";
@@ -11,7 +13,7 @@ import {
   updateEndDateInputValue,
   updateCalendarValue,
 } from "../../features/createSliceDataPicker";
-import "./stylexx.scss";
+import "./style.scss";
 
 const dateParse = (value) => {
   const tmp = value.split(/[/\-\\]/);
@@ -35,7 +37,7 @@ const dateToString = (date) => {
 
 const Languages = {
   am: ["ԿՐ", "ԵԿ", "ԵՔ", "ՉՔ", "ՀԳ", "ՈՒԲ", "ՇԲ"],
-  en: ["ԿՐ", "ԵԿ", "ԵՔ", "ՉՔ", "ՀԳ", "ՈՒԲ", "ՇԲ"],
+  en: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
   ru: ["ԿՐ", "ԵԿ", "ԵՔ", "ՉՔ", "ՀԳ", "ՈՒԲ", "ՇԲ"],
 };
 function formatDate(date, lg) {
@@ -43,7 +45,7 @@ function formatDate(date, lg) {
   return Languages[lg][i];
 }
 
-const DatePicker = ({ title, lg }) => {
+const DatePicker = ({ title, lg, name }) => {
   const [focused, setFocused] = useState("");
 
   const activeStartDate = useSelector(CALENDAR_ACTIVE_START_DATE);
@@ -51,18 +53,32 @@ const DatePicker = ({ title, lg }) => {
   const value = useSelector(CALENDAR_VALUE).map((date) => dateParse(date));
 
   const dispatch = useDispatch();
+  dispatch(
+    updateForm({
+      value: value.map((date) => date.toString()),
+      name,
+      isValid: !!value.length,
+    })
+  );
 
   const onChange = (date) => {
     dispatch(updateStartDateInputValue(dateToString(date[0])));
     dispatch(updateEndDateInputValue(dateToString(date[1])));
     dispatch(updateCalendarValue());
+
+    console.log("date", date);
   };
 
   return (
     <div className="custom-calendar">
       <div className={`label ${lg}`}>{title[lg]}</div>
       <div className="data-picker-block">
-        <InputsPicker focused={focused} onFocus={setFocused} value={value} />
+        <InputsPicker
+          lg={lg}
+          focused={focused}
+          onFocus={setFocused}
+          value={value}
+        />
         {focused && (
           <div className="data-picker">
             <PickerNavigation
@@ -70,9 +86,9 @@ const DatePicker = ({ title, lg }) => {
               activeStartDate={dateParse(activeStartDate)}
             />
             <Calendar
-              onClickDay={(value, event) =>
-                console.log("clicked value ->", value)
-              }
+              onActiveStartDateChange={() => {
+                console.log("onActiveStartDateChange");
+              }}
               onChange={onChange}
               activeStartDate={dateParse(activeStartDate)}
               value={value}

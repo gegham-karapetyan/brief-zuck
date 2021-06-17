@@ -1,38 +1,63 @@
 import React, { useState } from "react";
 import InputRadio from "../InputRadio";
+import { useDispatch } from "react-redux";
+import { updateForm } from "../../features/createSliceForm";
 import { InputRange } from "../InputRC";
+import getTrueKey from "../../utils/getTrueKey";
 import "./style.scss";
 
 const isEqual = (obj1, obj2) => {
   return JSON.stringify(obj1) === JSON.stringify(obj2);
 };
 
-const reset = { checkedMan: false, checkedWoman: false };
+const reset = { Men: false, Women: false };
 
-const HyperactiveBuyers = ({ lg, title }) => {
+const HyperactiveBuyers = ({ lg, title, name }) => {
+  const dispatch = useDispatch();
   const [age, setAge] = useState([24, 44]);
   const [checked, setChecked] = useState(reset);
+  const [disabled, setDisabled] = useState(true);
 
-  const onChangeRadio = (name) => {
-    if (name === "Men") {
-      const newChecked = { checkedMan: true, checkedWoman: false };
-      isEqual(checked, newChecked) ? setChecked(reset) : setChecked(newChecked);
+  const onChangeRadio = (genderType) => {
+    const newChecked = { ...reset, [genderType]: true };
+
+    if (isEqual(checked, newChecked)) {
+      setDisabled(true);
+      setChecked(reset);
+      dispatch(updateForm({ value: "", name, isValid: true }));
     } else {
-      const newChecked = { checkedMan: false, checkedWoman: true };
-      isEqual(checked, newChecked) ? setChecked(reset) : setChecked(newChecked);
+      setDisabled(false);
+      setChecked(newChecked);
+      dispatch(
+        updateForm({
+          value: `${getTrueKey(newChecked)} ${age.join("-")} age`,
+          name,
+          isValid: true,
+        })
+      );
     }
   };
 
-  const onChangeAge = (num) => {
-    setAge(num);
+  const onChangeAge = (age) => {
+    setAge(age);
   };
+  const onAfterChange = (age) => {
+    dispatch(
+      updateForm({
+        value: `${getTrueKey(checked)} ${age.join("-")} age`,
+        name,
+        isValid: true,
+      })
+    );
+  };
+
   const ageFormated = age.join("-");
   return (
     <div className="HyperactiveBuyerPersona">
       <div className="label">{title[lg][0]}</div>
       <div className="container">
         <InputRadio
-          checked={checked.checkedMan}
+          checked={checked.Men}
           onChange={onChangeRadio}
           name="Men"
           title={{
@@ -43,7 +68,7 @@ const HyperactiveBuyers = ({ lg, title }) => {
           lg={lg}
         />
         <InputRadio
-          checked={checked.checkedWoman}
+          checked={checked.Women}
           onChange={onChangeRadio}
           name="Women"
           title={{
@@ -63,7 +88,11 @@ const HyperactiveBuyers = ({ lg, title }) => {
             <input type="hidden" name="Man Age" value={ageFormated} />
           </div>
           <div className="gender-age">
-            <InputRange onChange={onChangeAge} />
+            <InputRange
+              onAfterChange={onAfterChange}
+              disabled={disabled}
+              onChange={onChangeAge}
+            />
           </div>
         </div>
       </div>

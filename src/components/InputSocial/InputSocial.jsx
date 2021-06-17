@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import UrlBlock from "./UrlBlock";
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { updateForm } from "../../features/createSliceForm";
 import { isURL } from "validator";
 
 import "./style.scss";
 
 const InputSocial = ({ name, lg, title }) => {
+  const dispatch = useDispatch();
   const [focused, setFocused] = useState("");
   const [valid, setInvalid] = useState({ borderColor: "black" });
   const [urls, setUrls] = useState([]);
@@ -24,7 +27,13 @@ const InputSocial = ({ name, lg, title }) => {
       e.target.value = "";
       setUrls((prev) => {
         const newData = [...prev, { val: val, id: Math.random() }];
-        window.sendingData[name] = newData.map((url) => url.val);
+        dispatch(
+          updateForm({
+            value: newData.map((item) => item.val),
+            name,
+            isValid: true,
+          })
+        );
         return newData;
       });
     } else if (!urls.length) setInvalid({ borderColor: "red" });
@@ -33,13 +42,19 @@ const InputSocial = ({ name, lg, title }) => {
   const onDelete = (id) => {
     setUrls((prev) => {
       const newData = prev.filter((url) => url.id !== id);
-      window.sendingData[name] = newData.map((url) => url.val);
+      if (!newData.length) {
+        setFocused("");
+        setInvalid({ borderColor: "red" });
+      }
+      dispatch(
+        updateForm({
+          value: newData.map((item) => item.val),
+          name,
+          isValid: !!newData.length,
+        })
+      );
       return newData;
     });
-    if (!urls.length) {
-      setFocused("");
-      setInvalid({ borderColor: "red" });
-    }
   };
 
   return (

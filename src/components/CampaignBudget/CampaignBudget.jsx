@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { updateForm } from "../../features/createSliceForm";
 import { InputRange } from "../InputRC";
 import InputRadio from "../InputRadio";
+import getTrueKey from "../../utils/getTrueKey";
 import "./style.scss";
 
-const CampaignBudget = ({ title, data, lg }) => {
+const CampaignBudget = ({ title, data, lg, name }) => {
+  const dispatch = useDispatch();
   const [value, setValue] = useState([24, 44]);
   const [currency, setCurrency] = useState({
     USD: true,
@@ -15,14 +18,29 @@ const CampaignBudget = ({ title, data, lg }) => {
   const onChange = (value) => {
     setValue(value);
   };
-
-  const changeCurrency = (name) => {
+  const onAfterChange = (val) => {
+    dispatch(
+      updateForm({
+        value: `${val.map((d) => d * 500).join("-")} ${getTrueKey(currency)}`,
+        name,
+        isValid: true,
+      })
+    );
+  };
+  const changeCurrency = (currencyName) => {
     setCurrency({
       USD: false,
       AMD: false,
       RUB: false,
-      [name]: true,
+      [currencyName]: true,
     });
+    dispatch(
+      updateForm({
+        value: `${value.map((d) => d * 500).join("-")} ${currencyName}`,
+        name,
+        isValid: true,
+      })
+    );
   };
   return (
     <div className="campaign-budget">
@@ -64,7 +82,7 @@ const CampaignBudget = ({ title, data, lg }) => {
         }`}</span>
       </div>
       <div>
-        <InputRange onChange={onChange} />
+        <InputRange onAfterChange={onAfterChange} onChange={onChange} />
       </div>
     </div>
   );

@@ -45,6 +45,7 @@ const Textarea = ({
     if (!value) {
       setFocused("");
       setValue("");
+      if (required) setInvalid("invalid");
     }
   };
   return (

@@ -28,17 +28,6 @@ const AdvertisingCampaignBrief = ({ lg }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(selectBriefAC("Advertising Campaign Brief"));
-    window.sendingData = {
-      type: "Advertising Campaign Brief",
-      "Campagin Type": {},
-      "Target Group": {},
-      "Hyperactive Buyers": {},
-      "Campaign Range": {},
-      "Campaign Implementation Timeframe": {},
-      "Campaign Budget": {},
-      "Additional Information": {},
-      Media: {},
-    };
   });
 
   return (

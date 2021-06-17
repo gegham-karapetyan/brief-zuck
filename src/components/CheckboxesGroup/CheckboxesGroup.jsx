@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Textarea from "../Textarea";
 import InputCheckbox from "../InputCheckbox";
 import { useDispatch } from "react-redux";
@@ -55,7 +55,7 @@ const CheckboxesGroup = ({ title, lg, data, name, require }) => {
         {data.map((item) => (
           <InputCheckbox
             onChange={onChangeCeckbox}
-            boxName={name}
+            // boxName={name}
             checked={checked[item.name]}
             key={item.name}
             addNewInput={addNewInput}

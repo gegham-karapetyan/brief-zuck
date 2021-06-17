@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { updateForm, setOtherText } from "../../features/createSliceForm";
 import Textarea from "../Textarea";
 import InputRadio from "../InputRadio";
 import "./style.scss";
-import { useEffect } from "react";
 
 function arrayToObj(arr, defaultValue = false) {
   let obj = {};
@@ -12,34 +13,43 @@ function arrayToObj(arr, defaultValue = false) {
   return obj;
 }
 
-const RadioGroup = (props) => {
-  const initialCheckedData = arrayToObj(props.data);
+const RadioGroup = ({ data, name, title, lg, require }) => {
+  const initialCheckedData = arrayToObj(data);
   const [additionalInput, setAdditionalInput] = useState(false);
   const [checked, setChecked] = useState(initialCheckedData);
-
-  const onChange = (name) => {
-    const newState = { ...initialCheckedData, ...{ [name]: true } };
+  const dispatch = useDispatch();
+  const onChange = (itemName) => {
+    const newState = { ...initialCheckedData, ...{ [itemName]: true } };
     setChecked(newState);
-    window.sendingData[props.name] = newState;
-    if (name === "Other") {
+    if (require)
+      dispatch(
+        updateForm({
+          value: newState,
+          name,
+          isValid: !!Object.keys(newState).length,
+        })
+      );
+    else dispatch(updateForm({ value: newState, name, isValid: true }));
+
+    if (itemName === "Other") {
       setAdditionalInput(true);
     } else setAdditionalInput(false);
   };
-  useEffect(() => {
-    window.sendingData[props.name] = {};
-  }, []);
+  const onChangeTextarea = (val) => {
+    dispatch(setOtherText({ value: val, name }));
+  };
   return (
     <div className={"radioGroup"}>
-      <div className="title">{props.title[props.lg]}</div>
+      <div className="title">{title[lg]}</div>
       <div className={"container"}>
-        {props.data.map((item) => (
+        {data.map((item) => (
           <InputRadio
             key={item.name}
             checked={checked[item.name]}
-            hintText={item.hintText[props.lg]}
+            hintText={item.hintText[lg]}
             onChange={onChange}
             name={item.name}
-            lg={props.lg}
+            lg={lg}
             title={item.title}
           />
         ))}
@@ -47,6 +57,7 @@ const RadioGroup = (props) => {
       {additionalInput && (
         <Textarea
           name="Other description"
+          otherDescription={onChangeTextarea}
           title={{
             am: "Other description",
             en: "Other description",

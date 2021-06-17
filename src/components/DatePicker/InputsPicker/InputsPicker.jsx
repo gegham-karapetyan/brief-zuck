@@ -14,12 +14,13 @@ import InputPicker from "./InputPicker";
 import "./style.scss";
 import { useDispatch, useSelector } from "react-redux";
 
-const InputsPicker = ({ onFocus, focused }) => {
+const InputsPicker = ({ onFocus, focused, lg }) => {
   const startValue = useSelector(INPUT_START_VALUE);
   const endValue = useSelector(INPUT_END_VALUE);
   const dispatch = useDispatch();
 
-  const updateCalendar = () => {
+  const updateCalendar = (v) => {
+    console.log("dfsgdfgsdf", v);
     dispatch(updateCalendarValue());
   };
 
@@ -39,8 +40,13 @@ const InputsPicker = ({ onFocus, focused }) => {
         updateValue={updateStartDate}
         updateCalendarActivStartValue={updateCalendarActivStartValue}
         value={startValue}
-        name="Մեկնարկ"
-        // value={value}
+        title={{
+          am: "Մեկնարկ",
+          en: "Start",
+          ru: "",
+        }}
+        lg={lg}
+        name="Start"
         focused={focused}
         onFocus={onFocus}
         updateCalendar={updateCalendar}
@@ -50,8 +56,13 @@ const InputsPicker = ({ onFocus, focused }) => {
         updateCalendarActivStartValue={updateCalendarActivStartValue}
         value={endValue}
         onFocus={onFocus}
-        name="Ավարտ"
-        // value={value}
+        title={{
+          am: "Ավարտ",
+          en: "End",
+          ru: "",
+        }}
+        lg={lg}
+        name="End"
         focused={focused}
         updateCalendar={updateCalendar}
       />

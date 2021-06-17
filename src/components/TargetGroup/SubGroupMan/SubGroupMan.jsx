@@ -1,22 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
 import { InputSlider, InputRange } from "../../InputRC";
 import "./style.scss";
 
-const SubGroupMan = ({ currentPoint, onChange, title, lg }) => {
-  const [age, setAge] = useState([24, 44]);
-
-  const onChangeAge = (num) => {
-    setAge(num);
-  };
+const SubGroupMan = ({
+  percentage,
+  onChangeAge,
+  onChangePercentage,
+  title,
+  lg,
+  name,
+  age,
+  onAfterChange,
+}) => {
   const ageFormated = age.join("-");
   return (
     <div className="subgroup man">
       <div className="gender">
-        {title[lg][0]} <span className="output">{currentPoint} %</span>
-        <input type="hidden" name="man" value={currentPoint} />
+        {title[lg][0]} <span className="output">{percentage} %</span>
+        <input type="hidden" name="man" value={percentage} />
       </div>
       <div className="percentage">
-        <InputSlider value={currentPoint} onChange={onChange} />
+        <InputSlider
+          onAfterChange={onAfterChange}
+          value={percentage}
+          onChange={onChangePercentage}
+        />
       </div>
       <div className="age">
         {title[lg][1]}
@@ -26,7 +34,10 @@ const SubGroupMan = ({ currentPoint, onChange, title, lg }) => {
         <input type="hidden" name="man age" value={ageFormated} />
       </div>
       <div className="gender-age">
-        <InputRange onChange={onChangeAge} />
+        <InputRange
+          onAfterChange={onAfterChange}
+          onChange={(val) => onChangeAge({ [name]: val })}
+        />
       </div>
     </div>
   );

@@ -1,27 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
 import isDate from "validator/es/lib/isDate";
-import { useDispatch, useSelector } from "react-redux";
 
-import PropTypes from "prop-types";
 import "./style.scss";
 
-const InputText = (props) => {
-  // const dispatch = useDispatch();
+const InputText = ({
+  onFocus,
+  updateValue,
+  value,
+  updateCalendar,
+  updateCalendarActivStartValue,
+  focused,
+  name,
+  title,
+  lg,
+}) => {
+  // const onFocus = () => {
+  //   props.onFocus("focused");
+  // };
 
-  const onFocus = () => {
-    props.onFocus("focused");
-  };
-  const onBlur = (e) => {
-    // if (!e.target.value.trim()) setFocused("");
-  };
-  const value = props.value;
+  // const value = props.value;
 
   const onChange = (e) => {
     let value = e.target.value;
 
-    props.updateValue(value);
+    updateValue(value);
 
-    // setValue(value);
     if (
       isDate(value, {
         format: "DD/MM/YYYY",
@@ -29,23 +32,22 @@ const InputText = (props) => {
         strictMode: true,
       })
     ) {
-      props.updateCalendar();
-      props.updateCalendarActivStartValue(value);
+      updateCalendar(value);
+      updateCalendarActivStartValue(value);
     }
   };
   return (
     <div>
       <label className={`textInput`}>
-        <div className={`textInputLabel ${props.focused}`}>{props.name}</div>
+        <div className={`textInputLabel ${focused}`}>{title[lg]}</div>
         <input
           onChange={onChange}
           autoComplete="off"
-          placeholder={props.focused && "DD/MM/YYYY"}
-          onFocus={onFocus}
-          onBlur={onBlur}
+          placeholder={focused && "DD/MM/YYYY"}
+          onFocus={() => onFocus("focused")}
           type="text"
           value={value}
-          name={props.name}
+          name={name}
         />
       </label>
     </div>

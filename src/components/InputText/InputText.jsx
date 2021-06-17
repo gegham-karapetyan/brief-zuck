@@ -18,10 +18,10 @@ const InputText = ({ name, lg, placeholder, title, required, isValid }) => {
 
   const onBlur = (e) => {
     let value = e.target.value.trim();
-    if (!value) setFocused("");
-    // if (!invalid) {
-    //   window.sendingData[name] = value;
-    // }
+    if (!value) {
+      setFocused("");
+      setInvalid("invalid");
+    }
   };
 
   const onChange = (e) => {

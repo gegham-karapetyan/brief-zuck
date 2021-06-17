@@ -16,8 +16,14 @@ const initialState = {
   },
   "Brief Description": { value: "", isValid: false },
   "Campaign Type": { value: {}, isValid: false },
-  "Target Audience": { value: [], isValid: false },
-  "Hyperactive Buyers": { value: [], isValid: true },
+  "Target Audience": {
+    value: {
+      man: [],
+      woman: [],
+    },
+    isValid: false,
+  },
+  "Hyperactive Buyers": { value: "", isValid: true },
   "Additional information about the target": { value: "", isValid: true },
   "Current Consumer Behaviour": { value: "", isValid: true },
   "Current Consumer Opinion": { value: "", isValid: true },
@@ -81,7 +87,7 @@ const createSliceForm = createSlice({
       state[name].value = value;
     },
     setOtherText: (state, action) => {
-      const { name, isValid, value } = action.payload;
+      const { name, value } = action.payload;
       state[name].value["Other"] = value;
     },
   },

@@ -1,17 +1,44 @@
 import React, { useState } from "react";
 import SubGroupMan from "./SubGroupMan";
 import SubGroupWoman from "./SubGroupWoman";
+import { useDispatch } from "react-redux";
+import { updateForm } from "../../features/createSliceForm";
 import "./style.scss";
 
-const TargetGroup = ({ title, lg }) => {
-  const [currentPoint, setCurrentPoint] = useState({ man: 50, woman: 50 });
+const TargetGroup = ({ title, lg, name }) => {
+  const dispatch = useDispatch();
+
+  const [percentage, setPercentage] = useState({ man: 50, woman: 50 });
+  const [age, setAge] = useState({ man: [24, 44], woman: [24, 44] });
 
   const onChangePercentageMan = (num) => {
-    setCurrentPoint({ man: num, woman: 100 - num });
+    const newData = { man: num, woman: 100 - num };
+    setPercentage(newData);
+
+    // onAfterChange
   };
   const onChangePercentageWoman = (num) => {
-    setCurrentPoint({ man: 100 - num, woman: num });
+    const newData = { man: 100 - num, woman: num };
+    setPercentage(newData);
   };
+
+  const onChangeAge = (val) => {
+    setAge((prev) => ({ ...prev, ...val }));
+  };
+
+  const onAfterChange = () => {
+    dispatch(
+      updateForm({
+        name,
+        value: {
+          man: [percentage.man + " %", age.man.join("-") + " age"],
+          woman: [percentage.woman + " %", age.woman.join("-") + " age"],
+        },
+        isValid: true,
+      })
+    );
+  };
+
   return (
     <div className="targetGroup">
       <div className="label">{title[lg]}</div>
@@ -21,9 +48,13 @@ const TargetGroup = ({ title, lg }) => {
           en: ["Men", "Age", "age"],
           ru: ["", ""],
         }}
-        onChange={onChangePercentageMan}
-        currentPoint={currentPoint.man}
+        onChangePercentage={onChangePercentageMan}
+        onChangeAge={onChangeAge}
+        onAfterChange={onAfterChange}
+        percentage={percentage.man}
+        age={age.man}
         lg={lg}
+        name={"man"}
       />
       <SubGroupWoman
         title={{
@@ -31,9 +62,13 @@ const TargetGroup = ({ title, lg }) => {
           en: ["Women", "Age", "age"],
           ru: ["", ""],
         }}
-        onChange={onChangePercentageWoman}
-        currentPoint={currentPoint.woman}
+        onAfterChange={onAfterChange}
+        onChangePercentage={onChangePercentageWoman}
+        onChangeAge={onChangeAge}
+        percentage={percentage.woman}
+        age={age.woman}
         lg={lg}
+        name={"woman"}
       />
     </div>
   );

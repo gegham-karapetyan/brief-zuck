@@ -7,6 +7,8 @@ export const InputRange = (props) => {
   return (
     <div>
       <Range
+        disabled={props.disabled}
+        onAfterChange={props.onAfterChange}
         defaultValue={[24, 44]}
         allowCross={false}
         railStyle={{ height: "1px", backgroundColor: "gray" }}
@@ -21,6 +23,8 @@ export const InputSlider = (props) => {
   return (
     <div>
       <Slider
+        disabled={props.disabled}
+        onAfterChange={props.onAfterChange}
         value={props.value}
         railStyle={{ height: "1px", backgroundColor: "gray" }}
         trackStyle={[{ height: 3, backgroundColor: "black" }]}
