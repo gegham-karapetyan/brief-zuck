@@ -1,26 +1,45 @@
 import React, { useState } from "react";
-
+import { useDispatch } from "react-redux";
+import {
+  setFiles,
+  deleteFiles,
+  setOtherText,
+} from "../../features/createSliceForm";
 import InputFile from "../InputFile";
 import TextareaAutosize from "react-autosize-textarea";
 import "./style.scss";
 import DynamicBox from "../DynamicBox";
 
+window.files = [];
 const FilesBox = ({ name, lg, title }) => {
+  const dispatch = useDispatch();
   const [focused, setFocused] = useState("");
   const [items, setItems] = useState([]);
   const [value, setValue] = useState("");
+  const [loader, setLoader] = useState(true);
   const onChange = (e) => {
-    setValue(e.target.value);
+    const value = e.target.value;
+    setValue(value);
   };
 
   const addFile = (e) => {
+    const id = Math.random();
     const file = e.target.files[0];
 
     setFocused("focused");
-    setItems((prev) => [
-      ...prev,
-      { name: file.name, val: file, id: Math.random() },
-    ]);
+    setItems((prev) => {
+      const files = [...prev, { name: file.name, val: file, id }];
+
+      return files;
+    });
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.addEventListener("load", () => {
+      setLoader(false);
+      dispatch(
+        setFiles({ name, id, value: reader.result, isValid: true, info: "" })
+      );
+    });
   };
 
   const onFocus = () => {
@@ -28,12 +47,13 @@ const FilesBox = ({ name, lg, title }) => {
   };
 
   const onBlur = (e) => {
-    let val = e.target.value;
-
-    if (!val.trim() && !items.length) setFocused("");
+    const value = e.target.value;
+    dispatch(setOtherText({ name, value }));
+    if (!value.trim() && !items.length) setFocused("");
   };
 
   const onDelete = (id) => {
+    dispatch(deleteFiles({ id, name }));
     setItems((prev) => prev.filter((url) => url.id !== id));
     if (!items.length && !value.trim()) {
       setFocused("");
@@ -49,7 +69,7 @@ const FilesBox = ({ name, lg, title }) => {
 
         <InputFile onChange={addFile} />
       </div>
-      <DynamicBox items={items} onClick={onDelete} />
+      <DynamicBox loader={loader} items={items} onClick={onDelete} />
       <TextareaAutosize
         onChange={onChange}
         onFocus={onFocus}

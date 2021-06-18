@@ -65,3 +65,12 @@ code {
 label {
   cursor: pointer;
 }
+
+.link-btn {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  text-decoration: underline;
+  font-family: "mardoto-bold";
+  cursor: pointer;
+}

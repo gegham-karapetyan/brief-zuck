@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  __type__: "Advertising Campaign Brief",
   Brand: { value: "", isValid: false },
 
   "Name, Surname": { value: "", isValid: false },
@@ -73,7 +74,7 @@ const initialState = {
     isValid: true,
   },
 
-  "Additional Information": { value: [], isValid: true },
+  "Additional Information": { value: { files: {}, Other: "" }, isValid: true },
 };
 
 const createSliceForm = createSlice({
@@ -88,12 +89,24 @@ const createSliceForm = createSlice({
     },
     setOtherText: (state, action) => {
       const { name, value } = action.payload;
+      console.log(action);
       state[name].value["Other"] = value;
+    },
+    setFiles: (state, action) => {
+      const { name, isValid, value, id } = action.payload;
+      state[name].isValid = isValid;
+      state[name].value.files[id] = value;
+    },
+    deleteFiles: (state, action) => {
+      const { id, name } = action.payload;
+      delete state[name].value.files[id];
+      return state;
     },
   },
 });
 
-export const { updateForm, setOtherText } = createSliceForm.actions;
+export const { updateForm, setOtherText, setFiles, deleteFiles } =
+  createSliceForm.actions;
 
 export const FORM = (state) => state.form;
 

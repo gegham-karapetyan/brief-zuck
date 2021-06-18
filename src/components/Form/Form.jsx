@@ -6,6 +6,10 @@ import CommercialVideoBrief from "../../pages/CommercialVideoBrief";
 import SocialMediaActivationBrief from "../../pages/SocialMediaActivationBrief";
 import StrategyBrief from "../../pages/StrategyBrief";
 import LogoBrief from "../../pages/LogoBrief";
+import Paragraph from "../Paragraph";
+import InputDownload from "../InputDownload";
+import InputSubmit from "../InputSubmit";
+import disclaimer from "../../data/Disclaimer";
 
 import * as style from "./style.module.scss";
 
@@ -44,6 +48,17 @@ const Form = ({ lg }) => {
             <Redirect to="/" />
           </Route>
         </Switch>
+        <Paragraph data={disclaimer} lg={lg} />
+        <div
+          style={{
+            marginTop: "60px",
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <InputDownload lg={lg} />
+          <InputSubmit lg={lg} />
+        </div>
       </div>
     </div>
   );
