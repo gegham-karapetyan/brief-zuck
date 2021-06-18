@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import {
   setFiles,
   deleteFiles,
   setOtherText,
+  setFieldName,
 } from "../../features/createSliceForm";
 import InputFile from "../InputFile";
 import TextareaAutosize from "react-autosize-textarea";
@@ -36,7 +37,15 @@ const FilesBox = ({ name, lg, title }) => {
     reader.readAsDataURL(file);
     reader.addEventListener("load", () => {
       setLoader(false);
-      dispatch(setFiles({ name, id, value: reader.result, isValid: true }));
+      dispatch(
+        setFiles({
+          keyName: name.en,
+          name: name[lg],
+          id,
+          value: reader.result,
+          isValid: true,
+        })
+      );
     });
   };
 
@@ -51,12 +60,20 @@ const FilesBox = ({ name, lg, title }) => {
   };
 
   const onDelete = (id) => {
-    dispatch(deleteFiles({ id, name }));
+    dispatch(deleteFiles({ id, keyName: name.en }));
     setItems((prev) => prev.filter((url) => url.id !== id));
     if (!items.length && !value.trim()) {
       setFocused("");
     }
   };
+  useEffect(() => {
+    dispatch(
+      setFieldName({
+        keyName: name.en,
+        name: name[lg],
+      })
+    );
+  }, [name, lg, dispatch]);
 
   return (
     <div className="files-box">

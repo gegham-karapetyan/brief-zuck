@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateForm } from "../../features/createSliceForm";
+import { updateForm, setFieldName } from "../../features/createSliceForm";
 import { InputRange } from "../InputRC";
 import InputRadio from "../InputRadio";
 import getTrueKey from "../../utils/getTrueKey";
 import "./style.scss";
+import { useEffect } from "react";
 
 const CampaignBudget = ({ title, data, lg, name }) => {
   const dispatch = useDispatch();
@@ -22,7 +23,8 @@ const CampaignBudget = ({ title, data, lg, name }) => {
     dispatch(
       updateForm({
         value: `${val.map((d) => d * 500).join("-")} ${getTrueKey(currency)}`,
-        name,
+        keyName: name.en,
+        name: name[lg],
         isValid: true,
       })
     );
@@ -37,11 +39,20 @@ const CampaignBudget = ({ title, data, lg, name }) => {
     dispatch(
       updateForm({
         value: `${value.map((d) => d * 500).join("-")} ${currencyName}`,
-        name,
+        keyName: name.en,
+        name: name[lg],
         isValid: true,
       })
     );
   };
+  useEffect(() => {
+    dispatch(
+      setFieldName({
+        keyName: name.en,
+        name: name[lg],
+      })
+    );
+  }, [name, lg, dispatch]);
   return (
     <div className="campaign-budget">
       <div className="label">

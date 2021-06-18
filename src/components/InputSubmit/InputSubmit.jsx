@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-
+import { useParams } from "react-router";
 import { store } from "../../app/store";
 
 import "./style.scss";
@@ -13,7 +13,8 @@ const title = {
 
 const InputSubmit = ({ lg }) => {
   const [modal, setModal] = useState(false);
-
+  const path = useParams();
+  console.log("useParams", path);
   const onSubmit = () => {
     const form = store.getState().form;
     setModal(JSON.stringify(form, null, "\t"));

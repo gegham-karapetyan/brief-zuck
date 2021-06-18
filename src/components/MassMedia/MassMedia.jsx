@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { updateForm } from "../../features/createSliceForm";
+import { updateForm, setFieldName } from "../../features/createSliceForm";
 import InputRadio from "../InputRadio";
 import CheckboxesGroup from "../CheckboxesGroup";
 import RadioGroup from "../RadioGroup";
@@ -10,14 +10,29 @@ const MassMedia = ({ data, title, lg, name }) => {
   const [checked, setChecked] = useState({ single: false, multi: true });
   const dispatch = useDispatch();
   const onChange = (inputName) => {
-    dispatch(updateForm({ value: inputName, isValid: true, name }));
-    dispatch(updateForm({ value: {}, isValid: false, name: "Media" }));
+    dispatch(
+      updateForm({
+        value: inputName,
+        isValid: true,
+        keyName: name.en,
+        name: name[lg],
+      })
+    );
+
     if (inputName === "Integrated Campaign") {
       setChecked({ single: false, multi: true });
     } else {
       setChecked({ single: true, multi: false });
     }
   };
+  useEffect(() => {
+    dispatch(
+      setFieldName({
+        keyName: name.en,
+        name: name[lg],
+      })
+    );
+  }, [name, title, lg, dispatch]);
   return (
     <div className="massMedia">
       <div className="controller">
@@ -44,7 +59,11 @@ const MassMedia = ({ data, title, lg, name }) => {
       <div>
         {checked.multi ? (
           <CheckboxesGroup
-            name="Media"
+            name={{
+              am: "Մեդիաներ *",
+              en: "Media *",
+              ru: "",
+            }}
             require={true}
             lg={lg}
             title={{
@@ -56,7 +75,11 @@ const MassMedia = ({ data, title, lg, name }) => {
           />
         ) : (
           <RadioGroup
-            name="Media"
+            name={{
+              am: "Մեդիաներ *",
+              en: "Media *",
+              ru: "",
+            }}
             lg={lg}
             title={{
               am: "Մեդիաներ *",

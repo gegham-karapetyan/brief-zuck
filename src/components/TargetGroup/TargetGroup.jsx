@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SubGroupMan from "./SubGroupMan";
 import SubGroupWoman from "./SubGroupWoman";
 import { useDispatch } from "react-redux";
-import { updateForm } from "../../features/createSliceForm";
+import { updateForm, setFieldName } from "../../features/createSliceForm";
 import "./style.scss";
 
 const TargetGroup = ({ title, lg, name }) => {
@@ -29,7 +29,8 @@ const TargetGroup = ({ title, lg, name }) => {
   const onAfterChange = () => {
     dispatch(
       updateForm({
-        name,
+        keyName: name.en,
+        name: name[lg],
         value: {
           man: [percentage.man + " %", age.man.join("-") + " age"],
           woman: [percentage.woman + " %", age.woman.join("-") + " age"],
@@ -38,7 +39,14 @@ const TargetGroup = ({ title, lg, name }) => {
       })
     );
   };
-
+  useEffect(() => {
+    dispatch(
+      setFieldName({
+        keyName: name.en,
+        name: name[lg],
+      })
+    );
+  }, [name, lg, dispatch]);
   return (
     <div className="targetGroup">
       <div className="label">{title[lg]}</div>

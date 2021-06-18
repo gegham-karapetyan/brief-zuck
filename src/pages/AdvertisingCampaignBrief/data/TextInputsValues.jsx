@@ -5,7 +5,7 @@ import isPhone from "../../../utils/isPhone";
 const TextInputsValues = [
   {
     title: { am: "Բրենդ *", en: "Brand *", ru: "Бренд *" },
-    name: "Brand",
+    name: { am: "Բրենդ *", en: "Brand *", ru: "Бренд *" },
     required: true,
     hint: false,
     key: 1,
@@ -14,7 +14,7 @@ const TextInputsValues = [
   {
     title: { am: "Անուն Ազգանուն *", en: "Name, Surname *", ru: "ФИО *" },
     required: true,
-    name: "Name, Surname",
+    name: { am: "Անուն Ազգանուն *", en: "Name, Surname *", ru: "ФИО *" },
     hint: false,
     key: 2,
     isValid: isEmpty,
@@ -25,7 +25,11 @@ const TextInputsValues = [
       en: "E-mail *",
       ru: "Адрес эл.почты, номер телефона *",
     },
-    name: "E-mail",
+    name: {
+      am: "Էլ. հասցե *",
+      en: "E-mail *",
+      ru: "Адрес эл.почты, номер телефона *",
+    },
     required: true,
     hint: false,
     key: 3,
@@ -33,7 +37,7 @@ const TextInputsValues = [
   },
   {
     title: { am: "Հաստիք *", en: "Position *", ru: "Должность *" },
-    name: "Position",
+    name: { am: "Հաստիք *", en: "Position *", ru: "Должность *" },
     required: true,
     hint: false,
     key: 4,
@@ -46,7 +50,11 @@ const TextInputsValues = [
       en: "Telephone *",
       ru: "Номер телефона *",
     },
-    name: "Telephone",
+    name: {
+      am: "Հեռախոսահամար *",
+      en: "Telephone *",
+      ru: "Номер телефона *",
+    },
     required: true,
     hint: false,
     key: 5,

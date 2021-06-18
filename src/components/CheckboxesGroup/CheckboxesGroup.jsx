@@ -2,9 +2,14 @@ import React, { useState } from "react";
 import Textarea from "../Textarea";
 import InputCheckbox from "../InputCheckbox";
 import { useDispatch } from "react-redux";
-import { updateForm, setOtherText } from "../../features/createSliceForm";
+import {
+  updateForm,
+  setOtherText,
+  setFieldName,
+} from "../../features/createSliceForm";
 import PropTypes from "prop-types";
 import "./style.scss";
+import { useEffect } from "react";
 
 function arrayToObj(arr, defaultValue = false) {
   let obj = {};
@@ -26,8 +31,9 @@ const CheckboxesGroup = ({ title, lg, data, name, require }) => {
     setAdditionalInput(checked);
   };
   const onChangeTextarea = (val) => {
-    dispatch(setOtherText({ value: val, name }));
+    dispatch(setOtherText({ value: val, name: name.en }));
   };
+
   const onChangeCeckbox = (e) => {
     const elemName = e.target.name;
 
@@ -35,9 +41,23 @@ const CheckboxesGroup = ({ title, lg, data, name, require }) => {
       const newState = { ...prev, ...{ [elemName]: !prev[elemName] } };
       if (require) {
         const isValid = Object.values(newState).some((i) => i);
-        dispatch(updateForm({ value: newState, isValid: isValid, name }));
+        dispatch(
+          updateForm({
+            value: newState,
+            isValid: isValid,
+            keyName: name.en,
+            name: name[lg],
+          })
+        );
       } else {
-        dispatch(updateForm({ value: newState, isValid: true, name }));
+        dispatch(
+          updateForm({
+            value: newState,
+            isValid: true,
+            keyName: name.en,
+            name: name[lg],
+          })
+        );
       }
 
       return newState;
@@ -47,6 +67,14 @@ const CheckboxesGroup = ({ title, lg, data, name, require }) => {
       addNewInput(!additionalInput);
     }
   };
+  useEffect(() => {
+    dispatch(
+      setFieldName({
+        keyName: name.en,
+        name: name[lg],
+      })
+    );
+  }, [name, lg, dispatch]);
 
   return (
     <div className={"checkboxesGroup"}>
@@ -55,7 +83,6 @@ const CheckboxesGroup = ({ title, lg, data, name, require }) => {
         {data.map((item) => (
           <InputCheckbox
             onChange={onChangeCeckbox}
-            // boxName={name}
             checked={checked[item.name]}
             key={item.name}
             addNewInput={addNewInput}
@@ -67,7 +94,11 @@ const CheckboxesGroup = ({ title, lg, data, name, require }) => {
 
       {additionalInput && (
         <Textarea
-          name="Other description"
+          name={{
+            am: "Other description",
+            en: "Other description",
+            ru: "",
+          }}
           title={{
             am: "Other description",
             en: "Other description",

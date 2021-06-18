@@ -40,9 +40,9 @@ const AdvertisingCampaignBrief = ({ lg }) => {
         )
         .concat([
           <CheckboxesGroup
-            name="Campaign Type"
+            name={{ am: "Արշավի տեսակ *", en: "Campaign Type *", ru: "" }}
             key={8}
-            title={{ am: "Արշավի տեսակ * ", en: "Campaign Type *", ru: "" }}
+            title={{ am: "Արշավի տեսակ *", en: "Campaign Type *", ru: "" }}
             lg={lg}
             require={true}
             data={campaignTypes}
@@ -51,11 +51,15 @@ const AdvertisingCampaignBrief = ({ lg }) => {
             key={9}
             title={{
               am: "Թիրախային խումբ *",
-              en: "Target Audience * ",
+              en: "Target Audience *",
               ru: "",
             }}
             lg={lg}
-            name="Target Audience"
+            name={{
+              am: "Թիրախային խումբ *",
+              en: "Target Audience *",
+              ru: "",
+            }}
           />,
           <HyperactiveBuyers
             key={10}
@@ -65,16 +69,24 @@ const AdvertisingCampaignBrief = ({ lg }) => {
               ru: ["Hyperactive buyer persona", "Age", "age"],
             }}
             lg={lg}
-            name="Hyperactive Buyers"
+            name={{
+              am: "Hyperactive buyer persona",
+              en: "Hyperactive buyer persona",
+              ru: "Hyperactive buyer persona",
+            }}
           />,
           <MassMedia
             key={24}
             title={{
               am: "Արշավի մասշտաբայնություն *",
-              en: "Campaign Range * ",
+              en: "Campaign Range *",
               ru: "",
             }}
-            name="Campaign Range"
+            name={{
+              am: "Արշավի մասշտաբայնություն *",
+              en: "Campaign Range *",
+              ru: "",
+            }}
             data={massMedia}
             lg={lg}
           />,
@@ -86,7 +98,11 @@ const AdvertisingCampaignBrief = ({ lg }) => {
               en: "Campaign Implementation Timeframe *",
               ru: "",
             }}
-            name="Campaign Implementation Timeframe"
+            name={{
+              am: "Գովազդային արշավի իրականացման ժամկետներ *",
+              en: "Campaign Implementation Timeframe *",
+              ru: "",
+            }}
           />,
           <CampaignBudget
             key={29}
@@ -113,11 +129,19 @@ const AdvertisingCampaignBrief = ({ lg }) => {
               },
             ]}
             lg={lg}
-            name="Campaign Budget"
+            name={{
+              am: "Գովազդային արշավի բյուջե",
+              en: "Campaign Budget",
+              ru: "",
+            }}
           />,
           <FilesBox
             key={32}
-            name="Additional Information"
+            name={{
+              am: "Հավելյալ տեղեկատվություն",
+              en: "Additional Information",
+              ru: "",
+            }}
             title={{
               am: "Հավելյալ տեղեկատվություն",
               en: "Additional Information",

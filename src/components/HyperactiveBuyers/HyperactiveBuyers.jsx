@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import InputRadio from "../InputRadio";
 import { useDispatch } from "react-redux";
-import { updateForm } from "../../features/createSliceForm";
+import { updateForm, setFieldName } from "../../features/createSliceForm";
 import { InputRange } from "../InputRC";
 import getTrueKey from "../../utils/getTrueKey";
 import "./style.scss";
@@ -24,14 +24,22 @@ const HyperactiveBuyers = ({ lg, title, name }) => {
     if (isEqual(checked, newChecked)) {
       setDisabled(true);
       setChecked(reset);
-      dispatch(updateForm({ value: "", name, isValid: true }));
+      dispatch(
+        updateForm({
+          value: "",
+          keyName: name.en,
+          name: name[lg],
+          isValid: true,
+        })
+      );
     } else {
       setDisabled(false);
       setChecked(newChecked);
       dispatch(
         updateForm({
           value: `${getTrueKey(newChecked)} ${age.join("-")} age`,
-          name,
+          keyName: name.en,
+          name: name[lg],
           isValid: true,
         })
       );
@@ -45,11 +53,20 @@ const HyperactiveBuyers = ({ lg, title, name }) => {
     dispatch(
       updateForm({
         value: `${getTrueKey(checked)} ${age.join("-")} age`,
-        name,
+        keyName: name.en,
+        name: name[lg],
         isValid: true,
       })
     );
   };
+  useEffect(() => {
+    dispatch(
+      setFieldName({
+        keyName: name.en,
+        name: name[lg],
+      })
+    );
+  }, [name, lg, dispatch]);
 
   const ageFormated = age.join("-");
   return (

@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { updateForm, setOtherText } from "../../features/createSliceForm";
+import {
+  updateForm,
+  setOtherText,
+  setFieldName,
+} from "../../features/createSliceForm";
 import Textarea from "../Textarea";
 import InputRadio from "../InputRadio";
 import "./style.scss";
@@ -25,11 +29,20 @@ const RadioGroup = ({ data, name, title, lg, require }) => {
       dispatch(
         updateForm({
           value: newState,
-          name,
+          keyName: name.en,
+          name: name[lg],
           isValid: !!Object.keys(newState).length,
         })
       );
-    else dispatch(updateForm({ value: newState, name, isValid: true }));
+    else
+      dispatch(
+        updateForm({
+          value: newState,
+          keyName: name.en,
+          name: name[lg],
+          isValid: true,
+        })
+      );
 
     if (itemName === "Other") {
       setAdditionalInput(true);
@@ -38,6 +51,14 @@ const RadioGroup = ({ data, name, title, lg, require }) => {
   const onChangeTextarea = (val) => {
     dispatch(setOtherText({ value: val, name }));
   };
+  useEffect(() => {
+    dispatch(
+      setFieldName({
+        keyName: name.en,
+        name: name[lg],
+      })
+    );
+  }, [name, lg, dispatch]);
   return (
     <div className={"radioGroup"}>
       <div className="title">{title[lg]}</div>

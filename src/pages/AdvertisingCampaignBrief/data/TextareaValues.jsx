@@ -3,7 +3,11 @@ import isEmpty from "../../../utils/isEmpty";
 const TextareValues = [
   {
     key: 7,
-    name: "Brief Description",
+    name: {
+      am: "Ամփոփ նկարագիր *",
+      en: "Brief Description *",
+      ru: "",
+    },
     title: {
       am: "Ամփոփ նկարագիր *",
       en: "Brief Description *",
@@ -23,7 +27,11 @@ const TextareValues = [
       en: "Additional information about the target",
       ru: "",
     },
-    name: "Additional information about the target",
+    name: {
+      am: "Հավելյալ տեղեկատվություն թիրախի մասին",
+      en: "Additional information about the target",
+      ru: "",
+    },
     required: false,
 
     hint: true,
@@ -39,7 +47,11 @@ const TextareValues = [
       en: "Current Consumer Behaviour",
       ru: "",
     },
-    name: "Current Consumer Behaviour",
+    name: {
+      am: "Սպառողների ներկայիս վարքագիծ",
+      en: "Current Consumer Behaviour",
+      ru: "",
+    },
     required: false,
     hint: false,
   },
@@ -52,7 +64,11 @@ const TextareValues = [
       en: "Current Consumer Opinion",
       ru: "",
     },
-    name: "Current Consumer Opinion",
+    name: {
+      am: "Սպառողների ներկայիս կարծիք",
+      en: "Current Consumer Opinion",
+      ru: "",
+    },
     required: false,
     hint: false,
   },
@@ -77,7 +93,11 @@ const TextareValues = [
       ),
       ru: "",
     },
-    name: "Desired Consumer Opinion (after campaign implementation)",
+    name: {
+      am: "Սպառողների ցանկալի վարքագիծ (արշավի իրականացումից հետո)",
+      en: "Desired Consumer Opinion (after campaign implementation)",
+      ru: "",
+    },
     required: false,
     hint: false,
   },
@@ -104,7 +124,11 @@ const TextareValues = [
       ),
       ru: "",
     },
-    name: "USP (unique selling proposition) /Brand promise",
+    name: {
+      am: "USP (unique selling proposition)/Brand promise *",
+      en: "USP (unique selling proposition)/Brand promise *",
+      ru: "",
+    },
     required: true,
     isValid: isEmpty,
     hint: true,
@@ -123,10 +147,14 @@ const TextareValues = [
   },
   {
     key: 16,
-    name: "Insight/Consumer Insight",
+    name: {
+      am: "Insight/Consumer Insight *",
+      en: "Insight/Consumer Insight *",
+      ru: "",
+    },
     title: {
-      am: "Insight/Consumer Insight * ",
-      en: "Insight/Consumer Insight * ",
+      am: "Insight/Consumer Insight *",
+      en: "Insight/Consumer Insight *",
       ru: "",
     },
     required: true,
@@ -159,7 +187,11 @@ const TextareValues = [
       en: "Primary Message *",
       ru: "",
     },
-    name: "Primary Message",
+    name: {
+      am: "Գովազդային արշավի հիմնական ուղերձ (մեսիջ) *",
+      en: "Primary Message *",
+      ru: "",
+    },
     required: true,
     isValid: isEmpty,
     hint: false,
@@ -176,7 +208,11 @@ const TextareValues = [
       en: "Secondary Message *",
       ru: "",
     },
-    name: "Secondary Message",
+    name: {
+      am: "Գովազդային արշավի երկրորդային ուղերձ (մեսիջ) *",
+      en: "Secondary Message *",
+      ru: "",
+    },
     required: true,
     isValid: isEmpty,
     hint: false,
@@ -202,7 +238,11 @@ const TextareValues = [
       ),
       ru: "",
     },
-    name: "RTB (reason to believe)",
+    name: {
+      am: "RTB (reason to believe)",
+      en: "RTB (reason to believe)",
+      ru: "",
+    },
     required: false,
     hint: true,
     hintText: {
@@ -220,11 +260,15 @@ const TextareValues = [
   {
     key: 20,
     title: {
-      am: "Barrier  ",
-      en: "Barrier  ",
+      am: "Barrier",
+      en: "Barrier",
       ru: "",
     },
-    name: "Barrier",
+    name: {
+      am: "Barrier",
+      en: "Barrier",
+      ru: "",
+    },
     required: false,
     hint: true,
 
@@ -243,11 +287,15 @@ const TextareValues = [
   {
     key: 21,
     title: {
-      am: "Գովազդային արշավի/կոմունիկացիայի տարրեր, որոնք պարտադիր են  * ",
+      am: "Գովազդային արշավի/կոմունիկացիայի տարրեր, որոնք պարտադիր են  *",
       en: "Advertising campaign / communication elements that are mandatory *",
       ru: "",
     },
-    name: "Advertising campaign / communication elements that are mandatory",
+    name: {
+      am: "Գովազդային արշավի/կոմունիկացիայի տարրեր, որոնք պարտադիր են  *",
+      en: "Advertising campaign / communication elements that are mandatory *",
+      ru: "",
+    },
     required: true,
     isValid: isEmpty,
     hint: true,
@@ -263,11 +311,15 @@ const TextareValues = [
   {
     key: 22,
     title: {
-      am: "Գովազդային արշավի/կոմունիկացիայի տարրեր, որոնք բացառվում են  * ",
+      am: "Գովազդային արշավի/կոմունիկացիայի տարրեր, որոնք բացառվում են  *",
       en: "Advertising campaign / communication elements that are prohibited *",
       ru: "",
     },
-    name: "Advertising campaign / communication elements that are prohibited",
+    name: {
+      am: "Գովազդային արշավի/կոմունիկացիայի տարրեր, որոնք բացառվում են  *",
+      en: "Advertising campaign / communication elements that are prohibited *",
+      ru: "",
+    },
     required: true,
     isValid: isEmpty,
     hint: true,
@@ -285,11 +337,15 @@ const TextareValues = [
   {
     key: 26,
     title: {
-      am: "Գործակալության առաջադրանքը * ",
+      am: "Գործակալության առաջադրանքը *",
       en: "Agency Tasks *",
       ru: "",
     },
-    name: "Agency Tasks",
+    name: {
+      am: "Գործակալության առաջադրանքը *",
+      en: "Agency Tasks *",
+      ru: "",
+    },
     required: false,
     isValid: isEmpty,
     hint: false,
@@ -317,7 +373,11 @@ const TextareValues = [
       ),
       ru: "",
     },
-    name: "KPIs (Key Performance Indicators)",
+    name: {
+      am: "KPIs (Key Performance Indicators) *",
+      en: "KPIs (Key Performance Indicators) *",
+      ru: "",
+    },
     required: false,
     hint: true,
     hintText: {

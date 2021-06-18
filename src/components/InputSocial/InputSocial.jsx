@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import UrlBlock from "./UrlBlock";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
-import { updateForm } from "../../features/createSliceForm";
+import { updateForm, setFieldName } from "../../features/createSliceForm";
 import { isURL } from "validator";
 
 import "./style.scss";
@@ -30,7 +30,8 @@ const InputSocial = ({ name, lg, title }) => {
         dispatch(
           updateForm({
             value: newData.map((item) => item.val),
-            name,
+            keyName: name.en,
+            name: name[lg],
             isValid: true,
           })
         );
@@ -49,14 +50,22 @@ const InputSocial = ({ name, lg, title }) => {
       dispatch(
         updateForm({
           value: newData.map((item) => item.val),
-          name,
+          keyName: name.en,
+          name: name[lg],
           isValid: !!newData.length,
         })
       );
       return newData;
     });
   };
-
+  useEffect(() => {
+    dispatch(
+      setFieldName({
+        keyName: name.en,
+        name: name[lg],
+      })
+    );
+  }, [name, lg, dispatch]);
   return (
     <div className={`socialInput ${lg}`}>
       <label className={`socialInputLabel ${focused}`} htmlFor={name}>

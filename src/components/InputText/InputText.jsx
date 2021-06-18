@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
-import { updateForm } from "../../features/createSliceForm";
+import { updateForm, setFieldName } from "../../features/createSliceForm";
 // import Hint from "../Hint";
 import "./style.scss";
 import { useEffect } from "react";
@@ -27,17 +27,36 @@ const InputText = ({ name, lg, placeholder, title, required, isValid }) => {
   const onChange = (e) => {
     let value = e.target.value;
     setValue(value);
-    dispatch(updateForm({ value, isValid: true, name }));
+    dispatch(
+      updateForm({ value, isValid: true, keyName: name.en, name: name[lg] })
+    );
     if (required) {
       if (!isValid(value)) {
-        dispatch(updateForm({ value, isValid: false, name }));
+        dispatch(
+          updateForm({
+            value,
+            isValid: false,
+            keyName: name.en,
+            name: name[lg],
+          })
+        );
         setInvalid("invalid");
       } else {
         setInvalid("");
-        dispatch(updateForm({ value, isValid: true, name }));
+        dispatch(
+          updateForm({ value, isValid: true, keyName: name.en, name: name[lg] })
+        );
       }
     }
   };
+  useEffect(() => {
+    dispatch(
+      setFieldName({
+        keyName: name.en,
+        name: name[lg],
+      })
+    );
+  }, [name, lg, dispatch]);
   return (
     <div>
       <label className={`textInput ${lg || "en"}`}>

@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TextareaAutosize from "react-autosize-textarea";
 import PropTypes from "prop-types";
 import Hint from "../Hint";
 import { useDispatch } from "react-redux";
-import { updateForm } from "../../features/createSliceForm";
+import { updateForm, setFieldName } from "../../features/createSliceForm";
 
 import "./style.scss";
 
@@ -26,9 +26,18 @@ const Textarea = ({
 
     setValue(e.target.value);
     if (!required && !otherDescription) {
-      dispatch(updateForm({ value, isValid: true, name }));
+      dispatch(
+        updateForm({ value, isValid: true, keyName: name.en, name: name[lg] })
+      );
     } else if (required && !otherDescription) {
-      dispatch(updateForm({ value, isValid: isValid(value), name }));
+      dispatch(
+        updateForm({
+          value,
+          isValid: isValid(value),
+          keyName: name.en,
+          name: name[lg],
+        })
+      );
     } else {
       otherDescription(value);
     }
@@ -48,6 +57,14 @@ const Textarea = ({
       if (required) setInvalid("invalid");
     }
   };
+  useEffect(() => {
+    dispatch(
+      setFieldName({
+        keyName: name.en,
+        name: name[lg],
+      })
+    );
+  }, [name, lg, dispatch]);
   return (
     <div>
       <label className={`textarea ${lg}`}>

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-import { updateForm } from "../../features/createSliceForm";
+import { updateForm, setFieldName } from "../../features/createSliceForm";
 
 import Calendar from "react-calendar";
 import InputsPicker from "./InputsPicker";
@@ -47,7 +47,10 @@ function formatDate(date, lg) {
 
 const DatePicker = ({ title, lg, name }) => {
   const [focused, setFocused] = useState("");
-
+  console.log("name", {
+    keyName: name.en,
+    name: name[lg],
+  });
   const activeStartDate = useSelector(CALENDAR_ACTIVE_START_DATE);
 
   const value = useSelector(CALENDAR_VALUE).map((date) => dateParse(date));
@@ -56,7 +59,8 @@ const DatePicker = ({ title, lg, name }) => {
   dispatch(
     updateForm({
       value: value.map((date) => date.toString()),
-      name,
+      keyName: name.en,
+      name: name[lg],
       isValid: !!value.length,
     })
   );
@@ -65,9 +69,16 @@ const DatePicker = ({ title, lg, name }) => {
     dispatch(updateStartDateInputValue(dateToString(date[0])));
     dispatch(updateEndDateInputValue(dateToString(date[1])));
     dispatch(updateCalendarValue());
-
-    console.log("date", date);
   };
+
+  useEffect(() => {
+    dispatch(
+      setFieldName({
+        keyName: name.en,
+        name: name[lg],
+      })
+    );
+  }, [name, lg, dispatch]);
 
   return (
     <div className="custom-calendar">
