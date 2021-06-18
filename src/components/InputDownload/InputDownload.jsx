@@ -4,7 +4,7 @@ import "./style.scss";
 
 const title = {
   am: "Ներբեռնել բրիֆը",
-  en: "",
+  en: "Download",
   ru: "",
 };
 

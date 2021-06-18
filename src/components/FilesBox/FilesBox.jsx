@@ -36,9 +36,7 @@ const FilesBox = ({ name, lg, title }) => {
     reader.readAsDataURL(file);
     reader.addEventListener("load", () => {
       setLoader(false);
-      dispatch(
-        setFiles({ name, id, value: reader.result, isValid: true, info: "" })
-      );
+      dispatch(setFiles({ name, id, value: reader.result, isValid: true }));
     });
   };
 

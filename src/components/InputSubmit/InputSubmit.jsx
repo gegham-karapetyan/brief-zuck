@@ -1,4 +1,3 @@
-import { whileStatement } from "@babel/types";
 import React from "react";
 import { useState } from "react";
 
@@ -8,7 +7,7 @@ import "./style.scss";
 
 const title = {
   am: "Ուղարկել",
-  en: "",
+  en: "Submit",
   ru: "",
 };
 
@@ -38,6 +37,17 @@ const InputSubmit = ({ lg }) => {
             zIndex: 100000,
           }}
         >
+          <button
+            onClick={() => setModal(false)}
+            style={{
+              position: "absolute",
+              top: "40px",
+              right: "40px",
+              padding: "15px",
+            }}
+          >
+            X
+          </button>
           {modal}
         </pre>
       )}
