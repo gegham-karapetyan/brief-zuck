@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { useParams } from "react-router";
+import { useLocation } from "react-router";
 import { store } from "../../app/store";
 
 import "./style.scss";
@@ -13,11 +13,26 @@ const title = {
 
 const InputSubmit = ({ lg }) => {
   const [modal, setModal] = useState(false);
-  const path = useParams();
-  console.log("useParams", path);
+  const location = useLocation();
+  console.log("useParams", location);
   const onSubmit = () => {
-    const form = store.getState().form;
-    setModal(JSON.stringify(form, null, "\t"));
+    const formData = {
+      __type__: location.pathname.slice(1).split("-").join(" "),
+    };
+    const data = store.getState().form;
+    formData.data = data;
+
+    setModal(JSON.stringify(formData, null, "\t"));
+
+    fetch("https://api.zuckandberg.com/api/v1/store", {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => {
+        console.log("response -> ", res);
+        return res.text();
+      })
+      .then(console.log);
   };
 
   return (

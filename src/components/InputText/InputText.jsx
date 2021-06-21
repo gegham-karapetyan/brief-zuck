@@ -28,7 +28,7 @@ const InputText = ({
         keyName: name.en,
         name: name[lg],
       });
-      setInvalid("invalid");
+      if (!isValid(value)) setInvalid("invalid");
     } else {
       updateForm({ value, isValid: true, keyName: name.en, name: name[lg] });
     }

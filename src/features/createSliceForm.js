@@ -1,8 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  __type__: "Advertising Campaign Brief",
-
   "Brand *": { value: "", isValid: false },
 
   "Name, Surname *": { value: "", isValid: false },
