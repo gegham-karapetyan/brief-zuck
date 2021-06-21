@@ -66,9 +66,11 @@ const InputSocial = ({ name, lg, title }) => {
       })
     );
   }, [name, lg, dispatch]);
+
+  const id = name.en.replace(/[\s*.,]/g, "");
   return (
     <div className={`socialInput ${lg}`}>
-      <label className={`socialInputLabel ${focused}`} htmlFor={name.en}>
+      <label className={`socialInputLabel ${focused}`} htmlFor={id}>
         {title[lg]}
       </label>
 
@@ -76,7 +78,7 @@ const InputSocial = ({ name, lg, title }) => {
 
       <input
         style={valid}
-        id={name.en}
+        id={id}
         onKeyUp={(e) => {
           if (e.code === "Enter") onBlur(e);
         }}

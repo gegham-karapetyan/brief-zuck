@@ -346,7 +346,7 @@ const TextareValues = [
       en: "Agency Tasks *",
       ru: "",
     },
-    required: false,
+    required: true,
     isValid: isEmpty,
     hint: false,
   },
@@ -378,7 +378,8 @@ const TextareValues = [
       en: "KPIs (Key Performance Indicators) *",
       ru: "",
     },
-    required: false,
+    required: true,
+    isValid: isEmpty,
     hint: true,
     hintText: {
       am: (
