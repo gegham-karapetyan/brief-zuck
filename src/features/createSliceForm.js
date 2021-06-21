@@ -63,7 +63,7 @@ const initialState = {
     value: [],
     isValid: false,
   },
-  "Campaign Budget": { value: [], isValid: true },
+  "Campaign Budget": { value: "", isValid: true },
   "Similar work that you like": {
     value: [],
     isValid: true,
