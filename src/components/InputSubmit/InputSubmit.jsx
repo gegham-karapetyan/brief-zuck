@@ -21,12 +21,12 @@ const InputSubmit = ({ lg }) => {
     };
     const data = store.getState().form;
     formData.data = data;
-
-    setModal(JSON.stringify(formData, null, "\t"));
+    const stringifiedData = JSON.stringify(formData, null, "\t");
+    setModal(stringifiedData);
 
     fetch("https://api.zuckandberg.com/api/v1/store", {
       method: "POST",
-      body: formData,
+      body: stringifiedData,
     })
       .then((res) => {
         console.log("response -> ", res);
