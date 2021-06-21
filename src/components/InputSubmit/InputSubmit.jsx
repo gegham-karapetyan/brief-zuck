@@ -20,6 +20,7 @@ const InputSubmit = ({ lg }) => {
       __type__: location.pathname.slice(1).split("-").join(" "),
     };
     const data = store.getState().form;
+    console.log(Object.keys(data["Additional Information"].value.files));
     formData.data = data;
     const stringifiedData = JSON.stringify(formData, null, "\t");
     setModal(stringifiedData);
