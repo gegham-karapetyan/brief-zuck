@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { updateForm, setFieldName } from "../../features/createSliceForm";
-import InputRadio from "../InputRadio";
+import { updateForm, setFieldName } from "../createSliceForm";
+import InputRadio from "../../components/InputRadio";
 import CheckboxesGroup from "../CheckboxesGroup";
 import RadioGroup from "../RadioGroup";
 import "./style.scss";
 
-const MassMedia = ({ data, title, lg, name }) => {
+const CampaignRange = ({ data, title, lg, name }) => {
   const [checked, setChecked] = useState({ single: false, multi: true });
   const dispatch = useDispatch();
   const onChange = (inputName) => {
@@ -15,7 +15,13 @@ const MassMedia = ({ data, title, lg, name }) => {
         value: inputName,
         isValid: true,
         keyName: name.en,
-        name: name[lg],
+      })
+    );
+    dispatch(
+      updateForm({
+        value: {},
+        isValid: false,
+        keyName: "Media *",
       })
     );
 
@@ -34,7 +40,7 @@ const MassMedia = ({ data, title, lg, name }) => {
     );
   }, [name, title, lg, dispatch]);
   return (
-    <div className="massMedia">
+    <div className="campaignRange">
       <div className="controller">
         <div className="label">{title[lg]}</div>
         <div className="container">
@@ -95,4 +101,4 @@ const MassMedia = ({ data, title, lg, name }) => {
   );
 };
 
-export default MassMedia;
+export default CampaignRange;

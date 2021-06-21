@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
-import { updateForm, setFieldName } from "../../features/createSliceForm";
-// import Hint from "../Hint";
-import "./style.scss";
-import { useEffect } from "react";
 
-const InputText = ({ name, lg, placeholder, title, required, isValid }) => {
+import "./style.scss";
+
+const InputText = ({
+  name,
+  lg,
+  placeholder,
+  title,
+  required,
+  isValid,
+  updateForm,
+}) => {
   const [focused, setFocused] = useState("");
   const [invalid, setInvalid] = useState("");
   const [value, setValue] = useState("");
@@ -14,49 +19,38 @@ const InputText = ({ name, lg, placeholder, title, required, isValid }) => {
     setFocused("focused");
   };
 
-  const dispatch = useDispatch();
-
   const onBlur = (e) => {
     let value = e.target.value.trim();
+    if (required) {
+      updateForm({
+        value,
+        isValid: isValid(value),
+        keyName: name.en,
+        name: name[lg],
+      });
+      setInvalid("invalid");
+    } else {
+      updateForm({ value, isValid: true, keyName: name.en, name: name[lg] });
+    }
+
     if (!value) {
       setFocused("");
-      setInvalid("invalid");
     }
   };
 
   const onChange = (e) => {
     let value = e.target.value;
     setValue(value);
-    dispatch(
-      updateForm({ value, isValid: true, keyName: name.en, name: name[lg] })
-    );
+
     if (required) {
       if (!isValid(value)) {
-        dispatch(
-          updateForm({
-            value,
-            isValid: false,
-            keyName: name.en,
-            name: name[lg],
-          })
-        );
         setInvalid("invalid");
       } else {
         setInvalid("");
-        dispatch(
-          updateForm({ value, isValid: true, keyName: name.en, name: name[lg] })
-        );
       }
     }
   };
-  useEffect(() => {
-    dispatch(
-      setFieldName({
-        keyName: name.en,
-        name: name[lg],
-      })
-    );
-  }, [name, lg, dispatch]);
+
   return (
     <div>
       <label className={`textInput ${lg || "en"}`}>
@@ -69,7 +63,7 @@ const InputText = ({ name, lg, placeholder, title, required, isValid }) => {
           onFocus={focusHandler}
           onBlur={onBlur}
           type="text"
-          name={name}
+          name={name["en"]}
         />
       </label>
     </div>
@@ -78,7 +72,7 @@ const InputText = ({ name, lg, placeholder, title, required, isValid }) => {
 
 InputText.propTypes = {
   title: PropTypes.object.isRequired,
-  name: PropTypes.string,
+  name: PropTypes.object,
   lg: PropTypes.string,
   required: PropTypes.bool,
   hint: PropTypes.bool,

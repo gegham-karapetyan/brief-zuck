@@ -1,12 +1,8 @@
 import React, { useState } from "react";
-import Textarea from "../Textarea";
-import InputCheckbox from "../InputCheckbox";
+import Textarea from "../../components/Textarea";
+import InputCheckbox from "../../components/InputCheckbox";
 import { useDispatch } from "react-redux";
-import {
-  updateForm,
-  setOtherText,
-  setFieldName,
-} from "../../features/createSliceForm";
+import { updateForm, setOtherText, setFieldName } from "../createSliceForm";
 import PropTypes from "prop-types";
 import "./style.scss";
 import { useEffect } from "react";
@@ -30,8 +26,9 @@ const CheckboxesGroup = ({ title, lg, data, name, require }) => {
   const addNewInput = (checked) => {
     setAdditionalInput(checked);
   };
-  const onChangeTextarea = (val) => {
-    dispatch(setOtherText({ value: val, name: name.en }));
+  const updateAdditionalDescription = (params) => {
+    setChecked((prev) => ({ ...prev, Other: params.value }));
+    dispatch(setOtherText({ ...params, keyName: name["en"] }));
   };
 
   const onChangeCeckbox = (e) => {
@@ -104,7 +101,7 @@ const CheckboxesGroup = ({ title, lg, data, name, require }) => {
             en: "Other description",
             ru: "",
           }}
-          otherDescription={onChangeTextarea}
+          updateForm={updateAdditionalDescription}
           lg="am"
           required={false}
           hint={false}

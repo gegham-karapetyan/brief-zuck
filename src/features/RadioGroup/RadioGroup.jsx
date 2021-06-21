@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import {
-  updateForm,
-  setOtherText,
-  setFieldName,
-} from "../../features/createSliceForm";
-import Textarea from "../Textarea";
-import InputRadio from "../InputRadio";
+import { updateForm, setOtherText, setFieldName } from "../createSliceForm";
+import Textarea from "../../components/Textarea";
+import InputRadio from "../../components/InputRadio";
 import "./style.scss";
 
 function arrayToObj(arr, defaultValue = false) {
@@ -30,7 +26,6 @@ const RadioGroup = ({ data, name, title, lg, require }) => {
         updateForm({
           value: newState,
           keyName: name.en,
-          name: name[lg],
           isValid: !!Object.keys(newState).length,
         })
       );
@@ -39,7 +34,6 @@ const RadioGroup = ({ data, name, title, lg, require }) => {
         updateForm({
           value: newState,
           keyName: name.en,
-          name: name[lg],
           isValid: true,
         })
       );
@@ -48,8 +42,8 @@ const RadioGroup = ({ data, name, title, lg, require }) => {
       setAdditionalInput(true);
     } else setAdditionalInput(false);
   };
-  const onChangeTextarea = (val) => {
-    dispatch(setOtherText({ value: val, name }));
+  const updateAdditionalDescription = (params) => {
+    dispatch(setOtherText({ ...params, keyName: name["en"] }));
   };
   useEffect(() => {
     dispatch(
@@ -78,7 +72,7 @@ const RadioGroup = ({ data, name, title, lg, require }) => {
       {additionalInput && (
         <Textarea
           name="Other description"
-          otherDescription={onChangeTextarea}
+          updateForm={updateAdditionalDescription}
           title={{
             am: "Other description",
             en: "Other description",

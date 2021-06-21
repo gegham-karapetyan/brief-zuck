@@ -87,21 +87,18 @@ const createSliceForm = createSlice({
 
   reducers: {
     setFieldName: (state, action) => {
-      console.log("action", action);
       const { name, keyName } = action.payload;
       state[keyName].name = name;
     },
     updateForm: (state, action) => {
-      const { name, keyName, isValid, value } = action.payload;
+      const { keyName, isValid, value } = action.payload;
 
       state[keyName].isValid = isValid;
       state[keyName].value = value;
-      state[keyName].name = name;
     },
     setOtherText: (state, action) => {
-      const { name, value } = action.payload;
-      console.log(action);
-      state[name].value["Other"] = value;
+      const { keyName, value } = action.payload;
+      state[keyName].value["Other"] = value;
     },
     setFiles: (state, action) => {
       const { keyName, isValid, value, id } = action.payload;

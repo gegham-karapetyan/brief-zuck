@@ -55,7 +55,7 @@ const FilesBox = ({ name, lg, title }) => {
 
   const onBlur = (e) => {
     const value = e.target.value;
-    dispatch(setOtherText({ name, value }));
+    dispatch(setOtherText({ keyName: name.en, value }));
     if (!value.trim() && !items.length) setFocused("");
   };
 
@@ -78,7 +78,7 @@ const FilesBox = ({ name, lg, title }) => {
   return (
     <div className="files-box">
       <div className={`header ${focused}`}>
-        <label className={lg} htmlFor={name}>
+        <label className={lg} htmlFor={name.en}>
           {title[lg]}
         </label>
 
@@ -90,8 +90,8 @@ const FilesBox = ({ name, lg, title }) => {
         onFocus={onFocus}
         onBlur={onBlur}
         value={value}
-        name={name}
-        id={name}
+        name={name.en}
+        id={name.en}
       />
     </div>
   );

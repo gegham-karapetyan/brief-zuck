@@ -2,14 +2,14 @@ import React, { useEffect } from "react";
 
 import { useDispatch } from "react-redux";
 import { selectBriefAC } from "../../features/selectBriefReducer";
-import { createFields } from "../../features/createSliceForm";
-import InputText from "../../components/InputText";
+
+import ContactField from "../../features/ContactField";
 import InputSocial from "../../components/InputSocial";
-import CheckboxesGroup from "../../components/CheckboxesGroup";
+import CampaignType from "../../features/CampaignType";
 import TargetGroup from "../../components/TargetGroup";
 import HyperactiveBuyers from "../../components/HyperactiveBuyers";
-import Textarea from "../../components/Textarea";
-import MassMedia from "../../components/MassMedia";
+import DescriptionField from "../../features/DescriptionField";
+import MassMedia from "../../features/CampaignRange";
 import DatePicker from "../../components/DatePicker";
 import FilesBox from "../../components/FilesBox";
 import CampaignBudget from "../../components/CampaignBudget";
@@ -33,13 +33,15 @@ const AdvertisingCampaignBrief = ({ lg }) => {
   return (
     <div>
       {textInputsValues
-        .map((item) => <InputText {...item} lg={lg} />)
-        .concat(textareaValues.map((item) => <Textarea {...item} lg={lg} />))
+        .map((item) => <ContactField {...item} lg={lg} />)
+        .concat(
+          textareaValues.map((item) => <DescriptionField {...item} lg={lg} />)
+        )
         .concat(
           inputSocialValues.map((item) => <InputSocial {...item} lg={lg} />)
         )
         .concat([
-          <CheckboxesGroup
+          <CampaignType
             name={{ am: "Արշավի տեսակ *", en: "Campaign Type *", ru: "" }}
             key={8}
             title={{ am: "Արշավի տեսակ *", en: "Campaign Type *", ru: "" }}

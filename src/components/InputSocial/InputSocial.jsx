@@ -31,7 +31,7 @@ const InputSocial = ({ name, lg, title }) => {
           updateForm({
             value: newData.map((item) => item.val),
             keyName: name.en,
-            name: name[lg],
+
             isValid: true,
           })
         );
@@ -51,7 +51,7 @@ const InputSocial = ({ name, lg, title }) => {
         updateForm({
           value: newData.map((item) => item.val),
           keyName: name.en,
-          name: name[lg],
+
           isValid: !!newData.length,
         })
       );
@@ -68,7 +68,7 @@ const InputSocial = ({ name, lg, title }) => {
   }, [name, lg, dispatch]);
   return (
     <div className={`socialInput ${lg}`}>
-      <label className={`socialInputLabel ${focused}`} htmlFor={name}>
+      <label className={`socialInputLabel ${focused}`} htmlFor={name.en}>
         {title[lg]}
       </label>
 
@@ -76,7 +76,7 @@ const InputSocial = ({ name, lg, title }) => {
 
       <input
         style={valid}
-        id={name}
+        id={name.en}
         onKeyUp={(e) => {
           if (e.code === "Enter") onBlur(e);
         }}
@@ -92,7 +92,7 @@ const InputSocial = ({ name, lg, title }) => {
 
 InputSocial.propTypes = {
   title: PropTypes.object.isRequired,
-  name: PropTypes.string.isRequired,
+  name: PropTypes.object.isRequired,
   lg: PropTypes.string.isRequired,
 };
 

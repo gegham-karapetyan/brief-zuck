@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import TextareaAutosize from "react-autosize-textarea";
 import PropTypes from "prop-types";
 import Hint from "../Hint";
-import { useDispatch } from "react-redux";
-import { updateForm, setFieldName } from "../../features/createSliceForm";
+//import { useDispatch } from "react-redux";
+//import { updateForm, setFieldName } from "../../features/createSliceForm";
 
 import "./style.scss";
 
@@ -14,33 +14,16 @@ const Textarea = ({
   hintText,
   required,
   isValid,
-  otherDescription,
+  updateForm,
 }) => {
   const [focused, setFocused] = useState("");
   const [value, setValue] = useState("");
   const [invalid, setInvalid] = useState("");
-  const dispatch = useDispatch();
 
   const onChange = (e) => {
     const value = e.target.value;
 
     setValue(e.target.value);
-    if (!required && !otherDescription) {
-      dispatch(
-        updateForm({ value, isValid: true, keyName: name.en, name: name[lg] })
-      );
-    } else if (required && !otherDescription) {
-      dispatch(
-        updateForm({
-          value,
-          isValid: isValid(value),
-          keyName: name.en,
-          name: name[lg],
-        })
-      );
-    } else {
-      otherDescription(value);
-    }
 
     if (required && !isValid(value)) setInvalid("invalid");
     else setInvalid("");
@@ -50,6 +33,19 @@ const Textarea = ({
   };
   const onBlur = (e) => {
     const value = e.target.value.trim();
+    if (required) {
+      updateForm({
+        value,
+        isValid: isValid(value),
+        keyName: name.en,
+      });
+    } else {
+      updateForm({
+        value,
+        isValid: true,
+        keyName: name.en,
+      });
+    }
 
     if (!value) {
       setFocused("");
@@ -57,14 +53,7 @@ const Textarea = ({
       if (required) setInvalid("invalid");
     }
   };
-  useEffect(() => {
-    dispatch(
-      setFieldName({
-        keyName: name.en,
-        name: name[lg],
-      })
-    );
-  }, [name, lg, dispatch]);
+
   return (
     <div>
       <label className={`textarea ${lg}`}>
@@ -78,7 +67,7 @@ const Textarea = ({
           onFocus={onFocus}
           onBlur={onBlur}
           value={value}
-          name={name}
+          name={name["en"]}
         />
       </label>
     </div>
@@ -87,7 +76,7 @@ const Textarea = ({
 
 Textarea.propTypes = {
   title: PropTypes.object,
-  name: PropTypes.string.isRequired,
+  name: PropTypes.object.isRequired,
   lg: PropTypes.string.isRequired,
   required: PropTypes.bool,
   hint: PropTypes.bool,
