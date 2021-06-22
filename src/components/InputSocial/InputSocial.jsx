@@ -7,7 +7,7 @@ import { isURL } from "validator";
 
 import "./style.scss";
 
-const InputSocial = ({ name, lg, title }) => {
+const InputSocial = ({ name, lg, title, required }) => {
   const dispatch = useDispatch();
   const [focused, setFocused] = useState("");
   const [valid, setInvalid] = useState({ borderColor: "black" });
@@ -21,7 +21,7 @@ const InputSocial = ({ name, lg, title }) => {
 
     if (!val.trim() && !urls.length) {
       setFocused("");
-      setInvalid({ borderColor: "red" });
+      if (required) setInvalid({ borderColor: "red" });
     } else if (isURL(val)) {
       setInvalid({ borderColor: "black" });
       e.target.value = "";
@@ -45,7 +45,7 @@ const InputSocial = ({ name, lg, title }) => {
       const newData = prev.filter((url) => url.id !== id);
       if (!newData.length) {
         setFocused("");
-        setInvalid({ borderColor: "red" });
+        if (required) setInvalid({ borderColor: "red" });
       }
       dispatch(
         updateForm({

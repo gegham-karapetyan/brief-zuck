@@ -26,27 +26,29 @@ const FilesBox = ({ name, lg, title }) => {
   const addFile = (e) => {
     const id = Math.random();
     const file = e.target.files[0];
-
+    console.log("file-> ", file);
     setFocused("focused");
-    setItems((prev) => {
-      const files = [...prev, { name: file.name, val: file, id }];
+    if (file !== undefined) {
+      setItems((prev) => {
+        const files = [...prev, { name: file.name, val: file, id }];
 
-      return files;
-    });
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.addEventListener("load", () => {
-      setLoader(false);
-      dispatch(
-        setFiles({
-          keyName: name.en,
-          name: name[lg],
-          id,
-          value: reader.result,
-          isValid: true,
-        })
-      );
-    });
+        return files;
+      });
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.addEventListener("load", () => {
+        setLoader(false);
+        dispatch(
+          setFiles({
+            keyName: name.en,
+            name: name[lg],
+            id,
+            value: reader.result,
+            isValid: true,
+          })
+        );
+      });
+    }
   };
 
   const onFocus = () => {

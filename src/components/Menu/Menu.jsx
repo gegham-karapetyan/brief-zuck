@@ -4,10 +4,20 @@ import { useSelector } from "react-redux";
 import { briefType } from "../../features/selectBriefReducer";
 import "./style.scss";
 
+const pages = [
+  "/Advertising-Campaign-Brief",
+  "/Visual-Key-Visual-Brief",
+  "/Commercial-Video-Brief",
+  "/Commercial-Video-Brief",
+  "/Social-Media-Activation-Brief",
+  "/Strategy-Brief",
+  "/Logo-Brief",
+];
+
 const Menu = () => {
   const [open, setOpen] = useState(false);
   const value = useSelector(briefType);
-  const toggleMenu = () => {
+  const toggleMenu = (x) => {
     setOpen(!open);
   };
   return (

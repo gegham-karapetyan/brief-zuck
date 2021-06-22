@@ -23,15 +23,19 @@ import textareaValues from "./data/TextareaValues";
 import inputSocialValues from "./data/InputSocialvalues";
 
 import "./style.scss";
+import { createForm, resetForm } from "../../features/createSliceForm";
 
 const AdvertisingCampaignBrief = ({ lg }) => {
   const dispatch = useDispatch();
   useEffect(() => {
+    //dispatch(createForm());
     dispatch(selectBriefAC("Advertising Campaign Brief"));
+    //return () => dispatch(resetForm());
   });
 
   return (
     <div>
+      <button onClick={() => dispatch(createForm())}>reset form</button>
       {textInputsValues
         .map((item) => <ContactField {...item} lg={lg} />)
         .concat(

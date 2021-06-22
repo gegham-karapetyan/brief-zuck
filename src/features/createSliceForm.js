@@ -1,81 +1,105 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  "Brand *": { value: "", isValid: false },
+  "Brand *": { value: "", isValid: false, type: "text" },
 
-  "Name, Surname *": { value: "", isValid: false },
+  "Name, Surname *": { value: "", isValid: false, type: "text" },
 
-  "E-mail *": { value: "", isValid: false },
+  "E-mail *": { value: "", isValid: false, type: "text" },
 
-  "Position *": { value: "", isValid: false },
+  "Position *": { value: "", isValid: false, type: "text" },
 
-  "Telephone *": { value: "", isValid: false },
+  "Telephone *": { value: "", isValid: false, type: "text" },
   "Website, Facebook, Instagram, etc. *": {
     value: [],
     isValid: false,
+    type: "typing_select",
   },
-  "Brief Description *": { value: "", isValid: false },
-  "Campaign Type *": { value: {}, isValid: false },
+  "Brief Description *": { value: "", isValid: false, type: "text" },
+  "Campaign Type *": { value: {}, isValid: false, type: "multi_select" },
   "Target Audience *": {
     value: {
       man: [],
       woman: [],
     },
     isValid: false,
+    type: "target_select",
   },
-  "Hyperactive buyer persona": { value: "", isValid: true },
-  "Additional information about the target": { value: "", isValid: true },
-  "Current Consumer Behaviour": { value: "", isValid: true },
-  "Current Consumer Opinion": { value: "", isValid: true },
+  "Hyperactive buyer persona": { value: "", isValid: true, type: "text" },
+  "Additional information about the target": {
+    value: "",
+    isValid: true,
+    type: "text",
+  },
+  "Current Consumer Behaviour": { value: "", isValid: true, type: "text" },
+  "Current Consumer Opinion": { value: "", isValid: true, type: "text" },
   "Desired Consumer Opinion (after campaign implementation)": {
     value: "",
     isValid: true,
+    type: "text",
   },
   "USP (unique selling proposition)/Brand promise *": {
     value: "",
     isValid: false,
+    type: "text",
   },
-  "Insight/Consumer Insight *": { value: "", isValid: false },
-  "Primary Message *": { value: "", isValid: false },
-  "Secondary Message *": { value: "", isValid: false },
-  "RTB (reason to believe)": { value: "", isValid: true },
-  Barrier: { value: "", isValid: true },
+  "Insight/Consumer Insight *": { value: "", isValid: false, type: "text" },
+  "Primary Message *": { value: "", isValid: false, type: "text" },
+  "Secondary Message *": { value: "", isValid: false, type: "text" },
+  "RTB (reason to believe)": { value: "", isValid: true, type: "text" },
+  Barrier: { value: "", isValid: true, type: "text" },
   "Advertising campaign / communication elements that are mandatory *": {
     value: "",
     isValid: false,
+    type: "text",
   },
   "Advertising campaign / communication elements that are prohibited *": {
     value: "",
     isValid: false,
+    type: "text",
   },
   "Campaign Range *": {
     value: "Integrated Campaign",
     isValid: true,
+    type: "text",
   },
   "Media *": {
     value: {},
     isValid: false,
+    type: "multi_select",
   },
-  "Notes about the competitors": { value: [], isValid: true },
-  "Agency Tasks *": { value: "", isValid: false },
-  "KPIs (Key Performance Indicators) *": { value: "", isValid: false },
+  "Notes about the competitors": {
+    value: [],
+    isValid: true,
+    type: "typing_select",
+  },
+  "Agency Tasks *": { value: "", isValid: false, type: "text" },
+  "KPIs (Key Performance Indicators) *": {
+    value: "",
+    isValid: false,
+    type: "text",
+  },
   "Campaign Implementation Timeframe *": {
     value: [],
     isValid: false,
+    type: "typing_select",
   },
-  "Campaign Budget": { value: "", isValid: true },
+  "Campaign Budget": { value: "", isValid: true, type: "text" },
   "Similar work that you like": {
     value: [],
     isValid: true,
+    type: "typing_select",
   },
   "Similar work that you don’t like": {
     value: [],
     isValid: true,
+    type: "typing_select",
   },
 
   "Additional Information": {
     value: { files: {}, Other: "" },
     isValid: true,
+    type: "additional",
   },
 };
 
@@ -87,6 +111,7 @@ const createSliceForm = createSlice({
     setFieldName: (state, action) => {
       const { name, keyName } = action.payload;
       state[keyName].name = name;
+      console.log("state[keyName]", state[keyName]);
     },
     updateForm: (state, action) => {
       const { keyName, isValid, value } = action.payload;
@@ -108,11 +133,24 @@ const createSliceForm = createSlice({
       delete state[keyName].value.files[id];
       return state;
     },
+    resetForm: (state, action) => {
+      return {};
+    },
+    createForm: () => {
+      return initialState;
+    },
   },
 });
 
-export const { updateForm, setOtherText, setFiles, deleteFiles, setFieldName } =
-  createSliceForm.actions;
+export const {
+  updateForm,
+  setOtherText,
+  setFiles,
+  deleteFiles,
+  setFieldName,
+  resetForm,
+  createForm,
+} = createSliceForm.actions;
 
 export const FORM = (state) => state.form;
 
