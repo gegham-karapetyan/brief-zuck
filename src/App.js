@@ -12,20 +12,11 @@ import "./App.css";
 
 function App() {
   const lg = useSelector(LANG);
-  const [data, setData] = useState("");
-  useEffect(() => {
-    async function fetchdata() {
-      const res = await fetch("./data.json");
-      const data = await res.json();
-      setData(data);
-      console.log(data);
-    }
-    fetchdata();
-  }, []);
+
   return (
-    <div className="App" data={data}>
+    <div className="App">
       <Router basename="/">
-        <SideBar lg={lg} data={data} />
+        <SideBar lg={lg} />
         <Form lg={lg} />
       </Router>
     </div>

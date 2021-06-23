@@ -9,7 +9,6 @@ const SocialMediaActivationBrief = (props) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(selectBriefAC("Social Media Activation Brief"));
-    dispatch(resetForm());
   });
   return (
     <>

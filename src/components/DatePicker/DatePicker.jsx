@@ -6,13 +6,13 @@ import Calendar from "react-calendar";
 import InputsPicker from "./InputsPicker";
 import PickerNavigation from "./PickerNavigationav";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  CALENDAR_VALUE,
-  CALENDAR_ACTIVE_START_DATE,
-  updateStartDateInputValue,
-  updateEndDateInputValue,
-  updateCalendarValue,
-} from "../../features/createSliceDataPicker";
+// import {
+//   CALENDAR_VALUE,
+//   CALENDAR_ACTIVE_START_DATE,
+//   updateStartDateInputValue,
+//   updateEndDateInputValue,
+//   updateCalendarValue,
+// } from "../../features/createSliceDataPicker";
 import "./style.scss";
 
 const dateParse = (value) => {
@@ -47,28 +47,33 @@ function formatDate(date, lg) {
 
 const DatePicker = ({ title, lg, name }) => {
   const [focused, setFocused] = useState("");
-  console.log("name", {
-    keyName: name.en,
-    name: name[lg],
-  });
-  const activeStartDate = useSelector(CALENDAR_ACTIVE_START_DATE);
+  const [activeStartDate, setActiveStartDate] = useState(new Date());
+  const [dateRange, setDateRange] = useState([]);
 
-  const value = useSelector(CALENDAR_VALUE).map((date) => dateParse(date));
+  //const activeStartDate = useSelector(CALENDAR_ACTIVE_START_DATE);
+  console.log("activeStartDate", activeStartDate);
 
+  //const value = useSelector(CALENDAR_VALUE).map((date) => dateParse(date));
+
+  console.log("value", dateRange);
   const dispatch = useDispatch();
   dispatch(
     updateForm({
-      value: value.map((date) => date.toString()),
+      value: dateRange.map((date) => date.toString()),
       keyName: name.en,
       name: name[lg],
-      isValid: !!value.length,
+      isValid: !!dateRange.length,
     })
   );
 
-  const onChange = (date) => {
-    dispatch(updateStartDateInputValue(dateToString(date[0])));
-    dispatch(updateEndDateInputValue(dateToString(date[1])));
-    dispatch(updateCalendarValue());
+  // const onChange = (date) => {
+  //   dispatch(updateStartDateInputValue(dateToString(date[0])));
+  //   dispatch(updateEndDateInputValue(dateToString(date[1])));
+  //   dispatch(updateCalendarValue());
+  // };
+
+  const updateCalendarActiveStartDate = (date) => {
+    setActiveStartDate(date);
   };
 
   useEffect(() => {
@@ -87,22 +92,22 @@ const DatePicker = ({ title, lg, name }) => {
         <InputsPicker
           lg={lg}
           focused={focused}
+          setDateRange={setDateRange}
+          dateRange={dateRange}
           onFocus={setFocused}
-          value={value}
+          value={dateRange}
         />
         {focused && (
           <div className="data-picker">
             <PickerNavigation
               lg={lg}
-              activeStartDate={dateParse(activeStartDate)}
+              activeStartDate={activeStartDate}
+              updateCalendarActiveStartDate={updateCalendarActiveStartDate}
             />
             <Calendar
-              onActiveStartDateChange={() => {
-                console.log("onActiveStartDateChange");
-              }}
-              onChange={onChange}
-              activeStartDate={dateParse(activeStartDate)}
-              value={value}
+              onChange={setDateRange}
+              activeStartDate={activeStartDate}
+              value={dateRange}
               selectRange={true}
               minDate={new Date()}
               next2Label={null}

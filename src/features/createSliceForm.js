@@ -111,7 +111,6 @@ const createSliceForm = createSlice({
     setFieldName: (state, action) => {
       const { name, keyName } = action.payload;
       state[keyName].name = name;
-      console.log("state[keyName]", state[keyName]);
     },
     updateForm: (state, action) => {
       const { keyName, isValid, value } = action.payload;

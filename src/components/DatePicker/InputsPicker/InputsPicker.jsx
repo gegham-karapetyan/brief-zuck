@@ -20,7 +20,6 @@ const InputsPicker = ({ onFocus, focused, lg }) => {
   const dispatch = useDispatch();
 
   const updateCalendar = (v) => {
-    console.log("dfsgdfgsdf", v);
     dispatch(updateCalendarValue());
   };
 

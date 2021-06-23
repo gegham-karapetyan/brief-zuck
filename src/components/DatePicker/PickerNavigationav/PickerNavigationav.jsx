@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+
 import { useDispatch } from "react-redux";
 import { updateCalendarActiveStartDate } from "../../../features/createSliceDataPicker";
 
@@ -50,9 +50,9 @@ const MONTH = {
   ],
 };
 
-const dateToString = (date) => {
-  return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
-};
+// const dateToString = (date) => {
+//   return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+// };
 
 function formatCurrentDate(date, lg) {
   date = new Date(date);
@@ -66,8 +66,12 @@ function formatNextDate(date, lg) {
   return MONTH[lg][i] + " " + date.getFullYear();
 }
 
-const PickerNavigation = ({ activeStartDate, lg }) => {
-  const dispatch = useDispatch();
+const PickerNavigation = ({
+  activeStartDate,
+  lg,
+  updateCalendarActiveStartDate,
+}) => {
+  //const dispatch = useDispatch();
 
   const prevMonth = (e) => {
     e.preventDefault();
@@ -75,14 +79,16 @@ const PickerNavigation = ({ activeStartDate, lg }) => {
     let newDate = new Date(activeStartDate);
     newDate.setMonth(activeStartDate.getMonth() - 1);
 
-    dispatch(updateCalendarActiveStartDate(dateToString(newDate)));
+    //dispatch(updateCalendarActiveStartDate(dateToString(newDate)));
+    updateCalendarActiveStartDate(newDate);
   };
   const nextMonth = (e) => {
     e.preventDefault();
 
     let newDate = new Date(activeStartDate);
     newDate.setMonth(activeStartDate.getMonth() + 1);
-    dispatch(updateCalendarActiveStartDate(dateToString(newDate)));
+    //dispatch(updateCalendarActiveStartDate(dateToString(newDate)));
+    updateCalendarActiveStartDate(newDate);
   };
 
   return (
