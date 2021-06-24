@@ -5,35 +5,29 @@ import { updateForm, setFieldName } from "../../features/createSliceForm";
 import Calendar from "react-calendar";
 import InputsPicker from "./InputsPicker";
 import PickerNavigation from "./PickerNavigationav";
-import { useSelector, useDispatch } from "react-redux";
-// import {
-//   CALENDAR_VALUE,
-//   CALENDAR_ACTIVE_START_DATE,
-//   updateStartDateInputValue,
-//   updateEndDateInputValue,
-//   updateCalendarValue,
-// } from "../../features/createSliceDataPicker";
+import { useDispatch } from "react-redux";
+
 import "./style.scss";
 
-const dateParse = (value) => {
-  const tmp = value.split(/[/\-\\]/);
-  const newDate = new Date();
-  newDate.setDate(tmp[0]);
-  newDate.setMonth(tmp[1] - 1);
-  newDate.setYear(tmp[2]);
+// const dateParse = (value) => {
+//   const tmp = value.split(/[/\-\\]/);
+//   const newDate = new Date();
+//   newDate.setDate(tmp[0]);
+//   newDate.setMonth(tmp[1] - 1);
+//   newDate.setYear(tmp[2]);
 
-  return newDate;
-};
+//   return newDate;
+// };
 
-const dateToString = (date) => {
-  let day = date.getDate();
-  let month = date.getMonth() + 1;
-  let year = date.getFullYear();
+// const dateToString = (date) => {
+//   let day = date.getDate();
+//   let month = date.getMonth() + 1;
+//   let year = date.getFullYear();
 
-  if (day < 10) day = "0" + day;
-  if (month < 10) month = "0" + month;
-  return `${day}/${month}/${year}`;
-};
+//   if (day < 10) day = "0" + day;
+//   if (month < 10) month = "0" + month;
+//   return `${day}/${month}/${year}`;
+// };
 
 const Languages = {
   am: ["ԿՐ", "ԵԿ", "ԵՔ", "ՉՔ", "ՀԳ", "ՈՒԲ", "ՇԲ"],
@@ -50,30 +44,49 @@ const DatePicker = ({ title, lg, name }) => {
   const [activeStartDate, setActiveStartDate] = useState(new Date());
   const [dateRange, setDateRange] = useState([]);
 
-  //const activeStartDate = useSelector(CALENDAR_ACTIVE_START_DATE);
-  console.log("activeStartDate", activeStartDate);
-
-  //const value = useSelector(CALENDAR_VALUE).map((date) => dateParse(date));
-
-  console.log("value", dateRange);
   const dispatch = useDispatch();
-  dispatch(
-    updateForm({
-      value: dateRange.map((date) => date.toString()),
-      keyName: name.en,
-      name: name[lg],
-      isValid: !!dateRange.length,
-    })
-  );
+  if (dateRange.length === 2) {
+    dispatch(
+      updateForm({
+        value: dateRange.map((date) => date.toString()),
+        keyName: name.en,
 
-  // const onChange = (date) => {
-  //   dispatch(updateStartDateInputValue(dateToString(date[0])));
-  //   dispatch(updateEndDateInputValue(dateToString(date[1])));
-  //   dispatch(updateCalendarValue());
-  // };
+        isValid: dateRange.length === 2,
+      })
+    );
+  } else {
+    dispatch(
+      updateForm({
+        value: [],
+        keyName: name.en,
+
+        isValid: dateRange.length === 2,
+      })
+    );
+  }
 
   const updateCalendarActiveStartDate = (date) => {
     setActiveStartDate(date);
+  };
+
+  const setCalendarFirstDateRange = (date) => {
+    setActiveStartDate(date);
+    if (dateRange.length === 2) {
+      setDateRange((prev) => {
+        let newDate = prev.slice();
+        newDate[0] = date;
+        return newDate;
+      });
+    } else setDateRange(date);
+  };
+  const setCalendarSecondDateRange = (date) => {
+    if (dateRange.length === 2) {
+      setDateRange((prev) => {
+        let newDate = prev.slice();
+        newDate[1] = date;
+        return newDate;
+      });
+    } else setDateRange((prev) => [prev, date]);
   };
 
   useEffect(() => {
@@ -92,10 +105,10 @@ const DatePicker = ({ title, lg, name }) => {
         <InputsPicker
           lg={lg}
           focused={focused}
-          setDateRange={setDateRange}
-          dateRange={dateRange}
+          setCalendarFirstDateRange={setCalendarFirstDateRange}
+          setCalendarSecondDateRange={setCalendarSecondDateRange}
           onFocus={setFocused}
-          value={dateRange}
+          values={dateRange}
         />
         {focused && (
           <div className="data-picker">
@@ -108,6 +121,7 @@ const DatePicker = ({ title, lg, name }) => {
               onChange={setDateRange}
               activeStartDate={activeStartDate}
               value={dateRange}
+              allowPartialRange={true}
               selectRange={true}
               minDate={new Date()}
               next2Label={null}

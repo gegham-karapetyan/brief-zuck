@@ -138,6 +138,12 @@ const createSliceForm = createSlice({
     createForm: () => {
       return initialState;
     },
+    newField: (state, action) => {
+      console.log("action", action);
+      const { keyName, value } = action.payload;
+      state[keyName] = {};
+      state[keyName].value = value;
+    },
   },
 });
 
@@ -149,6 +155,7 @@ export const {
   setFieldName,
   resetForm,
   createForm,
+  newField,
 } = createSliceForm.actions;
 
 export const FORM = (state) => state.form;

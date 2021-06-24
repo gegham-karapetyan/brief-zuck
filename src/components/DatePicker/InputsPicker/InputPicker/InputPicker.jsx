@@ -1,40 +1,89 @@
-import React from "react";
+import React, { useState } from "react";
+import { useEffect } from "react";
 import isDate from "validator/es/lib/isDate";
+import { ltrim } from "validator";
 
 import "./style.scss";
 
+const dateParse = (value) => {
+  const tmp = value.split(/[/\-\\]/);
+  const newDate = new Date();
+  newDate.setYear(Number(tmp[2]));
+  newDate.setMonth(Number(tmp[1] - 1));
+  newDate.setDate(Number(tmp[0]));
+  return newDate;
+};
+
+const delimiters = /[ \\/\t\-_.]/;
+
+const validCharsInValue = (value) => {
+  return /^[\s\d\-_\\/.]*$/gi.test(value);
+};
+
+const normailzeDateInput = (date) => {
+  return ltrim(date)
+    .split(delimiters)
+    .map((date) => {
+      if (date && date.length < 2 && Number(date) < 10) return "0" + date;
+      else return date;
+    })
+    .join("/")
+    .replace(/\/+/g, "/");
+};
+
+const handleOnChangeEvent = (
+  e,
+  lastValue,
+  setNewValue,
+  setCalendarDateRange
+) => {
+  let value = e.target.value;
+
+  if (!validCharsInValue(value) || value.length > 10) {
+    return;
+  }
+  const _canNormalize = () => {
+    return (
+      value.trim() &&
+      (delimiters.test(e.nativeEvent.data) ||
+        (e.nativeEvent.inputType === "deleteContentBackward" &&
+          lastValue.slice(0, lastValue.length - 1) !== value))
+    );
+  };
+
+  if (_canNormalize()) {
+    value = normailzeDateInput(value);
+  }
+  setNewValue(value);
+
+  if (
+    isDate(value.trim(), {
+      format: "DD/MM/YYYY",
+      delimiters: ["/"],
+      strictMode: true,
+    })
+  ) {
+    setCalendarDateRange(dateParse(value));
+  }
+};
+// Component
 const InputText = ({
   onFocus,
-  updateValue,
+  setCalendarDateRange,
   value,
-  updateCalendar,
-  updateCalendarActivStartValue,
   focused,
   name,
   title,
   lg,
 }) => {
-  // const onFocus = () => {
-  //   props.onFocus("focused");
-  // };
+  const [inputValue, setInputValue] = useState("");
 
-  // const value = props.value;
+  useEffect(() => {
+    if (value) setInputValue(value);
+  }, [value]);
 
   const onChange = (e) => {
-    let value = e.target.value;
-
-    updateValue(value);
-
-    if (
-      isDate(value, {
-        format: "DD/MM/YYYY",
-        delimiters: ["/", "\\", "-"],
-        strictMode: true,
-      })
-    ) {
-      updateCalendar(value);
-      updateCalendarActivStartValue(value);
-    }
+    handleOnChangeEvent(e, inputValue, setInputValue, setCalendarDateRange);
   };
   return (
     <div>
@@ -46,7 +95,7 @@ const InputText = ({
           placeholder={focused && "DD/MM/YYYY"}
           onFocus={() => onFocus("focused")}
           type="text"
-          value={value}
+          value={inputValue}
           name={name}
         />
       </label>

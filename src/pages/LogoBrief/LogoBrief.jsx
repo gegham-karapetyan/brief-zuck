@@ -1,37 +1,37 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { selectBriefAC } from "../../features/selectBriefReducer";
-import FilesBox from "../../components/FilesBox";
+import DatePicker from "../../components/DatePicker";
 import "./style.scss";
-
-const data = [
-  { val: "as", pos: 4 },
-  { val: "sd", pos: 2 },
-  { val: "df", pos: 1 },
-  { val: "rt", pos: 3 },
-  { val: "ty", pos: 5 },
-];
+import { createForm, resetForm } from "../../features/createSliceForm";
 
 const LogoBrief = (props) => {
   const dispatch = useDispatch();
+  const [showChildren, setShowChildren] = useState(false);
 
-  // useEffect(() => {
-  //   window.__file = [];
-  //   dispatch(selectBriefAC("Logo Brief"));
-  // });
-
-  // const onChange = (e) => {
-  //   window.__file.push(e.target.files[0]);
-  //   console.log(window.__file);
-  // };
+  useEffect(() => {
+    dispatch(selectBriefAC("Logo Brief"));
+    dispatch(createForm());
+    setShowChildren(true);
+    return () => dispatch(resetForm());
+  }, [dispatch]);
   return (
     <div>
-      {data
-        .map((item) => <div key={item.pos}>{item.val}</div>)
-        .sort((a, b) => {
-          console.log("elem : ->", a);
-          return a.key - b.key;
-        })}
+      {showChildren && (
+        <DatePicker
+          lg={"en"}
+          title={{
+            am: "Գովազդային արշավի իրականացման ժամկետներ *",
+            en: "Campaign Implementation Timeframe *",
+            ru: "",
+          }}
+          name={{
+            am: "Գովազդային արշավի իրականացման ժամկետներ *",
+            en: "Campaign Implementation Timeframe *",
+            ru: "",
+          }}
+        />
+      )}
     </div>
   );
 };

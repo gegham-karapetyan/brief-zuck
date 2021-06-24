@@ -1,7 +1,4 @@
-import React, { useState } from "react";
-
-import { useDispatch } from "react-redux";
-import { updateCalendarActiveStartDate } from "../../../features/createSliceDataPicker";
+import React from "react";
 
 import "./style.scss";
 
@@ -66,35 +63,26 @@ function formatNextDate(date, lg) {
   return MONTH[lg][i] + " " + date.getFullYear();
 }
 
+const updateMonth = (e, to, activeStartDate, updateCalendarActiveStartDate) => {
+  e.preventDefault();
+  let newDate = new Date(activeStartDate);
+  newDate.setMonth(activeStartDate.getMonth() + to);
+  updateCalendarActiveStartDate(newDate);
+};
+
 const PickerNavigation = ({
   activeStartDate,
   lg,
   updateCalendarActiveStartDate,
 }) => {
-  //const dispatch = useDispatch();
-
-  const prevMonth = (e) => {
-    e.preventDefault();
-
-    let newDate = new Date(activeStartDate);
-    newDate.setMonth(activeStartDate.getMonth() - 1);
-
-    //dispatch(updateCalendarActiveStartDate(dateToString(newDate)));
-    updateCalendarActiveStartDate(newDate);
-  };
-  const nextMonth = (e) => {
-    e.preventDefault();
-
-    let newDate = new Date(activeStartDate);
-    newDate.setMonth(activeStartDate.getMonth() + 1);
-    //dispatch(updateCalendarActiveStartDate(dateToString(newDate)));
-    updateCalendarActiveStartDate(newDate);
-  };
-
   return (
     <div className="navigation-block">
       <div className="prev-nav-label">
-        <button onClick={prevMonth}>
+        <button
+          onClick={(e) =>
+            updateMonth(e, -1, activeStartDate, updateCalendarActiveStartDate)
+          }
+        >
           <div
             style={{
               display: "inline-block",
@@ -114,7 +102,11 @@ const PickerNavigation = ({
         <span className={`nav-label`}>
           {formatNextDate(activeStartDate, lg)}
         </span>
-        <button onClick={nextMonth}>
+        <button
+          onClick={(e) =>
+            updateMonth(e, +1, activeStartDate, updateCalendarActiveStartDate)
+          }
+        >
           <div
             style={{
               display: "inline-block",

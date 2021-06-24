@@ -1,14 +1,13 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 
 import selectBriefReducer from "../features/selectBriefReducer.js";
-import dataPickerReducer from "../features/createSliceDataPicker";
+
 import textBlockReducer from "../components/test/createTestSlice";
 import updateLanguageReducer from "../features/createSliceLanguages";
 import createForm from "../features/createSliceForm";
 
 const appReducer = combineReducers({
   selected: selectBriefReducer,
-  dataPicker: dataPickerReducer,
   textBlock: textBlockReducer,
   language: updateLanguageReducer,
   form: createForm,

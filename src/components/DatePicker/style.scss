@@ -8,7 +8,8 @@
 .react-calendar {
   width: 240px;
   max-width: 100%;
-  background: #feebe1;
+  //background: #feebe1;
+  background: inherit;
 
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.125em;
@@ -112,12 +113,14 @@
   &.react-calendar__tile--rangeStart {
     background-color: black;
     color: white;
-    border-top-left-radius: 10px;
+    //border-top-left-radius: 10px;
     //border-bottom-left-radius: 10px;
   }
   &.react-calendar__tile--rangeEnd {
+    background-color: black;
+    color: white;
     //border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+    //border-bottom-right-radius: 10px;
   }
   &.react-calendar__tile--rangeBothEnds {
     border-radius: 0px;

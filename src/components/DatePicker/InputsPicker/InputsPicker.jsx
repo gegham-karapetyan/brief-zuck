@@ -1,43 +1,37 @@
-import React, { useState } from "react";
-
-import PropTypes from "prop-types";
-import {
-  updateStartDateInputValue,
-  updateEndDateInputValue,
-  updateCalendarActiveStartDate,
-  updateCalendarValue,
-  INPUT_START_VALUE,
-  INPUT_END_VALUE,
-} from "../../../features/createSliceDataPicker";
+import React from "react";
 
 import InputPicker from "./InputPicker";
 import "./style.scss";
-import { useDispatch, useSelector } from "react-redux";
 
-const InputsPicker = ({ onFocus, focused, lg }) => {
-  const startValue = useSelector(INPUT_START_VALUE);
-  const endValue = useSelector(INPUT_END_VALUE);
-  const dispatch = useDispatch();
+const dateToString = (date) => {
+  let day = date.getDate();
+  let month = date.getMonth() + 1;
+  let year = date.getFullYear();
 
-  const updateCalendar = (v) => {
-    dispatch(updateCalendarValue());
-  };
+  if (day < 10) day = "0" + day;
+  if (month < 10) month = "0" + month;
+  return `${day}/${month}/${year}`;
+};
 
-  const updateStartDate = (value) => {
-    dispatch(updateStartDateInputValue(value));
-  };
-  const updateEndDate = (value) => {
-    dispatch(updateEndDateInputValue(value));
-  };
-  const updateCalendarActivStartValue = (value) => {
-    dispatch(updateCalendarActiveStartDate(value));
-  };
+const InputsPicker = ({
+  onFocus,
+  focused,
+  lg,
+  values,
+  setCalendarFirstDateRange,
+  setCalendarSecondDateRange,
+}) => {
+  let startValue = "";
+  let endValue = "";
+  if (values.length === 2) {
+    startValue = dateToString(values[0]);
+    endValue = dateToString(values[1]);
+  }
 
   return (
     <div className="input-block">
       <InputPicker
-        updateValue={updateStartDate}
-        updateCalendarActivStartValue={updateCalendarActivStartValue}
+        setCalendarDateRange={setCalendarFirstDateRange}
         value={startValue}
         title={{
           am: "Մեկնարկ",
@@ -48,11 +42,9 @@ const InputsPicker = ({ onFocus, focused, lg }) => {
         name="Start"
         focused={focused}
         onFocus={onFocus}
-        updateCalendar={updateCalendar}
       />
       <InputPicker
-        updateValue={updateEndDate}
-        updateCalendarActivStartValue={updateCalendarActivStartValue}
+        setCalendarDateRange={setCalendarSecondDateRange}
         value={endValue}
         onFocus={onFocus}
         title={{
@@ -63,7 +55,6 @@ const InputsPicker = ({ onFocus, focused, lg }) => {
         lg={lg}
         name="End"
         focused={focused}
-        updateCalendar={updateCalendar}
       />
     </div>
   );

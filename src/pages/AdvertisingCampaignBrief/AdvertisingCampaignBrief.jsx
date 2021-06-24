@@ -30,7 +30,6 @@ const AdvertisingCampaignBrief = ({ lg }) => {
   const [showChildren, setShowChildren] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log("useEffect AdvertisingCampaignBrief");
     dispatch(selectBriefAC("Advertising Campaign Brief"));
     dispatch(createForm());
     setShowChildren(true);
