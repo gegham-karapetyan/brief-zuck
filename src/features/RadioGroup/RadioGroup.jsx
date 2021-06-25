@@ -55,7 +55,7 @@ const RadioGroup = ({ data, name, title, lg, require }) => {
   }, [name, lg, dispatch]);
   return (
     <div className={"radioGroup"}>
-      <div className="title">{title[lg]}</div>
+      <div className={`title ${lg}`}>{title[lg]}</div>
       <div className={"container"}>
         {data.map((item) => (
           <InputRadio

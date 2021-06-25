@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import TextareaAutosize from "react-autosize-textarea";
+
 import PropTypes from "prop-types";
 import Hint from "../Hint";
 //import { useDispatch } from "react-redux";
@@ -15,8 +16,9 @@ const Textarea = ({
   required,
   isValid,
   updateForm,
+  isFocused,
 }) => {
-  const [focused, setFocused] = useState("");
+  const [focused, setFocused] = useState(isFocused || "");
   const [value, setValue] = useState("");
   const [invalid, setInvalid] = useState("");
 

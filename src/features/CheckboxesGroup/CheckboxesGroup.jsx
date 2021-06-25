@@ -4,6 +4,7 @@ import InputCheckbox from "../../components/InputCheckbox";
 import { useDispatch } from "react-redux";
 import { updateForm, setOtherText, setFieldName } from "../createSliceForm";
 import PropTypes from "prop-types";
+import isEmpty from "../../utils/isEmpty";
 import "./style.scss";
 import { useEffect } from "react";
 
@@ -27,7 +28,6 @@ const CheckboxesGroup = ({ title, lg, data, name, require }) => {
     setAdditionalInput(checked);
   };
   const updateAdditionalDescription = (params) => {
-    setChecked((prev) => ({ ...prev, Other: params.value }));
     dispatch(setOtherText({ ...params, keyName: name["en"] }));
   };
 
@@ -37,7 +37,8 @@ const CheckboxesGroup = ({ title, lg, data, name, require }) => {
     setChecked((prev) => {
       const newState = { ...prev, ...{ [elemName]: !prev[elemName] } };
       if (require) {
-        const isValid = Object.values(newState).some((i) => i);
+        const isValid =
+          Object.values(newState).some((i) => i) && newState.Other !== true;
         dispatch(
           updateForm({
             value: newState,
@@ -75,7 +76,7 @@ const CheckboxesGroup = ({ title, lg, data, name, require }) => {
 
   return (
     <div className={"checkboxesGroup"}>
-      <div className="title">{title[lg]}</div>
+      <div className={`title ${lg}`}>{title[lg]}</div>
       <div className={"container"}>
         {data.map((item) => (
           <InputCheckbox
@@ -101,9 +102,11 @@ const CheckboxesGroup = ({ title, lg, data, name, require }) => {
             en: "Other description",
             ru: "",
           }}
+          isValid={isEmpty}
+          isFocused={"focused"}
           updateForm={updateAdditionalDescription}
           lg="am"
-          required={false}
+          required={true}
           hint={false}
         />
       )}

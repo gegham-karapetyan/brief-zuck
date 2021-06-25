@@ -6,17 +6,19 @@ const TextareValues = [
     name: {
       am: "Ամփոփ նկարագիր *",
       en: "Brief Description *",
-      ru: "",
+      ru: "Краткое описание *",
     },
     title: {
       am: "Ամփոփ նկարագիր *",
       en: "Brief Description *",
-      ru: "",
+      ru: "Краткое описание *",
     },
     required: true,
     isValid: isEmpty,
     hintText: {
       am: "բիզնես նպատակ, արշավի իրականացման նպատակ, տեղեկատվություն բրենդի և/կամ ծառայության, պրոդուկտի մասին",
+      en: "",
+      ru: "бизнес-цель, цель кампании, информация о бренде и/или услуге, продукте",
     },
     hint: true,
   },
@@ -45,12 +47,12 @@ const TextareValues = [
     title: {
       am: "Սպառողների ներկայիս վարքագիծ",
       en: "Current Consumer Behaviour",
-      ru: "",
+      ru: "Текущее поведение потребителей",
     },
     name: {
       am: "Սպառողների ներկայիս վարքագիծ",
       en: "Current Consumer Behaviour",
-      ru: "",
+      ru: "Текущее поведение потребителей",
     },
     required: false,
     hint: false,
@@ -62,12 +64,12 @@ const TextareValues = [
     title: {
       am: "Սպառողների ներկայիս կարծիք",
       en: "Current Consumer Opinion",
-      ru: "",
+      ru: "Текущее мнение потребителей",
     },
     name: {
       am: "Սպառողների ներկայիս կարծիք",
       en: "Current Consumer Opinion",
-      ru: "",
+      ru: "Текущее мнение потребителей",
     },
     required: false,
     hint: false,
@@ -85,24 +87,67 @@ const TextareValues = [
       ),
       en: (
         <>
-          Desired Consumer Opinion{" "}
+          Desired Consumer Behaviour{" "}
           <span style={{ fontFamily: "mardoto-regular" }}>
             (after campaign implementation)
           </span>
         </>
       ),
-      ru: "",
+      ru: (
+        <>
+          Желаемое поведение потребителей{" "}
+          <span style={{ fontFamily: "mardoto-regular" }}>
+            (после реализации кампании)
+          </span>
+        </>
+      ),
     },
     name: {
       am: "Սպառողների ցանկալի վարքագիծ (արշավի իրականացումից հետո)",
-      en: "Desired Consumer Opinion (after campaign implementation)",
-      ru: "",
+      en: "Desired Consumer Behaviour (after campaign implementation)",
+      ru: "Желаемое поведение потребителей (после реализации кампании)",
     },
     required: false,
     hint: false,
   },
   {
     key: 15,
+    title: {
+      am: (
+        <>
+          Սպառողների ցանկալի կարծիք{" "}
+          <span style={{ fontFamily: "mardoto-regular" }}>
+            (արշավի իրականացումից հետո)
+          </span>{" "}
+        </>
+      ),
+      en: (
+        <>
+          Desired Consumer Opinion{" "}
+          <span style={{ fontFamily: "mardoto-regular" }}>
+            (after campaign implementation)
+          </span>
+        </>
+      ),
+      ru: (
+        <>
+          Желаемое мнение потребителей{" "}
+          <span style={{ fontFamily: "mardoto-regular" }}>
+            (после реализации кампании)
+          </span>
+        </>
+      ),
+    },
+    name: {
+      am: "Սպառողների ցանկալի կարծիք (արշավի իրականացումից հետո)",
+      en: "Desired Consumer Opinion (after campaign implementation)",
+      ru: "Желаемое мнение потребителей (после реализации кампании)",
+    },
+    required: false,
+    hint: false,
+  },
+  {
+    key: 16,
     title: {
       am: (
         <>
@@ -122,12 +167,20 @@ const TextareValues = [
           /Brand promise *{" "}
         </>
       ),
-      ru: "",
+      ru: (
+        <>
+          USP{" "}
+          <span style={{ fontFamily: "mardoto-regular" }}>
+            (unique selling proposition)
+          </span>
+          /Brand promise *{" "}
+        </>
+      ),
     },
     name: {
       am: "USP (unique selling proposition)/Brand promise *",
       en: "USP (unique selling proposition)/Brand promise *",
-      ru: "",
+      ru: "USP (unique selling proposition)/Brand promise *",
     },
     required: true,
     isValid: isEmpty,
@@ -138,24 +191,36 @@ const TextareValues = [
           <div>
             բրենդը/պրոդուկտը/ծառայությունը վաճառող եզակիություն, բրենդի խոստում
           </div>
-          <br></br>
+          <br />
           <b>Օրինակ`</b> «Մենք կառաքենք ձեր պիցցան 15 րոպեում, եթե ուշացնենք,
           կստանաք այն անվճար»։
+        </>
+      ),
+      en: "",
+      ru: (
+        <>
+          <div>
+            Уникальное торговое предложение бренда/продукта/услуги, обещание
+            бренда{" "}
+          </div>
+          <br />
+          <b>Пример:</b> «Мы доставим вашу пиццу за 15 минут, если мы опоздаем,
+          вы получите ее бесплатно».
         </>
       ),
     },
   },
   {
-    key: 16,
+    key: 17,
     name: {
       am: "Insight/Consumer Insight *",
       en: "Insight/Consumer Insight *",
-      ru: "",
+      ru: "Insight/Consumer Insight *",
     },
     title: {
       am: "Insight/Consumer Insight *",
       en: "Insight/Consumer Insight *",
-      ru: "",
+      ru: "Insight/Consumer Insight *",
     },
     required: true,
     isValid: isEmpty,
@@ -172,11 +237,27 @@ const TextareValues = [
           հեշտ է բացվում։
         </>
       ),
+      en: "",
+      ru: (
+        <>
+          Глубокая убежденность, вокруг которой может быть создана рекламная
+          кампания
+          <p>
+            <b>Insight - Пример:</b>Люди всегда ищут удобный момент, чтобы
+            отвлечься от работы и сделать перерыв.
+          </p>
+          <p>
+            <b>Consumer Insight - Пример: </b>Исследования показали, что
+            потребителю сложно открыть упаковку нашего продукта, мы создали
+            новую упаковку, которая открывается легче.
+          </p>
+        </>
+      ),
     },
   },
 
   {
-    key: 17,
+    key: 18,
     title: {
       am: (
         <>
@@ -185,19 +266,24 @@ const TextareValues = [
         </>
       ),
       en: "Primary Message *",
-      ru: "",
+      ru: (
+        <>
+          Основной посыл рекламной кампании{" "}
+          <span style={{ fontFamily: "mardoto-regular" }}>(месседж) *</span>
+        </>
+      ),
     },
     name: {
       am: "Գովազդային արշավի հիմնական ուղերձ (մեսիջ) *",
       en: "Primary Message *",
-      ru: "",
+      ru: "Основной посыл рекламной кампании (месседж) *",
     },
     required: true,
     isValid: isEmpty,
     hint: false,
   },
   {
-    key: 18,
+    key: 19,
     title: {
       am: (
         <>
@@ -206,19 +292,24 @@ const TextareValues = [
         </>
       ),
       en: "Secondary Message *",
-      ru: "",
+      ru: (
+        <>
+          Второстепенный посыл рекламной кампании{" "}
+          <span style={{ fontFamily: "mardoto-regular" }}>(месседж)</span>
+        </>
+      ),
     },
     name: {
       am: "Գովազդային արշավի երկրորդային ուղերձ (մեսիջ) *",
       en: "Secondary Message *",
-      ru: "",
+      ru: "Второстепенный посыл рекламной кампании (месседж)",
     },
     required: true,
     isValid: isEmpty,
     hint: false,
   },
   {
-    key: 19,
+    key: 20,
     title: {
       am: (
         <>
@@ -236,12 +327,19 @@ const TextareValues = [
           </span>{" "}
         </>
       ),
-      ru: "",
+      ru: (
+        <>
+          RTB{" "}
+          <span style={{ fontFamily: "mardoto-regular" }}>
+            (reason to believe){" "}
+          </span>{" "}
+        </>
+      ),
     },
     name: {
       am: "RTB (reason to believe)",
       en: "RTB (reason to believe)",
-      ru: "",
+      ru: "RTB (reason to believe)",
     },
     required: false,
     hint: true,
@@ -255,19 +353,29 @@ const TextareValues = [
           հեռավորության վրա չկան ո՛չ գործարաններ, ո՛չ էլ խոշոր քաղաքներ»։
         </>
       ),
+      en: "",
+      ru: (
+        <>
+          Почему должны поверить месседжу/предложению? <br />
+          <br />
+          <b>Пример:</b> «Наши молочные продукты соответствуют самым строгим
+          экологическим стандартам, так как в радиусе 230 км от наших ферм нет
+          ни заводов, ни крупных городов».
+        </>
+      ),
     },
   },
   {
-    key: 20,
+    key: 21,
     title: {
       am: "Barrier",
       en: "Barrier",
-      ru: "",
+      ru: "Barrier",
     },
     name: {
       am: "Barrier",
       en: "Barrier",
-      ru: "",
+      ru: "Barrier",
     },
     required: false,
     hint: true,
@@ -282,19 +390,29 @@ const TextareValues = [
           ծառայությունն ունեն ուռճացված գին:
         </>
       ),
+      en: "",
+      ru: (
+        <>
+          Любые обстоятельства, мешающие бренду/потребителю
+          <br />
+          <br />
+          <b>Пример: </b> восприятие или убеждение в том, что цена на товар или
+          услугу завышена.
+        </>
+      ),
     },
   },
   {
-    key: 21,
+    key: 22,
     title: {
       am: "Գովազդային արշավի/կոմունիկացիայի տարրեր, որոնք պարտադիր են  *",
       en: "Advertising campaign / communication elements that are mandatory *",
-      ru: "",
+      ru: "Обязательные элементы рекламной кампании/коммуникации *",
     },
     name: {
       am: "Գովազդային արշավի/կոմունիկացիայի տարրեր, որոնք պարտադիր են  *",
       en: "Advertising campaign / communication elements that are mandatory *",
-      ru: "",
+      ru: "Обязательные элементы рекламной кампании/коммуникации *",
     },
     required: true,
     isValid: isEmpty,
@@ -306,19 +424,26 @@ const TextareValues = [
           զգուշացումներ, բրենդինգի տարրեր, օրենսդրական նկարագրեր և այլն:
         </>
       ),
+      en: "",
+      ru: (
+        <>
+          <b>Пример:</b> логотипы организации/спонсоров, юридические
+          предупреждения, элементы брендинга, законодательные описания и т.п.
+        </>
+      ),
     },
   },
   {
-    key: 22,
+    key: 23,
     title: {
       am: "Գովազդային արշավի/կոմունիկացիայի տարրեր, որոնք բացառվում են  *",
       en: "Advertising campaign / communication elements that are prohibited *",
-      ru: "",
+      ru: "Исключаемые элементы рекламной кампании/коммуникации *",
     },
     name: {
       am: "Գովազդային արշավի/կոմունիկացիայի տարրեր, որոնք բացառվում են  *",
       en: "Advertising campaign / communication elements that are prohibited *",
-      ru: "",
+      ru: "Исключаемые элементы рекламной кампании/коммуникации *",
     },
     required: true,
     isValid: isEmpty,
@@ -331,27 +456,35 @@ const TextareValues = [
           կոմունիկացիայում, ծխախոտի/ալկոհոլի առկայություն և այլն:
         </>
       ),
+      en: "",
+      ru: (
+        <>
+          <b>Пример:</b> законодательные ограничения, использование определенных
+          цветов или выражений, присутствие детей, использование табачных
+          изделий/алкоголя и т.п.
+        </>
+      ),
     },
   },
 
   {
-    key: 26,
+    key: 27,
     title: {
       am: "Գործակալության առաջադրանքը *",
       en: "Agency Tasks *",
-      ru: "",
+      ru: "Задача агентства *",
     },
     name: {
       am: "Գործակալության առաջադրանքը *",
       en: "Agency Tasks *",
-      ru: "",
+      ru: "Задача агентства *",
     },
     required: true,
     isValid: isEmpty,
     hint: false,
   },
   {
-    key: 27,
+    key: 28,
     title: {
       am: (
         <>
@@ -371,12 +504,20 @@ const TextareValues = [
           *
         </>
       ),
-      ru: "",
+      ru: (
+        <>
+          KPIs{" "}
+          <span style={{ fontFamily: "mardoto-regular" }}>
+            (Key Performance Indicators)
+          </span>{" "}
+          *
+        </>
+      ),
     },
     name: {
       am: "KPIs (Key Performance Indicators) *",
       en: "KPIs (Key Performance Indicators) *",
-      ru: "",
+      ru: "KPIs (Key Performance Indicators) *",
     },
     required: true,
     isValid: isEmpty,
@@ -386,6 +527,13 @@ const TextareValues = [
         <>
           ինչպե՞ս է գնահատվելու գովազդային արշավի հաջողությունը, ո՞ր
           ցուցանիշներն են դրա համար լինելու չափորոշիչային
+        </>
+      ),
+      en: "",
+      ru: (
+        <>
+          как будет оцениваться успешность рекламной кампании, с помощью каких
+          инструментов, какие показатели будут для этого решающими?
         </>
       ),
     },

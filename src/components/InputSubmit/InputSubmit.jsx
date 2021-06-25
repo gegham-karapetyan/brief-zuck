@@ -14,13 +14,24 @@ const title = {
 const InputSubmit = ({ lg }) => {
   const [modal, setModal] = useState(false);
   const location = useLocation();
-  console.log("useParams", location);
+
   const onSubmit = () => {
     const formData = {
       __type__: location.pathname.slice(1).split("-").join(" "),
       lang: lg,
     };
     const data = store.getState().form;
+    //
+    const invalidKeys = Object.values(data).reduce((acc, val) => {
+      if (!val.isValid) {
+        acc.push(val.name);
+      }
+      return acc;
+    }, []);
+    if (invalidKeys.length) {
+      console.log(invalidKeys);
+      return;
+    }
 
     formData.data = data;
     const stringifiedData = JSON.stringify(formData, null, "\t");

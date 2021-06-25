@@ -4,12 +4,12 @@ const InputSocialValues = [
     title: {
       am: "Կայք, Ֆեյսբուք, Ինստագրամ, և այլն  *",
       en: "Website, Facebook, Instagram, etc. *",
-      ru: "",
+      ru: "Website, Facebook, Instagram и т.п. * ",
     },
     name: {
       am: "Կայք, Ֆեյսբուք, Ինստագրամ, և այլն  *",
       en: "Website, Facebook, Instagram, etc. *",
-      ru: "",
+      ru: "Website, Facebook, Instagram и т.п. * ",
     },
     required: true,
     hint: false,
@@ -24,18 +24,18 @@ const InputSocialValues = [
         </>
       ),
       en: "Notes about the competitors",
-      ru: "",
+      ru: "Представления о конкурентах *",
     },
     name: {
       am: "Պատկերացումներ մրցակիցների մասին (հղումներ)",
       en: "Notes about the competitors",
-      ru: "",
+      ru: "Представления о конкурентах *",
     },
     required: false,
     hint: false,
   },
   {
-    key: 30,
+    key: 31,
     title: {
       am: (
         <>
@@ -44,18 +44,23 @@ const InputSocialValues = [
         </>
       ),
       en: "Similar work that you like",
-      ru: "",
+      ru: "Подобная работа, которая нравится",
     },
     name: {
-      am: " Նմանատիպ աշխատանք, որը դուր է գալիս (հղումներ)",
+      am: "Նմանատիպ աշխատանք, որը դուր է գալիս (հղումներ)",
       en: "Similar work that you like",
-      ru: "",
+      ru: "Подобная работа, которая нравится",
     },
     required: false,
     hint: true,
+    hintText: {
+      am: "",
+      en: "",
+      ru: "Собственный или международный опыт, конкуренты и т.п.",
+    },
   },
   {
-    key: 31,
+    key: 32,
     title: {
       am: (
         <>
@@ -64,12 +69,17 @@ const InputSocialValues = [
         </>
       ),
       en: "Similar work that you don’t like",
-      ru: "",
+      ru: "Подобная работа, которая не нравится",
     },
     name: {
       am: "Նմանատիպ աշխատանք, որը դուր չի գալիս (հղումներ)",
       en: "Similar work that you don’t like",
-      ru: "",
+      ru: "Подобная работа, которая не нравится",
+    },
+    hintText: {
+      am: "",
+      en: "",
+      ru: "Собственный или международный опыт, конкуренты и т.п.",
     },
     required: false,
     hint: true,

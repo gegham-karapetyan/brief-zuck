@@ -38,6 +38,11 @@ const initialState = {
     isValid: true,
     type: "text",
   },
+  "Desired Consumer Behaviour (after campaign implementation)": {
+    value: "",
+    isValid: true,
+    type: "text",
+  },
   "USP (unique selling proposition)/Brand promise *": {
     value: "",
     isValid: false,
@@ -120,6 +125,8 @@ const createSliceForm = createSlice({
     },
     setOtherText: (state, action) => {
       const { keyName, value } = action.payload;
+      if (!value) state[keyName].isValid = false;
+      else state[keyName].isValid = true;
       state[keyName].value["Other"] = value;
     },
     setFiles: (state, action) => {

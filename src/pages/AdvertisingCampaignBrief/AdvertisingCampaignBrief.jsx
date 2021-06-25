@@ -49,9 +49,17 @@ const AdvertisingCampaignBrief = ({ lg }) => {
           )
           .concat([
             <CampaignType
-              name={{ am: "Արշավի տեսակ *", en: "Campaign Type *", ru: "" }}
+              name={{
+                am: "Արշավի տեսակ *",
+                en: "Campaign Type *",
+                ru: "Тип кампании *",
+              }}
               key={8}
-              title={{ am: "Արշավի տեսակ *", en: "Campaign Type *", ru: "" }}
+              title={{
+                am: "Արշավի տեսակ *",
+                en: "Campaign Type *",
+                ru: "Тип кампании *",
+              }}
               lg={lg}
               require={true}
               data={campaignTypes}
@@ -89,36 +97,36 @@ const AdvertisingCampaignBrief = ({ lg }) => {
               title={{
                 am: "Արշավի մասշտաբայնություն *",
                 en: "Campaign Range *",
-                ru: "",
+                ru: "Масштабность кампании *",
               }}
               name={{
                 am: "Արշավի մասշտաբայնություն *",
                 en: "Campaign Range *",
-                ru: "",
+                ru: "Масштабность кампании *",
               }}
               data={massMedia}
               lg={lg}
             />,
             <DatePicker
-              key={28}
+              key={29}
               lg={lg}
               title={{
                 am: "Գովազդային արշավի իրականացման ժամկետներ *",
                 en: "Campaign Implementation Timeframe *",
-                ru: "",
+                ru: "Сроки проведения рекламной кампании *",
               }}
               name={{
                 am: "Գովազդային արշավի իրականացման ժամկետներ *",
                 en: "Campaign Implementation Timeframe *",
-                ru: "",
+                ru: "Сроки проведения рекламной кампании *",
               }}
             />,
             <CampaignBudget
-              key={29}
+              key={30}
               title={{
                 am: ["Գովազդային արշավի բյուջե", "Ընդհանուր՝"],
                 en: ["Campaign Budget", "Amount"],
-                ru: ["Գովազդային արշավի բյուջե", "Ընդհանուր՝"],
+                ru: ["Бюджет рекламной кампании", "Ընդհանուր՝"],
               }}
               data={[
                 {
@@ -145,16 +153,16 @@ const AdvertisingCampaignBrief = ({ lg }) => {
               }}
             />,
             <FilesBox
-              key={32}
+              key={33}
               name={{
                 am: "Հավելյալ տեղեկատվություն",
                 en: "Additional Information",
-                ru: "",
+                ru: "Дополнительная информация",
               }}
               title={{
                 am: "Հավելյալ տեղեկատվություն",
                 en: "Additional Information",
-                ru: "",
+                ru: "Дополнительная информация",
               }}
               lg={lg}
             />,

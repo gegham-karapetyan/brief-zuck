@@ -42,7 +42,7 @@ const CampaignRange = ({ data, title, lg, name }) => {
   return (
     <div className="campaignRange">
       <div className="controller">
-        <div className="label">{title[lg]}</div>
+        <div className={`label ${lg}`}>{title[lg]}</div>
         <div className="container">
           <InputRadio
             name={data[0][0].name}
@@ -68,14 +68,14 @@ const CampaignRange = ({ data, title, lg, name }) => {
             name={{
               am: "Մեդիաներ *",
               en: "Media *",
-              ru: "",
+              ru: "Медиа *",
             }}
             require={true}
             lg={lg}
             title={{
               am: "Մեդիաներ *",
               en: "Media *",
-              ru: "",
+              ru: "Медиа *",
             }}
             data={data[1]}
           />
@@ -84,13 +84,13 @@ const CampaignRange = ({ data, title, lg, name }) => {
             name={{
               am: "Մեդիաներ *",
               en: "Media *",
-              ru: "",
+              ru: "Медиа *",
             }}
             lg={lg}
             title={{
               am: "Մեդիաներ *",
               en: "Media *",
-              ru: "",
+              ru: "Медиа *",
             }}
             require={true}
             data={data[1]}

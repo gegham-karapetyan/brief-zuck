@@ -3,11 +3,12 @@ import UrlBlock from "./UrlBlock";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { updateForm, setFieldName } from "../../features/createSliceForm";
+import Hint from "../Hint";
 import { isURL } from "validator";
 
 import "./style.scss";
 
-const InputSocial = ({ name, lg, title, required }) => {
+const InputSocial = ({ name, lg, title, required, hintText }) => {
   const dispatch = useDispatch();
   const [focused, setFocused] = useState("");
   const [valid, setInvalid] = useState({ borderColor: "black" });
@@ -72,6 +73,7 @@ const InputSocial = ({ name, lg, title, required }) => {
     <div className={`socialInput ${lg}`}>
       <label className={`socialInputLabel ${focused}`} htmlFor={id}>
         {title[lg]}
+        {hintText && <Hint hintText={hintText[lg]} />}
       </label>
 
       {urls && <UrlBlock onClick={onDelete} urls={urls} />}

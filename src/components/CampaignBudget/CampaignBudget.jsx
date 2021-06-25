@@ -55,7 +55,7 @@ const CampaignBudget = ({ title, data, lg, name }) => {
   }, [name, lg, dispatch]);
   return (
     <div className="campaign-budget">
-      <div className="label">
+      <div className={`label ${lg}`}>
         {title[lg][0]}
 
         <div className="currency-box">

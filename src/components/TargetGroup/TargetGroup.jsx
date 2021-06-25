@@ -49,7 +49,7 @@ const TargetGroup = ({ title, lg, name }) => {
   }, [name, lg, dispatch]);
   return (
     <div className="targetGroup">
-      <div className="label">{title[lg]}</div>
+      <div className={`label ${lg}`}>{title[lg]}</div>
       <SubGroupMan
         title={{
           am: ["Տղամարդիկ՝", "Տարիք՝", "տ․"],

@@ -71,7 +71,7 @@ const HyperactiveBuyers = ({ lg, title, name }) => {
   const ageFormated = age.join("-");
   return (
     <div className="HyperactiveBuyerPersona">
-      <div className="label">{title[lg][0]}</div>
+      <div className={`label ${lg}`}>{title[lg][0]}</div>
       <div className="container">
         <InputRadio
           checked={checked.Men}

@@ -11,7 +11,6 @@ import TextareaAutosize from "react-autosize-textarea";
 import "./style.scss";
 import DynamicBox from "../DynamicBox";
 
-window.files = [];
 const FilesBox = ({ name, lg, title }) => {
   const dispatch = useDispatch();
   const [focused, setFocused] = useState("");
