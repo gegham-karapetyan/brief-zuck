@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { updateForm, setOtherText, setFieldName } from "../createSliceForm";
-import Textarea from "../../components/Textarea";
+import TextareaBlock from "../../components/TextareaBlock";
 import InputRadio from "../../components/InputRadio";
 import "./style.scss";
 
@@ -70,8 +70,12 @@ const RadioGroup = ({ data, name, title, lg, require }) => {
         ))}
       </div>
       {additionalInput && (
-        <Textarea
-          name="Other description"
+        <TextareaBlock
+          name={{
+            en: "Other description",
+            am: "Other description",
+            ru: "Other description",
+          }}
           updateForm={updateAdditionalDescription}
           title={{
             am: "Other description",
@@ -79,6 +83,7 @@ const RadioGroup = ({ data, name, title, lg, require }) => {
             ru: "",
           }}
           lg="am"
+          isFocused={"focused"}
           required={false}
           hint={false}
         />

@@ -1,7 +1,9 @@
 import React from "react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useLocation } from "react-router";
 import { store } from "../../app/store";
+import { hasSubmitted } from "../../features/createSliceForm";
 
 import "./style.scss";
 
@@ -13,15 +15,18 @@ const title = {
 
 const InputSubmit = ({ lg }) => {
   const [modal, setModal] = useState(false);
+  const dispatch = useDispatch();
+
   const location = useLocation();
 
   const onSubmit = () => {
+    dispatch(hasSubmitted());
     const formData = {
       __type__: location.pathname.slice(1).split("-").join(" "),
       lang: lg,
     };
     const data = store.getState().form;
-    //
+
     const invalidKeys = Object.values(data).reduce((acc, val) => {
       if (!val.isValid) {
         acc.push(val.name);

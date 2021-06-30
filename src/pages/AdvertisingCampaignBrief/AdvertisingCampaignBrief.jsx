@@ -8,7 +8,8 @@ import InputSocial from "../../components/InputSocial";
 import CampaignType from "../../features/CampaignType";
 import TargetGroup from "../../components/TargetGroup";
 import HyperactiveBuyers from "../../components/HyperactiveBuyers";
-import DescriptionField from "../../features/DescriptionField";
+//import DescriptionField from "../../features/DescriptionField";
+import TextareaField from "../../features/TextareaField";
 import MassMedia from "../../features/CampaignRange";
 import DatePicker from "../../components/DatePicker";
 import FilesBox from "../../components/FilesBox";
@@ -42,7 +43,7 @@ const AdvertisingCampaignBrief = ({ lg }) => {
         textInputsValues
           .map((item) => <ContactField {...item} lg={lg} />)
           .concat(
-            textareaValues.map((item) => <DescriptionField {...item} lg={lg} />)
+            textareaValues.map((item) => <TextareaField {...item} lg={lg} />)
           )
           .concat(
             inputSocialValues.map((item) => <InputSocial {...item} lg={lg} />)

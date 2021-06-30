@@ -1,39 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { selectBriefAC } from "../../features/selectBriefReducer";
-import DatePicker from "../../components/DatePicker";
+import TextareaAutosize from "react-autosize-textarea";
 import "./style.scss";
 import { createForm, resetForm } from "../../features/createSliceForm";
+import { useRef } from "react";
 
 const LogoBrief = (props) => {
   const dispatch = useDispatch();
-  const [showChildren, setShowChildren] = useState(false);
+  const node = useRef();
+  console.log("node ref", node);
+  const onClick = () => {
+    console.log("node onclick", node);
+    node.current.focus();
+  };
 
   useEffect(() => {
     dispatch(selectBriefAC("Logo Brief"));
     dispatch(createForm());
-    setShowChildren(true);
+
     return () => dispatch(resetForm());
   }, [dispatch]);
   return (
     <div>
-      {showChildren && (
-        <DatePicker
-          lg={"en"}
-          title={{
-            am: "Գովազդային արշավի իրականացման ժամկետներ *",
-            en: "Campaign Implementation Timeframe *",
-            ru: "",
-          }}
-          name={{
-            am: "Գովազդային արշավի իրականացման ժամկետներ *",
-            en: "Campaign Implementation Timeframe *",
-            ru: "",
-          }}
-        />
-      )}
+      <TT xx={node} />
+      <button onClick={onClick}>press</button>
     </div>
   );
+};
+
+const TT = ({ xx }) => {
+  console.log("ref", xx);
+  return <TextareaAutosize ref={xx} />;
 };
 
 export default LogoBrief;

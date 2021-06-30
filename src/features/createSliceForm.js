@@ -15,7 +15,12 @@ const initialState = {
     isValid: false,
     type: "typing_select",
   },
-  "Brief Description *": { value: "", isValid: false, type: "text" },
+  "Brief Description *": {
+    value: "",
+    isValid: false,
+    type: "text",
+    wasCheckedBySubmitButton: false,
+  },
   "Campaign Type *": { value: {}, isValid: false, type: "multi_select" },
   "Target Audience *": {
     value: {
@@ -47,21 +52,39 @@ const initialState = {
     value: "",
     isValid: false,
     type: "text",
+    wasCheckedBySubmitButton: false,
   },
-  "Insight/Consumer Insight *": { value: "", isValid: false, type: "text" },
-  "Primary Message *": { value: "", isValid: false, type: "text" },
-  "Secondary Message *": { value: "", isValid: false, type: "text" },
+  "Insight/Consumer Insight *": {
+    value: "",
+    isValid: false,
+    type: "text",
+    wasCheckedBySubmitButton: false,
+  },
+  "Primary Message *": {
+    value: "",
+    isValid: false,
+    type: "text",
+    wasCheckedBySubmitButton: false,
+  },
+  "Secondary Message *": {
+    value: "",
+    isValid: false,
+    type: "text",
+    wasCheckedBySubmitButton: false,
+  },
   "RTB (reason to believe)": { value: "", isValid: true, type: "text" },
   Barrier: { value: "", isValid: true, type: "text" },
   "Advertising campaign / communication elements that are mandatory *": {
     value: "",
     isValid: false,
     type: "text",
+    wasCheckedBySubmitButton: false,
   },
   "Advertising campaign / communication elements that are prohibited *": {
     value: "",
     isValid: false,
     type: "text",
+    wasCheckedBySubmitButton: false,
   },
   "Campaign Range *": {
     value: "Integrated Campaign",
@@ -78,11 +101,17 @@ const initialState = {
     isValid: true,
     type: "typing_select",
   },
-  "Agency Tasks *": { value: "", isValid: false, type: "text" },
+  "Agency Tasks *": {
+    value: "",
+    isValid: false,
+    type: "text",
+    wasCheckedBySubmitButton: false,
+  },
   "KPIs (Key Performance Indicators) *": {
     value: "",
     isValid: false,
     type: "text",
+    wasCheckedBySubmitButton: false,
   },
   "Campaign Implementation Timeframe *": {
     value: [],
@@ -123,6 +152,24 @@ const createSliceForm = createSlice({
       state[keyName].isValid = isValid;
       state[keyName].value = value;
     },
+    updateMultiSelectField: (state, action) => {
+      const { keyName, isValid, value } = action.payload;
+
+      if (
+        typeof state[keyName].value.Other === "string" &&
+        value.Other === true
+      ) {
+        const otherText = state[keyName].value.Other;
+        const prevIsValid = state[keyName].isValid;
+        state[keyName].value = value;
+        state[keyName].isValid = prevIsValid;
+        state[keyName].value.Other = otherText;
+      } else {
+        state[keyName].value = value;
+        state[keyName].isValid = isValid;
+      }
+      return state;
+    },
     setOtherText: (state, action) => {
       const { keyName, value } = action.payload;
       if (!value) state[keyName].isValid = false;
@@ -145,11 +192,11 @@ const createSliceForm = createSlice({
     createForm: () => {
       return initialState;
     },
-    newField: (state, action) => {
-      console.log("action", action);
-      const { keyName, value } = action.payload;
-      state[keyName] = {};
-      state[keyName].value = value;
+    hasSubmitted: (state) => {
+      for (let key in state) {
+        if (state[key].wasCheckedBySubmitButton !== undefined)
+          state[key].wasCheckedBySubmitButton = true;
+      }
     },
   },
 });
@@ -162,7 +209,8 @@ export const {
   setFieldName,
   resetForm,
   createForm,
-  newField,
+  hasSubmitted,
+  updateMultiSelectField,
 } = createSliceForm.actions;
 
 export const FORM = (state) => state.form;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import TextareaAutosize from "react-autosize-textarea";
 
 import PropTypes from "prop-types";
@@ -7,6 +7,7 @@ import Hint from "../Hint";
 //import { updateForm, setFieldName } from "../../features/createSliceForm";
 
 import "./style.scss";
+import { useSelector } from "react-redux";
 
 const Textarea = ({
   title,
@@ -17,11 +18,18 @@ const Textarea = ({
   isValid,
   updateForm,
   isFocused,
+  refrence,
 }) => {
   const [focused, setFocused] = useState(isFocused || "");
   const [value, setValue] = useState("");
   const [invalid, setInvalid] = useState("");
 
+  const wasCheckedBySubmitButton = useSelector(
+    (state) => state.form[name.en].wasCheckedBySubmitButton
+  );
+  const isFinallyValid = useSelector((state) => state.form[name.en].isValid);
+
+  console.log("wasCheckedBySubmitButton->", wasCheckedBySubmitButton);
   const onChange = (e) => {
     const value = e.target.value;
 
@@ -56,6 +64,11 @@ const Textarea = ({
     }
   };
 
+  useEffect(() => {
+    if (wasCheckedBySubmitButton === true && isFinallyValid === false) {
+      setInvalid("invalid");
+    }
+  }, [wasCheckedBySubmitButton, isFinallyValid]);
   return (
     <div>
       <label className={`textarea ${lg}`}>
@@ -64,6 +77,7 @@ const Textarea = ({
           {hintText && <Hint hintText={hintText[lg]} />}
         </div>
         <TextareaAutosize
+          ref={refrence}
           className={invalid}
           onChange={onChange}
           onFocus={onFocus}
@@ -82,6 +96,10 @@ Textarea.propTypes = {
   lg: PropTypes.string.isRequired,
   required: PropTypes.bool,
   hint: PropTypes.bool,
+  refrence: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]),
 };
 
 export default Textarea;

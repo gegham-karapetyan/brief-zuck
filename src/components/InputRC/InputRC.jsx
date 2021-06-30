@@ -12,8 +12,12 @@ export const InputRange = (props) => {
         defaultValue={[24, 44]}
         allowCross={false}
         railStyle={{ height: "1px", backgroundColor: "gray" }}
-        trackStyle={[{ height: 3, backgroundColor: "black" }]}
-        handleStyle={[style, style]}
+        trackStyle={[
+          { height: 3, backgroundColor: props.disabled ? "gray" : "black" },
+        ]}
+        handleStyle={
+          props.disabled ? [styleDisabled, styleDisabled] : [style, style]
+        }
         onChange={(e) => props.onChange(e)}
       />
     </div>
@@ -44,5 +48,14 @@ const style = {
   marginTop: -7,
   backgroundColor: "black",
   borderColor: "black",
+  boxShadow: "none",
+};
+const styleDisabled = {
+  height: 16,
+  width: 16,
+  borderRadius: 0,
+  marginTop: -7,
+  backgroundColor: "gray",
+  borderColor: "gray",
   boxShadow: "none",
 };

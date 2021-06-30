@@ -1,26 +1,39 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import Input from "./Input";
+import TextareaField from "../../features/TextareaField";
 import { selectBriefAC } from "../../features/selectBriefReducer";
-import { resetForm } from "../../features/createSliceForm";
+import { createForm, resetForm } from "../../features/createSliceForm";
 //import "./style.scss";
 
 const SocialMediaActivationBrief = (props) => {
+  const [showChildren, setShowChildren] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(selectBriefAC("Social Media Activation Brief"));
-
+    dispatch(createForm());
+    setShowChildren(true);
     return () => dispatch(resetForm());
-  });
+  }, [dispatch]);
   return (
     <>
-      <Input name="a1" />
-      <Input name="a2" />
-      <Input name="a3" />
-      <Input name="a4" />
-      <Input name="a5" />
-      <Input name="a6" />
-      <Input name="a7" />
+      {showChildren && (
+        <TextareaField
+          title={{
+            am: "Գործակալության առաջադրանքը *",
+            en: "Agency Tasks *",
+            ru: "Задача агентства *",
+          }}
+          name={{
+            am: "Գործակալության առաջադրանքը *",
+            en: "Agency Tasks *",
+            ru: "Задача агентства *",
+          }}
+          required={true}
+          isValid={(v) => v.length > 2}
+          hint={false}
+          lg="en"
+        />
+      )}
     </>
   );
 };

@@ -1,10 +1,15 @@
-import React, { useState } from "react";
-import Textarea from "../../components/Textarea";
+import React, { useState, useRef, useCallback } from "react";
+import TextareaBlock from "../../components/TextareaBlock";
 import InputCheckbox from "../../components/InputCheckbox";
 import { useDispatch } from "react-redux";
-import { updateForm, setOtherText, setFieldName } from "../createSliceForm";
+import {
+  updateForm,
+  setOtherText,
+  setFieldName,
+  updateMultiSelectField,
+} from "../createSliceForm";
 import PropTypes from "prop-types";
-import isEmpty from "../../utils/isEmpty";
+import isValid from "../../utils/isEmpty";
 import "./style.scss";
 import { useEffect } from "react";
 
@@ -21,14 +26,46 @@ const CheckboxesGroup = ({ title, lg, data, name, require }) => {
 
   const [additionalInput, setAdditionalInput] = useState(false);
   const [checked, setChecked] = useState(initialCheckedData);
+  const [focused, setFocused] = useState("");
+  const [invalid, setInvalid] = useState("");
+  const [value, setValue] = useState("");
 
+  const onChange = (e) => {
+    const value = e.target.value;
+
+    setValue(e.target.value);
+    if (!isValid(value)) setInvalid("invalid");
+    else setInvalid("");
+  };
+  const onBlur = (e) => {
+    const value = e.target.value;
+    dispatch(
+      setOtherText({
+        value: value,
+        keyName: name["en"],
+        isValid: isValid(value),
+      })
+    );
+    if (!value) {
+      setFocused("");
+    }
+  };
+
+  const onFocus = () => {
+    setFocused("focused");
+  };
   const dispatch = useDispatch();
 
-  const addNewInput = (checked) => {
-    setAdditionalInput(checked);
-  };
-  const updateAdditionalDescription = (params) => {
-    dispatch(setOtherText({ ...params, keyName: name["en"] }));
+  const additionalTextField = useRef(null);
+
+  // const additionalTextField = useCallback((node) => {
+  //   if (node) node.focus();
+  // }, []);
+
+  const addNewInput = (toogle) => {
+    setAdditionalInput(toogle);
+
+    setValue("");
   };
 
   const onChangeCeckbox = (e) => {
@@ -40,7 +77,7 @@ const CheckboxesGroup = ({ title, lg, data, name, require }) => {
         const isValid =
           Object.values(newState).some((i) => i) && newState.Other !== true;
         dispatch(
-          updateForm({
+          updateMultiSelectField({
             value: newState,
             isValid: isValid,
             keyName: name.en,
@@ -49,7 +86,7 @@ const CheckboxesGroup = ({ title, lg, data, name, require }) => {
         );
       } else {
         dispatch(
-          updateForm({
+          updateMultiSelectField({
             value: newState,
             isValid: true,
             keyName: name.en,
@@ -72,7 +109,11 @@ const CheckboxesGroup = ({ title, lg, data, name, require }) => {
         name: name[lg],
       })
     );
-  }, [name, lg, dispatch]);
+  }, [name, lg, dispatch, additionalTextField]);
+
+  useEffect(() => {
+    if (additionalInput) additionalTextField.current.focus();
+  }, [additionalInput, additionalTextField]);
 
   return (
     <div className={"checkboxesGroup"}>
@@ -91,7 +132,7 @@ const CheckboxesGroup = ({ title, lg, data, name, require }) => {
       </div>
 
       {additionalInput && (
-        <Textarea
+        <TextareaBlock
           name={{
             am: "Other description",
             en: "Other description",
@@ -102,12 +143,15 @@ const CheckboxesGroup = ({ title, lg, data, name, require }) => {
             en: "Other description",
             ru: "",
           }}
-          isValid={isEmpty}
-          isFocused={"focused"}
-          updateForm={updateAdditionalDescription}
-          lg="am"
-          required={true}
-          hint={false}
+          lg={lg}
+          internalRef={additionalTextField}
+          value={value}
+          focused={focused}
+          invalid={invalid}
+          onBlur={onBlur}
+          onFocus={onFocus}
+          onChange={onChange}
+          setInvalid={setInvalid}
         />
       )}
     </div>
