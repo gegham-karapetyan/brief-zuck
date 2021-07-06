@@ -18,7 +18,8 @@ const HyperactiveBuyers = ({ lg, title, name }) => {
   const [checked, setChecked] = useState(reset);
   const [disabled, setDisabled] = useState(true);
 
-  const onChangeRadio = (genderType) => {
+  const onChangeRadio = (e) => {
+    const genderType = e.target.name;
     const newChecked = { ...reset, [genderType]: true };
 
     if (isEqual(checked, newChecked)) {

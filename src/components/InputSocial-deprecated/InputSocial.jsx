@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import UrlBlock from "./UrlBlock";
+
+import DynamicBox from "../DynamicBox/DynamicBox";
 import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
-import { updateForm, setFieldName } from "../../features/createSliceForm";
+import { useDispatch, useSelector } from "react-redux";
+import { updateThisField, setFieldName } from "../../features/createSliceForm";
 import Hint from "../Hint";
 import { isURL } from "validator";
 
@@ -13,32 +14,39 @@ const InputSocial = ({ name, lg, title, required, hintText }) => {
   const [focused, setFocused] = useState("");
   const [valid, setInvalid] = useState({ borderColor: "black" });
   const [urls, setUrls] = useState([]);
+  const [value, setValue] = useState("");
+
+  const wasCheckedBySubmitButton = useSelector(
+    (state) => state.form[name.en].wasCheckedBySubmitButton
+  );
+  const isFinallyValid = useSelector((state) => state.form[name.en].isValid);
+
   const onFocus = () => {
     setFocused("focused");
   };
 
-  const onBlur = (e) => {
-    let val = e.target.value;
-
-    if (!val.trim() && !urls.length) {
+  const createUrlContainer = (e) => {
+    if (!urls.length && !value) {
       setFocused("");
-      if (required) setInvalid({ borderColor: "red" });
-    } else if (isURL(val)) {
+    }
+    if (isURL(value)) {
       setInvalid({ borderColor: "black" });
-      e.target.value = "";
+      setValue("");
       setUrls((prev) => {
-        const newData = [...prev, { val: val, id: Math.random() }];
-        dispatch(
-          updateForm({
-            value: newData.map((item) => item.val),
-            keyName: name.en,
+        const newData = [...prev, { name: value, id: Math.random() }];
 
+        dispatch(
+          updateThisField({
+            value: newData.map((item) => item.name),
+            keyName: name.en,
             isValid: true,
           })
         );
         return newData;
       });
-    } else if (!urls.length) setInvalid({ borderColor: "red" });
+    } else if (!urls.length && required) {
+      setInvalid({ borderColor: "red" });
+    } else return;
   };
 
   const onDelete = (id) => {
@@ -46,11 +54,12 @@ const InputSocial = ({ name, lg, title, required, hintText }) => {
       const newData = prev.filter((url) => url.id !== id);
       if (!newData.length) {
         setFocused("");
+        setValue("");
         if (required) setInvalid({ borderColor: "red" });
       }
       dispatch(
-        updateForm({
-          value: newData.map((item) => item.val),
+        updateThisField({
+          value: newData.map((item) => item.name),
           keyName: name.en,
 
           isValid: !!newData.length,
@@ -68,25 +77,33 @@ const InputSocial = ({ name, lg, title, required, hintText }) => {
     );
   }, [name, lg, dispatch]);
 
+  useEffect(() => {
+    if (wasCheckedBySubmitButton === true && isFinallyValid === false) {
+      setInvalid({ borderColor: "red" });
+    }
+  }, [wasCheckedBySubmitButton, isFinallyValid]);
+
   const id = name.en.replace(/[\s*.,]/g, "");
   return (
-    <div className={`socialInput ${lg}`}>
-      <label className={`socialInputLabel ${focused}`} htmlFor={id}>
+    <div className={`socialInput`}>
+      <label className={`socialInputLabel ${lg} ${focused}`} htmlFor={id}>
         {title[lg]}
         {hintText && <Hint hintText={hintText[lg]} />}
       </label>
 
-      {urls && <UrlBlock onClick={onDelete} urls={urls} />}
+      {urls && <DynamicBox onClick={onDelete} items={urls} />}
 
       <input
         style={valid}
         id={id}
         onKeyUp={(e) => {
-          if (e.code === "Enter") onBlur(e);
+          if (e.code === "Enter") createUrlContainer(e);
         }}
+        onChange={(e) => setValue(e.target.value)}
+        value={value}
         placeholder={focused && "Paste your link and press ENTER"}
         onFocus={onFocus}
-        onBlur={onBlur}
+        onBlur={createUrlContainer}
         autoComplete="off"
         type="text"
       />

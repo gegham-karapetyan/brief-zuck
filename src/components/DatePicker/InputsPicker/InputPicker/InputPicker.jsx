@@ -21,10 +21,12 @@ const validCharsInValue = (value) => {
 };
 
 const normailzeDateInput = (date) => {
+  console.log("normailzeDateInput");
   return ltrim(date)
     .split(delimiters)
     .map((date) => {
-      if (date && date.length < 2 && Number(date) < 10) return "0" + date;
+      if (date && Number(date) !== 0 && Number(date) < 10)
+        return "0" + Number(date);
       else return date;
     })
     .join("/")
@@ -33,7 +35,7 @@ const normailzeDateInput = (date) => {
 
 const handleOnChangeEvent = (
   e,
-  lastValue,
+
   setNewValue,
   setCalendarDateRange
 ) => {
@@ -43,12 +45,7 @@ const handleOnChangeEvent = (
     return;
   }
   const _canNormalize = () => {
-    return (
-      value.trim() &&
-      (delimiters.test(e.nativeEvent.data) ||
-        (e.nativeEvent.inputType === "deleteContentBackward" &&
-          lastValue.slice(0, lastValue.length - 1) !== value))
-    );
+    return value.trim() && delimiters.test(e.nativeEvent.data);
   };
 
   if (_canNormalize()) {
@@ -83,7 +80,7 @@ const InputText = ({
   }, [value]);
 
   const onChange = (e) => {
-    handleOnChangeEvent(e, inputValue, setInputValue, setCalendarDateRange);
+    handleOnChangeEvent(e, setInputValue, setCalendarDateRange);
   };
   return (
     <div>

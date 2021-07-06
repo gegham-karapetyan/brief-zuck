@@ -5,11 +5,15 @@ import "./style.scss";
 
 const InputFile = ({ onChange }) => {
   return (
-    <label className="input-file">
+    <label className="input-file" htmlFor="file">
       <img src={attachIcon} alt="attach-icon" />
       <span className="mark">Attach</span>
       <input
+        id="file"
         onChange={onChange}
+        onClick={(e) => {
+          e.target.value = "";
+        }}
         style={{
           opacity: 0,
           visibility: "hidden",

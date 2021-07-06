@@ -9,26 +9,6 @@ import { useDispatch } from "react-redux";
 
 import "./style.scss";
 
-// const dateParse = (value) => {
-//   const tmp = value.split(/[/\-\\]/);
-//   const newDate = new Date();
-//   newDate.setDate(tmp[0]);
-//   newDate.setMonth(tmp[1] - 1);
-//   newDate.setYear(tmp[2]);
-
-//   return newDate;
-// };
-
-// const dateToString = (date) => {
-//   let day = date.getDate();
-//   let month = date.getMonth() + 1;
-//   let year = date.getFullYear();
-
-//   if (day < 10) day = "0" + day;
-//   if (month < 10) month = "0" + month;
-//   return `${day}/${month}/${year}`;
-// };
-
 const Languages = {
   am: ["ԿՐ", "ԵԿ", "ԵՔ", "ՉՔ", "ՀԳ", "ՈՒԲ", "ՇԲ"],
   en: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
@@ -42,51 +22,64 @@ function formatDate(date, lg) {
 const DatePicker = ({ title, lg, name }) => {
   const [focused, setFocused] = useState("");
   const [activeStartDate, setActiveStartDate] = useState(new Date());
-  const [dateRange, setDateRange] = useState([]);
+  const [dateRange, setDateRange] = useState({ start: null, end: null });
 
   const dispatch = useDispatch();
-  if (dateRange.length === 2) {
-    dispatch(
-      updateForm({
-        value: dateRange.map((date) => date.toString()),
-        keyName: name.en,
-
-        isValid: dateRange.length === 2,
-      })
-    );
-  } else {
-    dispatch(
-      updateForm({
-        value: [],
-        keyName: name.en,
-
-        isValid: dateRange.length === 2,
-      })
-    );
-  }
 
   const updateCalendarActiveStartDate = (date) => {
     setActiveStartDate(date);
   };
 
   const setCalendarFirstDateRange = (date) => {
+    date = date < new Date() ? new Date() : date;
+    const { end } = dateRange;
+    if (end && end <= date) date = end;
+
     setActiveStartDate(date);
-    if (dateRange.length === 2) {
-      setDateRange((prev) => {
-        let newDate = prev.slice();
-        newDate[0] = date;
-        return newDate;
-      });
-    } else setDateRange(date);
+    setDateRange((prev) => ({
+      ...prev,
+      start: date,
+    }));
   };
   const setCalendarSecondDateRange = (date) => {
-    if (dateRange.length === 2) {
-      setDateRange((prev) => {
-        let newDate = prev.slice();
-        newDate[1] = date;
-        return newDate;
-      });
-    } else setDateRange((prev) => [prev, date]);
+    const month = date.getMonth();
+    let endDate = new Date(date);
+    date.setMonth(month - 1);
+    const { start } = dateRange;
+    if (start && endDate <= start) endDate = start;
+    else {
+      setActiveStartDate(date);
+    }
+    setDateRange((prev) => ({
+      ...prev,
+      end: endDate,
+    }));
+  };
+  function defineRangeValue(dateRange) {
+    const value = Object.values(dateRange).filter(Boolean);
+    const range = [dateRange.start, dateRange.end];
+    dispatch(
+      updateForm({
+        value: range.map((date) => date && date.toString()),
+        keyName: name.en,
+        isValid: value.length === 2,
+      })
+    );
+    if (value.length === 1) return value[0];
+    else if (value.length === 2) return range;
+    else return [];
+  }
+
+  const setDateRangeAsObject = (arr) => {
+    dispatch(
+      updateForm({
+        value: arr.map((date) => date.toString()),
+        keyName: name.en,
+        isValid: arr.length === 2,
+      })
+    );
+
+    setDateRange({ start: arr[0], end: arr[1] });
   };
 
   useEffect(() => {
@@ -108,7 +101,7 @@ const DatePicker = ({ title, lg, name }) => {
           setCalendarFirstDateRange={setCalendarFirstDateRange}
           setCalendarSecondDateRange={setCalendarSecondDateRange}
           onFocus={setFocused}
-          values={dateRange}
+          dateRange={dateRange}
         />
         {focused && (
           <div className="data-picker">
@@ -118,9 +111,9 @@ const DatePicker = ({ title, lg, name }) => {
               updateCalendarActiveStartDate={updateCalendarActiveStartDate}
             />
             <Calendar
-              onChange={setDateRange}
+              onChange={setDateRangeAsObject}
               activeStartDate={activeStartDate}
-              value={dateRange}
+              value={defineRangeValue(dateRange)}
               allowPartialRange={true}
               selectRange={true}
               minDate={new Date()}

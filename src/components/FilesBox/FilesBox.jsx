@@ -25,18 +25,23 @@ const FilesBox = ({ name, lg, title }) => {
   const addFile = (e) => {
     const id = Math.random();
     const file = e.target.files[0];
-    console.log("file-> ", file);
+
     setFocused("focused");
     if (file !== undefined) {
-      setItems((prev) => {
-        const files = [...prev, { name: file.name, val: file, id }];
+      if (file.size / 1024 ** 2 > 20) {
+        alert("the file is too big");
+        return;
+      }
 
-        return files;
-      });
       const reader = new FileReader();
       reader.readAsDataURL(file);
+      console.log(reader);
       reader.addEventListener("load", () => {
         setLoader(false);
+        setItems((prev) => {
+          const files = [...prev, { name: file.name, val: file, id }];
+          return files;
+        });
         dispatch(
           setFiles({
             keyName: name.en,
@@ -75,11 +80,12 @@ const FilesBox = ({ name, lg, title }) => {
       })
     );
   }, [name, lg, dispatch]);
+  const id = name.en.replace(/[\s*.,]/g, "");
 
   return (
     <div className="files-box">
       <div className={`header ${focused}`}>
-        <label className={lg} htmlFor={name.en}>
+        <label className={lg} htmlFor={id}>
           {title[lg]}
         </label>
 
@@ -92,7 +98,7 @@ const FilesBox = ({ name, lg, title }) => {
         onBlur={onBlur}
         value={value}
         name={name.en}
-        id={name.en}
+        id={id}
       />
     </div>
   );

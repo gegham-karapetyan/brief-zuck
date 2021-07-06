@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { selectBriefAC } from "../../features/selectBriefReducer";
 
 import ContactField from "../../features/ContactField";
-import InputSocial from "../../components/InputSocial";
+import LinksField from "../../features/LinksField";
 import CampaignType from "../../features/CampaignType";
 import TargetGroup from "../../components/TargetGroup";
 import HyperactiveBuyers from "../../components/HyperactiveBuyers";
@@ -21,7 +21,7 @@ import massMedia from "./data/MassMedia";
 ////////////////////////
 import textInputsValues from "./data/TextInputsValues";
 import textareaValues from "./data/TextareaValues";
-import inputSocialValues from "./data/InputSocialvalues";
+import LinksFieldProps from "./data/LinksFieldProps";
 
 import "./style.scss";
 import { createForm, resetForm } from "../../features/createSliceForm";
@@ -46,7 +46,7 @@ const AdvertisingCampaignBrief = ({ lg }) => {
             textareaValues.map((item) => <TextareaField {...item} lg={lg} />)
           )
           .concat(
-            inputSocialValues.map((item) => <InputSocial {...item} lg={lg} />)
+            LinksFieldProps.map((item) => <LinksField {...item} lg={lg} />)
           )
           .concat([
             <CampaignType

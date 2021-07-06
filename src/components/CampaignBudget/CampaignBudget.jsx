@@ -3,13 +3,40 @@ import { useDispatch } from "react-redux";
 import { updateForm, setFieldName } from "../../features/createSliceForm";
 import { InputRange } from "../InputRC";
 import InputRadio from "../InputRadio";
-import getTrueKey from "../../utils/getTrueKey";
+
 import "./style.scss";
 import { useEffect } from "react";
+
+const rates = {
+  USD: { degree: 500, sign: "\u0024" },
+  AMD: { degree: 250000, sign: "\u058F" },
+  RUB: { degree: 35000, sign: "\u20BD" },
+};
+
+function formatNumber(num) {
+  num = String(num);
+  let tmp = "";
+  let len = num.length - 1;
+  for (let i = len, t = 0; i >= 0; i--, t++) {
+    if (t % 3 === 0) tmp += " ";
+    tmp += num[i];
+  }
+
+  return tmp.split("").reverse().join("").trim();
+}
+
+const formatCurrencyValue = (value, rate) => {
+  let value1 = value[0] * rate.degree;
+  let value2 = value[1] * rate.degree;
+  let sign = rate.sign;
+
+  return `≈ ${sign} ${formatNumber(value1)} - ${sign} ${formatNumber(value2)}`;
+};
 
 const CampaignBudget = ({ title, data, lg, name }) => {
   const dispatch = useDispatch();
   const [value, setValue] = useState([24, 44]);
+  const [rate, setRate] = useState({ degree: 500, sign: "$" });
   const [currency, setCurrency] = useState({
     USD: true,
     AMD: false,
@@ -19,17 +46,20 @@ const CampaignBudget = ({ title, data, lg, name }) => {
   const onChange = (value) => {
     setValue(value);
   };
-  const onAfterChange = (val) => {
+  const onAfterChange = (value) => {
     dispatch(
       updateForm({
-        value: `${val.map((d) => d * 500).join("-")} ${getTrueKey(currency)}`,
+        value: formatCurrencyValue(value, rate),
         keyName: name.en,
         name: name[lg],
         isValid: true,
       })
     );
   };
-  const changeCurrency = (currencyName) => {
+  const changeCurrency = (e) => {
+    const currencyName = e.target.name;
+    setRate(rates[currencyName]);
+
     setCurrency({
       USD: false,
       AMD: false,
@@ -38,7 +68,7 @@ const CampaignBudget = ({ title, data, lg, name }) => {
     });
     dispatch(
       updateForm({
-        value: `${value.map((d) => d * 500).join("-")} ${currencyName}`,
+        value: formatCurrencyValue(value, rates[currencyName]),
         keyName: name.en,
         name: name[lg],
         isValid: true,
@@ -88,9 +118,7 @@ const CampaignBudget = ({ title, data, lg, name }) => {
 
       <div className="budget">
         {title[lg][1]}
-        <span className="output">{`≈ $ ${value[0] * 500} - $ ${
-          value[1] * 500
-        }`}</span>
+        <span className="output">{formatCurrencyValue(value, rate)}</span>
       </div>
       <div>
         <InputRange onAfterChange={onAfterChange} onChange={onChange} />

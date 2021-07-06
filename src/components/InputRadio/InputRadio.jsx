@@ -44,9 +44,7 @@ const InputRadio = ({
 
         <input
           type="checkbox"
-          onChange={() => {
-            onChange(name);
-          }}
+          onChange={onChange}
           checked={checked}
           name={name}
           style={{ opacity: 0, height: 0, width: 0 }}

@@ -1,12 +1,11 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useRef } from "react";
 import TextareaBlock from "../../components/TextareaBlock";
 import InputCheckbox from "../../components/InputCheckbox";
 import { useDispatch } from "react-redux";
 import {
-  updateForm,
   setOtherText,
   setFieldName,
-  updateMultiSelectField,
+  updateThisField,
 } from "../createSliceForm";
 import PropTypes from "prop-types";
 import isValid from "../../utils/isEmpty";
@@ -21,6 +20,10 @@ function arrayToObj(arr, defaultValue = false) {
   return obj;
 }
 
+function isValidCheckboxes(obj) {
+  return Object.values(obj).some((i) => i);
+}
+
 const CheckboxesGroup = ({ title, lg, data, name, require }) => {
   const initialCheckedData = arrayToObj(data);
 
@@ -28,12 +31,15 @@ const CheckboxesGroup = ({ title, lg, data, name, require }) => {
   const [checked, setChecked] = useState(initialCheckedData);
   const [focused, setFocused] = useState("");
   const [invalid, setInvalid] = useState("");
-  const [value, setValue] = useState("");
+  const [additionalInputValue, setAdditionalInputValue] = useState("");
+
+  const dispatch = useDispatch();
+  const additionalTextField = useRef(null);
 
   const onChange = (e) => {
     const value = e.target.value;
 
-    setValue(e.target.value);
+    setAdditionalInputValue(e.target.value);
     if (!isValid(value)) setInvalid("invalid");
     else setInvalid("");
   };
@@ -43,64 +49,60 @@ const CheckboxesGroup = ({ title, lg, data, name, require }) => {
       setOtherText({
         value: value,
         keyName: name["en"],
-        isValid: isValid(value),
+        required: true,
       })
     );
     if (!value) {
       setFocused("");
+      setInvalid("invalid");
     }
   };
 
   const onFocus = () => {
     setFocused("focused");
   };
-  const dispatch = useDispatch();
 
-  const additionalTextField = useRef(null);
-
-  // const additionalTextField = useCallback((node) => {
-  //   if (node) node.focus();
-  // }, []);
-
-  const addNewInput = (toogle) => {
-    setAdditionalInput(toogle);
-
-    setValue("");
+  const addNewInput = (toggle) => {
+    setAdditionalInput(toggle);
+    setAdditionalInputValue("");
+    dispatch(
+      setOtherText({
+        value: "",
+        keyName: name["en"],
+        required: true,
+      })
+    );
   };
 
-  const onChangeCeckbox = (e) => {
+  const onChangeCheckbox = (e) => {
     const elemName = e.target.name;
-
-    setChecked((prev) => {
-      const newState = { ...prev, ...{ [elemName]: !prev[elemName] } };
-      if (require) {
-        const isValid =
-          Object.values(newState).some((i) => i) && newState.Other !== true;
-        dispatch(
-          updateMultiSelectField({
-            value: newState,
-            isValid: isValid,
-            keyName: name.en,
-            name: name[lg],
-          })
-        );
-      } else {
-        dispatch(
-          updateMultiSelectField({
-            value: newState,
-            isValid: true,
-            keyName: name.en,
-            name: name[lg],
-          })
-        );
-      }
-
-      return newState;
-    });
-
     if (elemName === "Other") {
       addNewInput(!additionalInput);
     }
+
+    setChecked((prev) => {
+      const newState = { ...prev, ...{ [elemName]: !prev[elemName] } };
+      const sendingValue = { ...newState };
+      let validOtherValue = true;
+      if (newState.Other) {
+        sendingValue.Other = additionalInputValue;
+        validOtherValue = isValid(additionalInputValue);
+      }
+      let valid;
+
+      if (require) valid = isValidCheckboxes(newState) && validOtherValue;
+      else valid = true;
+
+      dispatch(
+        updateThisField({
+          value: sendingValue,
+          isValid: valid,
+          keyName: name.en,
+        })
+      );
+
+      return newState;
+    });
   };
   useEffect(() => {
     dispatch(
@@ -109,7 +111,7 @@ const CheckboxesGroup = ({ title, lg, data, name, require }) => {
         name: name[lg],
       })
     );
-  }, [name, lg, dispatch, additionalTextField]);
+  }, [name, lg, dispatch]);
 
   useEffect(() => {
     if (additionalInput) additionalTextField.current.focus();
@@ -121,7 +123,7 @@ const CheckboxesGroup = ({ title, lg, data, name, require }) => {
       <div className={"container"}>
         {data.map((item) => (
           <InputCheckbox
-            onChange={onChangeCeckbox}
+            onChange={onChangeCheckbox}
             checked={checked[item.name]}
             key={item.name}
             addNewInput={addNewInput}
@@ -145,7 +147,7 @@ const CheckboxesGroup = ({ title, lg, data, name, require }) => {
           }}
           lg={lg}
           internalRef={additionalTextField}
-          value={value}
+          value={additionalInputValue}
           focused={focused}
           invalid={invalid}
           onBlur={onBlur}

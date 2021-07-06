@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useLocation } from "react-router";
 import { store } from "../../app/store";
 import { hasSubmitted } from "../../features/createSliceForm";
+import loader from "../../spinner.svg";
 
 import "./style.scss";
 
@@ -40,17 +41,21 @@ const InputSubmit = ({ lg }) => {
 
     formData.data = data;
     const stringifiedData = JSON.stringify(formData, null, "\t");
-    setModal(stringifiedData);
+    setModal(true);
 
     fetch("https://api.zuckandberg.com/api/v1/store", {
       method: "POST",
       body: stringifiedData,
     })
       .then((res) => {
-        console.log("response -> ", res);
-        return res.text();
+        return res.json();
       })
-      .then(console.log);
+      .then((res) => {
+        console.log(res.result);
+        if (res.result) {
+          setModal(false);
+        }
+      });
   };
 
   return (
@@ -59,15 +64,18 @@ const InputSubmit = ({ lg }) => {
         {title[lg]}
       </button>
       {modal && (
-        <pre
+        <div
           style={{
             position: "fixed",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
             top: 0,
             left: 0,
             width: "100%",
-            height: "98%",
+            height: "100%",
             overflow: "auto",
-            background: "white",
+            background: "rgba(0,0,0,0.5)",
             zIndex: 100000,
           }}
         >
@@ -82,8 +90,8 @@ const InputSubmit = ({ lg }) => {
           >
             X
           </button>
-          {modal}
-        </pre>
+          <img src={loader} alt="loader" />
+        </div>
       )}
     </>
   );

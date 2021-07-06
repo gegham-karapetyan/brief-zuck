@@ -4,35 +4,29 @@ import InputPicker from "./InputPicker";
 import "./style.scss";
 
 const dateToString = (date) => {
-  let day = date.getDate();
-  let month = date.getMonth() + 1;
-  let year = date.getFullYear();
-
-  if (day < 10) day = "0" + day;
-  if (month < 10) month = "0" + month;
-  return `${day}/${month}/${year}`;
+  if (date instanceof Date) {
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    if (day < 10) day = "0" + day;
+    if (month < 10) month = "0" + month;
+    return `${day}/${month}/${year}`;
+  } else return "";
 };
 
 const InputsPicker = ({
   onFocus,
   focused,
   lg,
-  values,
+  dateRange,
   setCalendarFirstDateRange,
   setCalendarSecondDateRange,
 }) => {
-  let startValue = "";
-  let endValue = "";
-  if (values.length === 2) {
-    startValue = dateToString(values[0]);
-    endValue = dateToString(values[1]);
-  }
-
   return (
     <div className="input-block">
       <InputPicker
         setCalendarDateRange={setCalendarFirstDateRange}
-        value={startValue}
+        value={dateToString(dateRange.start)}
         title={{
           am: "Մեկնարկ",
           en: "Start",
@@ -45,7 +39,7 @@ const InputsPicker = ({
       />
       <InputPicker
         setCalendarDateRange={setCalendarSecondDateRange}
-        value={endValue}
+        value={dateToString(dateRange.end)}
         onFocus={onFocus}
         title={{
           am: "Ավարտ",

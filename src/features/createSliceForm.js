@@ -14,6 +14,7 @@ const initialState = {
     value: [],
     isValid: false,
     type: "typing_select",
+    wasCheckedBySubmitButton: false,
   },
   "Brief Description *": {
     value: "",
@@ -142,6 +143,12 @@ const createSliceForm = createSlice({
   initialState,
 
   reducers: {
+    updateThisField: (state, action) => {
+      const { keyName, isValid, value } = action.payload;
+
+      state[keyName].value = value;
+      state[keyName].isValid = isValid;
+    },
     setFieldName: (state, action) => {
       const { name, keyName } = action.payload;
       state[keyName].name = name;
@@ -155,24 +162,14 @@ const createSliceForm = createSlice({
     updateMultiSelectField: (state, action) => {
       const { keyName, isValid, value } = action.payload;
 
-      if (
-        typeof state[keyName].value.Other === "string" &&
-        value.Other === true
-      ) {
-        const otherText = state[keyName].value.Other;
-        const prevIsValid = state[keyName].isValid;
-        state[keyName].value = value;
-        state[keyName].isValid = prevIsValid;
-        state[keyName].value.Other = otherText;
-      } else {
-        state[keyName].value = value;
-        state[keyName].isValid = isValid;
-      }
-      return state;
+      state[keyName].value = value;
+      state[keyName].isValid = isValid;
+
+      //return state;
     },
     setOtherText: (state, action) => {
-      const { keyName, value } = action.payload;
-      if (!value) state[keyName].isValid = false;
+      const { keyName, value, required } = action.payload;
+      if (required && !value) state[keyName].isValid = false;
       else state[keyName].isValid = true;
       state[keyName].value["Other"] = value;
     },
@@ -210,7 +207,8 @@ export const {
   resetForm,
   createForm,
   hasSubmitted,
-  updateMultiSelectField,
+
+  updateThisField,
 } = createSliceForm.actions;
 
 export const FORM = (state) => state.form;

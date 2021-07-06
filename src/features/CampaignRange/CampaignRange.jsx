@@ -9,7 +9,8 @@ import "./style.scss";
 const CampaignRange = ({ data, title, lg, name }) => {
   const [checked, setChecked] = useState({ single: false, multi: true });
   const dispatch = useDispatch();
-  const onChange = (inputName) => {
+  const onChange = (e) => {
+    const inputName = e.target.name;
     dispatch(
       updateForm({
         value: inputName,

@@ -1,4 +1,4 @@
-const InputSocialValues = [
+const LinksFieldProps = [
   {
     key: 6,
     title: {
@@ -85,4 +85,4 @@ const InputSocialValues = [
     hint: true,
   },
 ];
-export default InputSocialValues;
+export default LinksFieldProps;
