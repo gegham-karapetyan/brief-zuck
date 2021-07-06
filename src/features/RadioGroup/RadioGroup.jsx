@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateForm, setOtherText, setFieldName } from "../createSliceForm";
 import TextareaBlock from "../../components/TextareaBlock";
 import isValid from "../../utils/isEmpty";
@@ -26,9 +26,14 @@ const RadioGroup = ({ data, name, title, lg, require }) => {
   const [focused, setFocused] = useState("");
   const [invalid, setInvalid] = useState("");
   const [additionalInputValue, setAdditionalInputValue] = useState("");
+  const [invalidCheckbox, setInvalidCheckbox] = useState("");
 
   const dispatch = useDispatch();
   const additionalTextField = useRef(null);
+  const wasCheckedBySubmitButton = useSelector(
+    (state) => state.form[name.en].wasCheckedBySubmitButton
+  );
+  const isFinallyValid = useSelector((state) => state.form[name.en].isValid);
 
   const onChangeRadiobox = (e) => {
     const elemName = e.target.name;
@@ -104,12 +109,18 @@ const RadioGroup = ({ data, name, title, lg, require }) => {
   useEffect(() => {
     if (additionalInput) additionalTextField.current.focus();
   }, [additionalInput, additionalTextField]);
+  useEffect(() => {
+    if (wasCheckedBySubmitButton === true && isFinallyValid === false) {
+      setInvalidCheckbox("invalid-checkbox");
+    } else setInvalidCheckbox("");
+  }, [wasCheckedBySubmitButton, isFinallyValid]);
   return (
     <div className={"radioGroup"}>
       <div className={`title ${lg}`}>{title[lg]}</div>
       <div className={"container"}>
         {data.map((item) => (
           <InputRadio
+            invalid={invalidCheckbox}
             key={item.name}
             checked={checked[item.name]}
             hintText={item.hintText[lg]}

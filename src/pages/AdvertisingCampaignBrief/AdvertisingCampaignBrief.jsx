@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useEffect } from "react";
 
 import { useDispatch } from "react-redux";
 import { selectBriefAC } from "../../features/selectBriefReducer";
@@ -8,7 +8,7 @@ import LinksField from "../../features/LinksField";
 import CampaignType from "../../features/CampaignType";
 import TargetGroup from "../../components/TargetGroup";
 import HyperactiveBuyers from "../../components/HyperactiveBuyers";
-//import DescriptionField from "../../features/DescriptionField";
+
 import TextareaField from "../../features/TextareaField";
 import MassMedia from "../../features/CampaignRange";
 import DatePicker from "../../components/DatePicker";
@@ -18,7 +18,6 @@ import CampaignBudget from "../../components/CampaignBudget";
 import campaignTypes from "./data/CampaignTypes";
 import massMedia from "./data/MassMedia";
 
-////////////////////////
 import textInputsValues from "./data/TextInputsValues";
 import textareaValues from "./data/TextareaValues";
 import LinksFieldProps from "./data/LinksFieldProps";

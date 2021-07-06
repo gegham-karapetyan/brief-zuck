@@ -1,66 +1,37 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
+import Hint from "../Hint";
 
 import "./style.scss";
 
 const InputText = ({
-  name,
-  lg,
-  placeholder,
   title,
-  required,
-  isValid,
-  updateForm,
+  lg,
+  name,
+  hintText,
+  focused,
+  onFocus,
+  onBlur,
+  invalid,
+  value,
+  onChange,
+  internalRef,
+  placeholder,
 }) => {
-  const [focused, setFocused] = useState("");
-  const [invalid, setInvalid] = useState("");
-  const [value, setValue] = useState("");
-  const focusHandler = () => {
-    setFocused("focused");
-  };
-
-  const onBlur = (e) => {
-    let value = e.target.value.trim();
-    if (required) {
-      updateForm({
-        value,
-        isValid: isValid(value),
-        keyName: name.en,
-        name: name[lg],
-      });
-      if (!isValid(value)) setInvalid("invalid");
-    } else {
-      updateForm({ value, isValid: true, keyName: name.en, name: name[lg] });
-    }
-
-    if (!value) {
-      setFocused("");
-    }
-  };
-
-  const onChange = (e) => {
-    let value = e.target.value;
-    setValue(value);
-
-    if (required) {
-      if (!isValid(value)) {
-        setInvalid("invalid");
-      } else {
-        setInvalid("");
-      }
-    }
-  };
-
   return (
     <div>
       <label className={`textInput ${lg || "en"}`}>
-        <div className={`textInputLabel ${focused}`}>{title[lg]}</div>
+        <div className={`textInputLabel ${focused}`}>
+          {title[lg]}
+          {hintText && <Hint hintText={hintText[lg]} />}
+        </div>
         <input
+          ref={internalRef}
           value={value}
           onChange={onChange}
           className={invalid}
           placeholder={placeholder}
-          onFocus={focusHandler}
+          onFocus={onFocus}
           onBlur={onBlur}
           type="text"
           name={name["en"]}
@@ -71,13 +42,17 @@ const InputText = ({
 };
 
 InputText.propTypes = {
-  title: PropTypes.object.isRequired,
-  name: PropTypes.object,
-  lg: PropTypes.string,
+  title: PropTypes.object,
+  name: PropTypes.object.isRequired,
+  lg: PropTypes.string.isRequired,
+  focused: PropTypes.oneOf(["", "focused"]),
   required: PropTypes.bool,
+  hintText: PropTypes.object,
   hint: PropTypes.bool,
   onFocus: PropTypes.func,
-  placeholder: PropTypes.string,
+  onBlur: PropTypes.func,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
 export default InputText;

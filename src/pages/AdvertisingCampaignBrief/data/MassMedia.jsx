@@ -10,14 +10,22 @@ const MassMedia = [
       hintText: {
         am: (
           <>
-            մեկ մեդիայի օգտագործում,
+            Գովազդային արշավ մեկ մեդիայի օգտագործմամբ
             <br />
             <br />
             <b>օրինակ՝</b> միայն արտաքին գովազդ, կամ միայն հեռուստագովազդ և
             այլն: Միայն մեկ մեդիայի ընտրության հնարավորություն։
           </>
         ),
-        en: <></>,
+        en: (
+          <>
+            An advertising campaign using one media platform
+            <br />
+            For example: only an outdoor ad or a TV ad
+            <br />
+            An opportunity to select one single media platform.
+          </>
+        ),
         ru: (
           <>
             Рекламная кампания с использованием одного вида медиа
@@ -38,14 +46,22 @@ const MassMedia = [
       hintText: {
         am: (
           <>
-            մեկ և ավելի մեդիաների օգտագործում,
+            Գովազդային արշավ երկու և ավելի մեդիայի օգտագործմամբ
             <br />
             <br />
             <b>օրինակ՝</b> սոցիալական ցանցեր, արտաքին գովազդ ու ռադիոգովազդ և
             այլն։ Մի քանի մեդիաների ընտրության հնարավորություն։
           </>
         ),
-        en: <></>,
+        en: (
+          <>
+            An advertising campaign using two or more media platforms.
+            <br />
+            E.g. social networks, outdoor ads, radio ads, etc.
+            <br />
+            An opportunity to select several media platforms.
+          </>
+        ),
         ru: (
           <>
             Рекламная кампания с использованием двух и более медиа

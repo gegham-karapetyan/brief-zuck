@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import TextareaBlock from "../../components/TextareaBlock";
 import InputCheckbox from "../../components/InputCheckbox";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   setOtherText,
   setFieldName,
@@ -20,18 +20,27 @@ function arrayToObj(arr, defaultValue = false) {
   return obj;
 }
 
-function isValidCheckboxes(obj) {
-  return Object.values(obj).some((i) => i);
-}
-
-const CheckboxesGroup = ({ title, lg, data, name, require }) => {
+const CheckboxesGroup = ({
+  title,
+  lg,
+  data,
+  name,
+  require,
+  isValidCheckboxes,
+}) => {
   const initialCheckedData = arrayToObj(data);
 
   const [additionalInput, setAdditionalInput] = useState(false);
   const [checked, setChecked] = useState(initialCheckedData);
   const [focused, setFocused] = useState("");
   const [invalid, setInvalid] = useState("");
+  const [invalidCheckbox, setInvalidCheckbox] = useState("");
   const [additionalInputValue, setAdditionalInputValue] = useState("");
+
+  const wasCheckedBySubmitButton = useSelector(
+    (state) => state.form[name.en].wasCheckedBySubmitButton
+  );
+  const isFinallyValid = useSelector((state) => state.form[name.en].isValid);
 
   const dispatch = useDispatch();
   const additionalTextField = useRef(null);
@@ -116,13 +125,18 @@ const CheckboxesGroup = ({ title, lg, data, name, require }) => {
   useEffect(() => {
     if (additionalInput) additionalTextField.current.focus();
   }, [additionalInput, additionalTextField]);
-
+  useEffect(() => {
+    if (wasCheckedBySubmitButton === true && isFinallyValid === false) {
+      setInvalidCheckbox("invalid-checkbox");
+    } else setInvalidCheckbox("");
+  }, [wasCheckedBySubmitButton, isFinallyValid]);
   return (
     <div className={"checkboxesGroup"}>
       <div className={`title ${lg}`}>{title[lg]}</div>
       <div className={"container"}>
         {data.map((item) => (
           <InputCheckbox
+            invalid={invalidCheckbox}
             onChange={onChangeCheckbox}
             checked={checked[item.name]}
             key={item.name}

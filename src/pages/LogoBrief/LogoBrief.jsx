@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { selectBriefAC } from "../../features/selectBriefReducer";
-import TextareaAutosize from "react-autosize-textarea";
+
+import TextareaBlock from "../../components/TextareaBlock";
+
 import "./style.scss";
 import { createForm, resetForm } from "../../features/createSliceForm";
 import { useRef } from "react";
 
 const LogoBrief = (props) => {
   const dispatch = useDispatch();
+  const [show, setShow] = useState("false");
   const node = useRef();
-  console.log("node ref", node);
+
   const onClick = () => {
     console.log("node onclick", node);
     node.current.focus();
@@ -18,20 +21,10 @@ const LogoBrief = (props) => {
   useEffect(() => {
     dispatch(selectBriefAC("Logo Brief"));
     dispatch(createForm());
-
+    setShow(true);
     return () => dispatch(resetForm());
   }, [dispatch]);
-  return (
-    <div>
-      <TT xx={node} />
-      <button onClick={onClick}>press</button>
-    </div>
-  );
-};
-
-const TT = ({ xx }) => {
-  console.log("ref", xx);
-  return <TextareaAutosize ref={xx} />;
+  return <>{show && <></>}</>;
 };
 
 export default LogoBrief;

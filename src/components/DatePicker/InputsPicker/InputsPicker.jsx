@@ -21,6 +21,7 @@ const InputsPicker = ({
   dateRange,
   setCalendarFirstDateRange,
   setCalendarSecondDateRange,
+  invalid,
 }) => {
   return (
     <div className="input-block">
@@ -36,6 +37,7 @@ const InputsPicker = ({
         name="Start"
         focused={focused}
         onFocus={onFocus}
+        invalid={invalid}
       />
       <InputPicker
         setCalendarDateRange={setCalendarSecondDateRange}
@@ -49,6 +51,7 @@ const InputsPicker = ({
         lg={lg}
         name="End"
         focused={focused}
+        invalid={invalid}
       />
     </div>
   );

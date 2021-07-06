@@ -11,6 +11,7 @@ const InputRadio = ({
   lg,
   title,
   onChange,
+  invalid,
 }) => {
   const [active, setActive] = useState([false, 0]);
 
@@ -37,7 +38,7 @@ const InputRadio = ({
         ref={elemRef}
         onMouseOver={onMouseOver}
         onMouseLeave={onMouseLeave}
-        className={`inputRadio ${className && className}`}
+        className={`inputRadio ${invalid} ${className && className}`}
         style={checked ? styleChecked : styleUnChecked}
       >
         <span>{title[lg]}</span>

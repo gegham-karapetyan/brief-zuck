@@ -5,7 +5,7 @@ import { updateForm, setFieldName } from "../../features/createSliceForm";
 import Calendar from "react-calendar";
 import InputsPicker from "./InputsPicker";
 import PickerNavigation from "./PickerNavigationav";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import "./style.scss";
 
@@ -22,9 +22,17 @@ function formatDate(date, lg) {
 const DatePicker = ({ title, lg, name }) => {
   const [focused, setFocused] = useState("");
   const [activeStartDate, setActiveStartDate] = useState(new Date());
-  const [dateRange, setDateRange] = useState({ start: null, end: null });
+  const [dateRangeValue, setDateRangeValue] = useState({
+    start: null,
+    end: null,
+  });
+  const [invalid, setInvalid] = useState("");
 
   const dispatch = useDispatch();
+  const wasCheckedBySubmitButton = useSelector(
+    (state) => state.form[name.en].wasCheckedBySubmitButton
+  );
+  const isFinallyValid = useSelector((state) => state.form[name.en].isValid);
 
   const updateCalendarActiveStartDate = (date) => {
     setActiveStartDate(date);
@@ -32,11 +40,11 @@ const DatePicker = ({ title, lg, name }) => {
 
   const setCalendarFirstDateRange = (date) => {
     date = date < new Date() ? new Date() : date;
-    const { end } = dateRange;
+    const { end } = dateRangeValue;
     if (end && end <= date) date = end;
 
     setActiveStartDate(date);
-    setDateRange((prev) => ({
+    setDateRangeValue((prev) => ({
       ...prev,
       start: date,
     }));
@@ -45,19 +53,20 @@ const DatePicker = ({ title, lg, name }) => {
     const month = date.getMonth();
     let endDate = new Date(date);
     date.setMonth(month - 1);
-    const { start } = dateRange;
+    const { start } = dateRangeValue;
     if (start && endDate <= start) endDate = start;
     else {
       setActiveStartDate(date);
     }
-    setDateRange((prev) => ({
+    setDateRangeValue((prev) => ({
       ...prev,
       end: endDate,
     }));
   };
-  function defineRangeValue(dateRange) {
-    const value = Object.values(dateRange).filter(Boolean);
-    const range = [dateRange.start, dateRange.end];
+  function defineRangeValue(dateRangeValue) {
+    console.log("dateRangeValue", dateRangeValue);
+    const value = Object.values(dateRangeValue).filter(Boolean);
+    const range = [dateRangeValue.start, dateRangeValue.end];
     dispatch(
       updateForm({
         value: range.map((date) => date && date.toString()),
@@ -70,7 +79,7 @@ const DatePicker = ({ title, lg, name }) => {
     else return [];
   }
 
-  const setDateRangeAsObject = (arr) => {
+  const setDateRange = (arr) => {
     dispatch(
       updateForm({
         value: arr.map((date) => date.toString()),
@@ -79,7 +88,7 @@ const DatePicker = ({ title, lg, name }) => {
       })
     );
 
-    setDateRange({ start: arr[0], end: arr[1] });
+    setDateRangeValue({ start: arr[0], end: arr[1] });
   };
 
   useEffect(() => {
@@ -90,7 +99,11 @@ const DatePicker = ({ title, lg, name }) => {
       })
     );
   }, [name, lg, dispatch]);
-
+  useEffect(() => {
+    if (wasCheckedBySubmitButton === true && isFinallyValid === false) {
+      setInvalid("invalid");
+    } else setInvalid("");
+  }, [wasCheckedBySubmitButton, isFinallyValid]);
   return (
     <div className="custom-calendar">
       <div className={`label ${lg}`}>{title[lg]}</div>
@@ -98,10 +111,11 @@ const DatePicker = ({ title, lg, name }) => {
         <InputsPicker
           lg={lg}
           focused={focused}
+          invalid={invalid}
           setCalendarFirstDateRange={setCalendarFirstDateRange}
           setCalendarSecondDateRange={setCalendarSecondDateRange}
           onFocus={setFocused}
-          dateRange={dateRange}
+          dateRange={dateRangeValue}
         />
         {focused && (
           <div className="data-picker">
@@ -111,9 +125,9 @@ const DatePicker = ({ title, lg, name }) => {
               updateCalendarActiveStartDate={updateCalendarActiveStartDate}
             />
             <Calendar
-              onChange={setDateRangeAsObject}
+              onChange={setDateRange}
               activeStartDate={activeStartDate}
-              value={defineRangeValue(dateRange)}
+              value={defineRangeValue(dateRangeValue)}
               allowPartialRange={true}
               selectRange={true}
               minDate={new Date()}

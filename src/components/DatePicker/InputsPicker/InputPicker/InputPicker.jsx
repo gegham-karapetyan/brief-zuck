@@ -72,6 +72,7 @@ const InputText = ({
   name,
   title,
   lg,
+  invalid,
 }) => {
   const [inputValue, setInputValue] = useState("");
 
@@ -87,6 +88,7 @@ const InputText = ({
       <label className={`textInput`}>
         <div className={`textInputLabel ${focused}`}>{title[lg]}</div>
         <input
+          className={invalid}
           onChange={onChange}
           autoComplete="off"
           placeholder={focused && "DD/MM/YYYY"}

@@ -6,6 +6,10 @@ import CheckboxesGroup from "../CheckboxesGroup";
 import RadioGroup from "../RadioGroup";
 import "./style.scss";
 
+function isValidCheckboxes(obj) {
+  return Object.values(obj).filter((i) => i).length >= 2;
+}
+
 const CampaignRange = ({ data, title, lg, name }) => {
   const [checked, setChecked] = useState({ single: false, multi: true });
   const dispatch = useDispatch();
@@ -72,6 +76,7 @@ const CampaignRange = ({ data, title, lg, name }) => {
               ru: "Медиа *",
             }}
             require={true}
+            isValidCheckboxes={isValidCheckboxes}
             lg={lg}
             title={{
               am: "Մեդիաներ *",

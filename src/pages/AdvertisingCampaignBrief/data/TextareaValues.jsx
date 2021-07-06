@@ -34,7 +34,8 @@ const TextareValues = [
       en: "Additional information about the target",
       ru: "",
     },
-    required: false,
+    required: true,
+    isValid: isEmpty,
 
     hint: true,
     hintText: {
@@ -54,7 +55,8 @@ const TextareValues = [
       en: "Current Consumer Behaviour",
       ru: "Текущее поведение потребителей",
     },
-    required: false,
+    required: true,
+    isValid: isEmpty,
     hint: false,
   },
 
@@ -71,7 +73,8 @@ const TextareValues = [
       en: "Current Consumer Opinion",
       ru: "Текущее мнение потребителей",
     },
-    required: false,
+    required: true,
+    isValid: isEmpty,
     hint: false,
   },
   {
@@ -107,7 +110,8 @@ const TextareValues = [
       en: "Desired Consumer Behaviour (after campaign implementation)",
       ru: "Желаемое поведение потребителей (после реализации кампании)",
     },
-    required: false,
+    required: true,
+    isValid: isEmpty,
     hint: false,
   },
   {
@@ -143,7 +147,8 @@ const TextareValues = [
       en: "Desired Consumer Opinion (after campaign implementation)",
       ru: "Желаемое мнение потребителей (после реализации кампании)",
     },
-    required: false,
+    required: true,
+    isValid: isEmpty,
     hint: false,
   },
   {
@@ -341,7 +346,8 @@ const TextareValues = [
       en: "RTB (reason to believe)",
       ru: "RTB (reason to believe)",
     },
-    required: false,
+    required: true,
+    isValid: isEmpty,
     hint: true,
     hintText: {
       am: (
@@ -377,7 +383,8 @@ const TextareValues = [
       en: "Barrier",
       ru: "Barrier",
     },
-    required: false,
+    required: true,
+    isValid: isEmpty,
     hint: true,
 
     hintText: {

@@ -1,0 +1,33 @@
+.textInput {
+  display: block;
+  position: relative;
+  width: 100%;
+
+  margin: 90px 0;
+
+  & .textInputLabel {
+    position: absolute;
+    cursor: pointer;
+    bottom: 5px;
+    left: 0;
+    transition: all 0.1s linear;
+    &.focused {
+      bottom: 30px;
+    }
+  }
+  & > div.focused {
+    margin-bottom: 0px;
+  }
+  & input {
+    width: 100%;
+    border: none;
+    padding-bottom: 10px;
+    outline: none;
+
+    background-color: transparent;
+    border-bottom: 1px solid black;
+    &.invalid {
+      border-bottom: 1px solid red;
+    }
+  }
+}

@@ -4,7 +4,7 @@ import InputText from "../../components/InputText";
 import useTextFieldHandler from "../../Hooks/useTextFieldHandler";
 
 const TextInputField = ({ title, lg, name, hintText, required, isValid }) => {
-  const [focused, invalid, value, onChange, onFocus, onBlur] =
+  const [focused, invalid, value, onChange, onFocus, onBlur, setInvalid] =
     useTextFieldHandler(name, required, isValid, lg);
   return (
     <InputText
@@ -18,6 +18,7 @@ const TextInputField = ({ title, lg, name, hintText, required, isValid }) => {
       onBlur={onBlur}
       onFocus={onFocus}
       onChange={onChange}
+      setInvalid={setInvalid}
     />
   );
 };

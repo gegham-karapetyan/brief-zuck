@@ -4,7 +4,7 @@ import { HintText } from "../Hint/Hint";
 
 import "./style.scss";
 
-const InputCheckbox = ({ name, hintText, onChange, checked }) => {
+const InputCheckbox = ({ name, hintText, onChange, checked, invalid }) => {
   const [active, setActive] = useState([false, 0]);
 
   const elemRef = useRef();
@@ -31,7 +31,7 @@ const InputCheckbox = ({ name, hintText, onChange, checked }) => {
         ref={elemRef}
         onMouseOver={onMouseOver}
         onMouseLeave={onMouseLeave}
-        className="inputCheckbox"
+        className={`inputCheckbox ${invalid}`}
         style={{ opacity: checked ? "1" : "0.5" }}
       >
         <div

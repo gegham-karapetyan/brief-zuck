@@ -1,15 +1,40 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  "Brand *": { value: "", isValid: false, type: "text" },
+  "Brand *": {
+    value: "",
+    isValid: false,
+    type: "text",
+    wasCheckedBySubmitButton: false,
+  },
 
-  "Name, Surname *": { value: "", isValid: false, type: "text" },
+  "Name, Surname *": {
+    value: "",
+    isValid: false,
+    type: "text",
+    wasCheckedBySubmitButton: false,
+  },
 
-  "E-mail *": { value: "", isValid: false, type: "text" },
+  "E-mail *": {
+    value: "",
+    isValid: false,
+    type: "text",
+    wasCheckedBySubmitButton: false,
+  },
 
-  "Position *": { value: "", isValid: false, type: "text" },
+  "Position *": {
+    value: "",
+    isValid: false,
+    type: "text",
+    wasCheckedBySubmitButton: false,
+  },
 
-  "Telephone *": { value: "", isValid: false, type: "text" },
+  "Telephone *": {
+    value: "",
+    isValid: false,
+    type: "text",
+    wasCheckedBySubmitButton: false,
+  },
   "Website, Facebook, Instagram, etc. *": {
     value: [],
     isValid: false,
@@ -22,7 +47,12 @@ const initialState = {
     type: "text",
     wasCheckedBySubmitButton: false,
   },
-  "Campaign Type *": { value: {}, isValid: false, type: "multi_select" },
+  "Campaign Type *": {
+    value: {},
+    isValid: false,
+    type: "multi_select",
+    wasCheckedBySubmitButton: false,
+  },
   "Target Audience *": {
     value: {
       man: [],
@@ -34,20 +64,33 @@ const initialState = {
   "Hyperactive buyer persona": { value: "", isValid: true, type: "text" },
   "Additional information about the target": {
     value: "",
-    isValid: true,
+    isValid: false,
     type: "text",
+    wasCheckedBySubmitButton: false,
   },
-  "Current Consumer Behaviour": { value: "", isValid: true, type: "text" },
-  "Current Consumer Opinion": { value: "", isValid: true, type: "text" },
+  "Current Consumer Behaviour": {
+    value: "",
+    isValid: false,
+    type: "text",
+    wasCheckedBySubmitButton: false,
+  },
+  "Current Consumer Opinion": {
+    value: "",
+    isValid: false,
+    type: "text",
+    wasCheckedBySubmitButton: false,
+  },
   "Desired Consumer Opinion (after campaign implementation)": {
     value: "",
-    isValid: true,
+    isValid: false,
     type: "text",
+    wasCheckedBySubmitButton: false,
   },
   "Desired Consumer Behaviour (after campaign implementation)": {
     value: "",
-    isValid: true,
+    isValid: false,
     type: "text",
+    wasCheckedBySubmitButton: false,
   },
   "USP (unique selling proposition)/Brand promise *": {
     value: "",
@@ -73,8 +116,18 @@ const initialState = {
     type: "text",
     wasCheckedBySubmitButton: false,
   },
-  "RTB (reason to believe)": { value: "", isValid: true, type: "text" },
-  Barrier: { value: "", isValid: true, type: "text" },
+  "RTB (reason to believe)": {
+    value: "",
+    isValid: false,
+    type: "text",
+    wasCheckedBySubmitButton: false,
+  },
+  Barrier: {
+    value: "",
+    isValid: false,
+    type: "text",
+    wasCheckedBySubmitButton: false,
+  },
   "Advertising campaign / communication elements that are mandatory *": {
     value: "",
     isValid: false,
@@ -96,6 +149,7 @@ const initialState = {
     value: {},
     isValid: false,
     type: "multi_select",
+    wasCheckedBySubmitButton: false,
   },
   "Notes about the competitors": {
     value: [],
@@ -118,6 +172,7 @@ const initialState = {
     value: [],
     isValid: false,
     type: "typing_select",
+    wasCheckedBySubmitButton: false,
   },
   "Campaign Budget": { value: "", isValid: true, type: "text" },
   "Similar work that you like": {
