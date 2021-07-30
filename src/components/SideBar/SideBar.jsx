@@ -10,7 +10,7 @@ const SideBar = (props) => {
       <div className={style.sidebarInner}>
         <Hero />
 
-        <Menu />
+        <Menu lg={props.lg} />
 
         <Footer />
       </div>

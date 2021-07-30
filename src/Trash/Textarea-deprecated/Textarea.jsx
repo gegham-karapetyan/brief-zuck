@@ -29,7 +29,6 @@ const Textarea = ({
   );
   const isFinallyValid = useSelector((state) => state.form[name.en].isValid);
 
-  console.log("wasCheckedBySubmitButton->", wasCheckedBySubmitButton);
   const onChange = (e) => {
     const value = e.target.value;
 

@@ -60,7 +60,13 @@ const pages = [
 //   );
 // };
 
-const Menu = () => {
+const choose = {
+  am: "Ընտրել բրիֆը՝",
+  en: "Ընտրել բրիֆը*******՝",
+  ru: "Ընտրել բրիֆը********՝",
+};
+
+const Menu = ({ lg }) => {
   const { pathname } = useLocation();
   let initialState;
   if (pathname === "/Commercial-Video-Brief")
@@ -84,6 +90,7 @@ const Menu = () => {
   };
   return (
     <menu>
+      <div className="label">{choose[lg]}</div>
       <span className={selected.brief1}>
         <Link onClick={selectBrief1} key="1" to="/Advertising-Campaign-Brief">
           Advertising Campaign Brief

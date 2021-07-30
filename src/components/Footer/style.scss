@@ -1,0 +1,14 @@
+.social-block {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.social-block > a {
+  display: inline-block;
+  text-decoration: none;
+  color: #42424282;
+  margin: 3px 0;
+  &:hover {
+    color: #424242;
+  }
+}
