@@ -6,7 +6,7 @@ import useTextFieldHandler from "../../Hooks/useTextFieldHandler";
 const TextInputField = ({ title, lg, name, hintText, required, isValid }) => {
   const { focused, invalid, value, id, onChange, onFocus, onBlur, setInvalid } =
     useTextFieldHandler(name, required, isValid, lg);
-  console.log("id", id);
+
   return (
     <InputText
       title={title}

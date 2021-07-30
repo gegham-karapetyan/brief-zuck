@@ -38,24 +38,24 @@ const Form = ({ lg }) => {
                 <Redirect to="/Advertising-Campaign-Brief" />
               </Route>
 
-              <Route path="/Advertising-Campaign-Brief">
+              <Route exact path="/Advertising-Campaign-Brief">
                 <AdvertisingCampaignBrief lg={lg} />
               </Route>
-              <Route path="/Visual-Key-Visual-Brief">
+              {/* <Route path="/Visual-Key-Visual-Brief">
                 <VisualKeyVisualBrief />
-              </Route>
-              <Route path="/Commercial-Video-Brief">
+              </Route> */}
+              <Route exact path="/Commercial-Video-Brief">
                 <CommercialVideoBrief />
               </Route>
-              <Route path="/Social-Media-Activation-Brief">
+              {/* <Route path="/Social-Media-Activation-Brief">
                 <SocialMediaActivationBrief />
-              </Route>
-              <Route path="/Strategy-Brief">
+              </Route> */}
+              {/* <Route path="/Strategy-Brief">
                 <StrategyBrief />
-              </Route>
-              <Route path="/Logo-Brief">
+              </Route> */}
+              {/* <Route path="/Logo-Brief">
                 <LogoBrief />
-              </Route>
+              </Route> */}
               <Route path="*">
                 <Redirect to="/" />
               </Route>

@@ -58,7 +58,7 @@ const CheckboxesGroup = ({
   };
   const onBlur = (e) => {
     const value = e.target.value;
-    console.log(value);
+
     dispatch(
       setOtherText({
         value: value,

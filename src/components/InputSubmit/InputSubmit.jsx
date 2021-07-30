@@ -66,7 +66,7 @@ const InputSubmit = ({ lg, scrolledContainer, sayGratitude }) => {
         }
       })
       .catch((e) => {
-        console.log("sdfgsfghfdghdfg", e);
+        alert("something went wrong,\nplease try again later");
       });
     // sayGratitude(true);
   };

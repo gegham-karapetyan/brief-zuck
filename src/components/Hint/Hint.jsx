@@ -3,8 +3,6 @@ import hintIcon from "../../info_black_24dp.svg";
 import "./style.scss";
 
 export const HintText = ({ hintText, left, top, additionalClass }) => {
-  console.log(hintText, left, top, additionalClass);
-
   return (
     <div
       className={`hintText ${additionalClass ? additionalClass : ""}`}

@@ -21,7 +21,6 @@ const validCharsInValue = (value) => {
 };
 
 const normailzeDateInput = (date) => {
-  console.log("normailzeDateInput");
   return ltrim(date)
     .split(delimiters)
     .map((date) => {

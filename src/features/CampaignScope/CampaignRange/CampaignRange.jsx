@@ -17,7 +17,6 @@ const CampaignRange = ({ data, lg, onChange, title, checked, name }) => {
   const id = createIdByName(name.en);
 
   useEffect(() => {
-    console.log("useEffect id", id);
     dispatch(
       setFieldName({
         keyName: name.en,
