@@ -1,27 +1,35 @@
 import React from "react";
+// import { useEffect } from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import { store } from "../../app/store";
-import { hasSubmitted } from "../../features/createSliceForm";
+import {
+  // First_Invalid_Field,
+  scrollToInvalidFields,
+} from "../../features/createSliceForm";
 import loader from "../../spinner.svg";
 
 import "./style.scss";
 
 const title = {
-  am: "Ուղարկել",
-  en: "Submit",
-  ru: "",
+  am: "Ուղարկել***************",
+  en: "Send to Zuck",
+  ru: "*******************",
 };
 
-const InputSubmit = ({ lg }) => {
+const InputSubmit = ({ lg, scrolledContainer, sayGratitude }) => {
   const [modal, setModal] = useState(false);
-  const dispatch = useDispatch();
+  //const [hash, setHash] = useState("");
+  //const dispatch = useDispatch();
+
+  //const first_Invalid_Field = useSelector(First_Invalid_Field);
 
   const location = useLocation();
 
   const onSubmit = () => {
-    dispatch(hasSubmitted());
+    //
+
     const formData = {
       __type__: location.pathname.slice(1).split("-").join(" "),
       lang: lg,
@@ -30,18 +38,18 @@ const InputSubmit = ({ lg }) => {
 
     const invalidKeys = Object.values(data).reduce((acc, val) => {
       if (!val.isValid) {
-        acc.push(val.name);
+        acc.push(val);
       }
       return acc;
     }, []);
     if (invalidKeys.length) {
-      console.log(invalidKeys);
+      store.dispatch(scrollToInvalidFields(invalidKeys[0].id));
+
       return;
     }
 
     formData.data = data;
-    const stringifiedData = JSON.stringify(formData, null, "\t");
-    setModal(true);
+    const stringifiedData = JSON.stringify(formData);
 
     fetch("https://api.zuckandberg.com/api/v1/store", {
       method: "POST",
@@ -51,12 +59,25 @@ const InputSubmit = ({ lg }) => {
         return res.json();
       })
       .then((res) => {
-        console.log(res.result);
-        if (res.result) {
-          setModal(false);
+        if (res.result === true) {
+          sayGratitude(true);
+        } else {
+          alert("something went wrong,\nplease try again later");
         }
+      })
+      .catch((e) => {
+        console.log("sdfgsfghfdghdfg", e);
       });
+    // sayGratitude(true);
   };
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     if (hash) document.getElementById(hash).scrollIntoView();
+  //   }, 100);
+  //   dispatch(hasSubmitted());
+  //   if (hash) window.location.href = hash;
+  // }, [hash]);
 
   return (
     <>

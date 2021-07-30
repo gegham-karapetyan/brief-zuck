@@ -7,21 +7,23 @@ import "./style.scss";
 const InputLink = ({
   title,
   lg,
+  id,
   focused,
-  name,
   hintText,
   onDelete,
   urls,
-  valid,
+  invalid,
   createUrlContainer,
   value,
   setValue,
   onFocus,
 }) => {
-  const id = name.en.replace(/[\s*.,]/g, "");
   return (
-    <div className={`InputLink`}>
-      <label className={`InputLinkLabel ${lg} ${focused}`} htmlFor={id}>
+    <div className={`field field-links`} id={id}>
+      <label
+        className={`field-title field-text__title ${focused}`}
+        htmlFor={id + "-inner"}
+      >
         {title[lg]}
         {hintText && <Hint hintText={hintText[lg]} />}
       </label>
@@ -29,8 +31,8 @@ const InputLink = ({
       {urls && <DynamicBox onClick={onDelete} items={urls} />}
 
       <input
-        style={valid}
-        id={id}
+        className={invalid}
+        id={id + "-inner"}
         onKeyUp={(e) => {
           if (e.code === "Enter") createUrlContainer(e);
         }}
@@ -46,6 +48,19 @@ const InputLink = ({
   );
 };
 
-InputLink.propTypes = {};
+InputLink.propTypes = {
+  title: PropTypes.object.isRequired,
+  lg: PropTypes.oneOf(["am", "en", "ru"]),
+  id: PropTypes.string.isRequired,
+  focused: PropTypes.oneOf(["", "--focused"]),
+  hintText: PropTypes.object,
+  onDelete: PropTypes.func.isRequired,
+  urls: PropTypes.array,
+  valid: PropTypes.oneOf(["", "--invalid"]),
+  createUrlContainer: PropTypes.func.isRequired,
+  value: PropTypes.string,
+  setValue: PropTypes.func,
+  onFocus: PropTypes.func,
+};
 
 export default InputLink;

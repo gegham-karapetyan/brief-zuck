@@ -9,6 +9,7 @@ import {
 } from "../createSliceForm";
 import PropTypes from "prop-types";
 import isValid from "../../utils/isEmpty";
+import createIdByName from "../../utils/createIdByName";
 import "./style.scss";
 import { useEffect } from "react";
 
@@ -27,6 +28,7 @@ const CheckboxesGroup = ({
   name,
   require,
   isValidCheckboxes,
+  disabled = false,
 }) => {
   const initialCheckedData = arrayToObj(data);
 
@@ -42,6 +44,8 @@ const CheckboxesGroup = ({
   );
   const isFinallyValid = useSelector((state) => state.form[name.en].isValid);
 
+  const id = createIdByName(name.en);
+
   const dispatch = useDispatch();
   const additionalTextField = useRef(null);
 
@@ -49,11 +53,12 @@ const CheckboxesGroup = ({
     const value = e.target.value;
 
     setAdditionalInputValue(e.target.value);
-    if (!isValid(value)) setInvalid("invalid");
+    if (!isValid(value)) setInvalid("--invalid");
     else setInvalid("");
   };
   const onBlur = (e) => {
     const value = e.target.value;
+    console.log(value);
     dispatch(
       setOtherText({
         value: value,
@@ -63,12 +68,12 @@ const CheckboxesGroup = ({
     );
     if (!value) {
       setFocused("");
-      setInvalid("invalid");
+      setInvalid("--invalid");
     }
   };
 
   const onFocus = () => {
-    setFocused("focused");
+    setFocused("--focused");
   };
 
   const addNewInput = (toggle) => {
@@ -84,6 +89,7 @@ const CheckboxesGroup = ({
   };
 
   const onChangeCheckbox = (e) => {
+    if (disabled) return;
     const elemName = e.target.name;
     if (elemName === "Other") {
       addNewInput(!additionalInput);
@@ -118,30 +124,34 @@ const CheckboxesGroup = ({
       setFieldName({
         keyName: name.en,
         name: name[lg],
+        id,
       })
     );
-  }, [name, lg, dispatch]);
+  }, [name, lg, id, dispatch]);
 
   useEffect(() => {
     if (additionalInput) additionalTextField.current.focus();
   }, [additionalInput, additionalTextField]);
   useEffect(() => {
-    if (wasCheckedBySubmitButton === true && isFinallyValid === false) {
-      setInvalidCheckbox("invalid-checkbox");
+    if (wasCheckedBySubmitButton && isFinallyValid === false) {
+      setInvalidCheckbox("--invalid");
     } else setInvalidCheckbox("");
   }, [wasCheckedBySubmitButton, isFinallyValid]);
+
   return (
-    <div className={"checkboxesGroup"}>
-      <div className={`title ${lg}`}>{title[lg]}</div>
+    <div className={"field field-select"} id={id}>
+      <div className={`field-title field-select__title`}>{title[lg]}</div>
       <div className={"container"}>
         {data.map((item) => (
           <InputCheckbox
             invalid={invalidCheckbox}
+            lg={lg}
+            name={item.name}
             onChange={onChangeCheckbox}
             checked={checked[item.name]}
             key={item.name}
             addNewInput={addNewInput}
-            name={item.name}
+            innerText={item.innerText}
             hintText={item.hintText[lg]}
           />
         ))}

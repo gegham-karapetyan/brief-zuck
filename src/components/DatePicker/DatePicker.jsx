@@ -12,7 +12,7 @@ import "./style.scss";
 const Languages = {
   am: ["ԿՐ", "ԵԿ", "ԵՔ", "ՉՔ", "ՀԳ", "ՈՒԲ", "ՇԲ"],
   en: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-  ru: ["ԿՐ", "ԵԿ", "ԵՔ", "ՉՔ", "ՀԳ", "ՈՒԲ", "ՇԲ"],
+  ru: ["ВС", "ПН", "BT", "СР", "ЧT", "PT", "SB"],
 };
 function formatDate(date, lg) {
   let i = date.getDay();
@@ -64,7 +64,6 @@ const DatePicker = ({ title, lg, name }) => {
     }));
   };
   function defineRangeValue(dateRangeValue) {
-    console.log("dateRangeValue", dateRangeValue);
     const value = Object.values(dateRangeValue).filter(Boolean);
     const range = [dateRangeValue.start, dateRangeValue.end];
     dispatch(
@@ -100,13 +99,13 @@ const DatePicker = ({ title, lg, name }) => {
     );
   }, [name, lg, dispatch]);
   useEffect(() => {
-    if (wasCheckedBySubmitButton === true && isFinallyValid === false) {
-      setInvalid("invalid");
+    if (wasCheckedBySubmitButton !== 0 && isFinallyValid === false) {
+      setInvalid("--invalid");
     } else setInvalid("");
   }, [wasCheckedBySubmitButton, isFinallyValid]);
   return (
-    <div className="custom-calendar">
-      <div className={`label ${lg}`}>{title[lg]}</div>
+    <div className="field field-calendar">
+      <div className={`field-title field-calendar__title`}>{title[lg]}</div>
       <div className="data-picker-block">
         <InputsPicker
           lg={lg}

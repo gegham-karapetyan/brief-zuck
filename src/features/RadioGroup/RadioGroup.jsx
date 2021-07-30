@@ -4,6 +4,7 @@ import { updateForm, setOtherText, setFieldName } from "../createSliceForm";
 import TextareaBlock from "../../components/TextareaBlock";
 import isValid from "../../utils/isEmpty";
 import InputRadio from "../../components/InputRadio";
+import createIdByName from "../../utils/createIdByName";
 import "./style.scss";
 
 function arrayToObj(arr, defaultValue = false) {
@@ -18,7 +19,7 @@ function isValidCheckboxes(obj) {
   return Object.values(obj).some((i) => i);
 }
 
-const RadioGroup = ({ data, name, title, lg, require }) => {
+const RadioGroup = ({ data, name, title, lg, require, disabled = false }) => {
   const initialCheckedData = arrayToObj(data);
 
   const [additionalInput, setAdditionalInput] = useState(false);
@@ -34,8 +35,9 @@ const RadioGroup = ({ data, name, title, lg, require }) => {
     (state) => state.form[name.en].wasCheckedBySubmitButton
   );
   const isFinallyValid = useSelector((state) => state.form[name.en].isValid);
-
+  const id = createIdByName(name.en);
   const onChangeRadiobox = (e) => {
+    if (disabled) return;
     const elemName = e.target.name;
     if (elemName === "Other") {
       addNewInput(true);
@@ -77,7 +79,7 @@ const RadioGroup = ({ data, name, title, lg, require }) => {
   const onChange = (e) => {
     const value = e.target.value;
     setAdditionalInputValue(e.target.value);
-    if (!isValid(value)) setInvalid("invalid");
+    if (!isValid(value)) setInvalid("--invalid");
     else setInvalid("");
   };
   const onBlur = (e) => {
@@ -91,11 +93,11 @@ const RadioGroup = ({ data, name, title, lg, require }) => {
     );
     if (!value) {
       setFocused("");
-      setInvalid("invalid");
+      setInvalid("--invalid");
     }
   };
   const onFocus = () => {
-    setFocused("focused");
+    setFocused("--focused");
   };
 
   useEffect(() => {
@@ -103,20 +105,21 @@ const RadioGroup = ({ data, name, title, lg, require }) => {
       setFieldName({
         keyName: name.en,
         name: name[lg],
+        id,
       })
     );
-  }, [name, lg, dispatch]);
+  }, [name, lg, id, dispatch]);
   useEffect(() => {
     if (additionalInput) additionalTextField.current.focus();
   }, [additionalInput, additionalTextField]);
   useEffect(() => {
-    if (wasCheckedBySubmitButton === true && isFinallyValid === false) {
-      setInvalidCheckbox("invalid-checkbox");
+    if (wasCheckedBySubmitButton && isFinallyValid === false) {
+      setInvalidCheckbox("--invalid");
     } else setInvalidCheckbox("");
   }, [wasCheckedBySubmitButton, isFinallyValid]);
   return (
-    <div className={"radioGroup"}>
-      <div className={`title ${lg}`}>{title[lg]}</div>
+    <div className={"field field-select"}>
+      <div className={"field-title field-select__title"}>{title[lg]}</div>
       <div className={"container"}>
         {data.map((item) => (
           <InputRadio
@@ -127,7 +130,7 @@ const RadioGroup = ({ data, name, title, lg, require }) => {
             onChange={onChangeRadiobox}
             name={item.name}
             lg={lg}
-            title={item.title}
+            innerText={item.innerText}
           />
         ))}
       </div>
@@ -136,12 +139,12 @@ const RadioGroup = ({ data, name, title, lg, require }) => {
           name={{
             am: "Other description",
             en: "Other description",
-            ru: "",
+            ru: "Other description",
           }}
           title={{
             am: "Other description",
             en: "Other description",
-            ru: "",
+            ru: "Other description",
           }}
           lg={lg}
           internalRef={additionalTextField}

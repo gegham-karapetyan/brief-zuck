@@ -1,0 +1,24 @@
+.gratitude {
+  margin-top: 30%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  height: 250px;
+  width: 400px;
+  & > div:first-of-type {
+    width: 300px;
+    font-size: 18px;
+    font-weight: 400;
+    font-family: "PFCentroSansPro-Regular";
+  }
+  & p {
+    line-height: 1.5em;
+  }
+  & button {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    text-decoration: underline;
+    font-size: 14px;
+  }
+}

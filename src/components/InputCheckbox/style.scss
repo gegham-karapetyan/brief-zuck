@@ -1,12 +1,13 @@
-.inputCheckbox {
+.checkbox {
   display: inline-flex;
   border: 1px solid black;
   padding: 12px 12px;
   align-items: center;
-  font-family: "mardoto-regular";
+
   cursor: pointer;
 
   & .checkmarkContainer {
+    display: block;
     width: 16px;
     height: 16px;
     margin-right: 17px;

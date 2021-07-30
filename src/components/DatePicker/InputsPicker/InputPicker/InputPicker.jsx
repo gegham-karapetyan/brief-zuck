@@ -85,14 +85,14 @@ const InputText = ({
   };
   return (
     <div>
-      <label className={`textInput`}>
-        <div className={`textInputLabel ${focused}`}>{title[lg]}</div>
+      <label className={`date-input`}>
+        <div className={`date-title ${focused}`}>{title[lg]}</div>
         <input
           className={invalid}
           onChange={onChange}
           autoComplete="off"
           placeholder={focused && "DD/MM/YYYY"}
-          onFocus={() => onFocus("focused")}
+          onFocus={() => onFocus("--focused")}
           type="text"
           value={inputValue}
           name={name}

@@ -4,7 +4,15 @@ import { HintText } from "../Hint/Hint";
 
 import "./style.scss";
 
-const InputCheckbox = ({ name, hintText, onChange, checked, invalid }) => {
+const InputCheckbox = ({
+  name,
+  innerText,
+  hintText,
+  onChange,
+  checked,
+  invalid,
+  lg,
+}) => {
   const [active, setActive] = useState([false, 0]);
 
   const elemRef = useRef();
@@ -31,18 +39,18 @@ const InputCheckbox = ({ name, hintText, onChange, checked, invalid }) => {
         ref={elemRef}
         onMouseOver={onMouseOver}
         onMouseLeave={onMouseLeave}
-        className={`inputCheckbox ${invalid}`}
+        className={`checkbox ${invalid}`}
         style={{ opacity: checked ? "1" : "0.5" }}
       >
-        <div
+        <span
           className="checkmarkContainer"
           style={{
             backgroundColor: checked ? "black" : "transparent",
           }}
         >
-          <div style={checkmark}></div>
-        </div>
-        <div>{name}</div>
+          <span style={checkmark}></span>
+        </span>
+        <span>{innerText[lg]}</span>
 
         <input
           type="checkbox"
@@ -57,6 +65,7 @@ const InputCheckbox = ({ name, hintText, onChange, checked, invalid }) => {
 };
 
 const checkmark = {
+  display: "block",
   width: "5px",
   height: "6px",
   borderBottom: "1px solid #feebe1",

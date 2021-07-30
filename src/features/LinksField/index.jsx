@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { updateThisField, setFieldName } from "../createSliceForm";
-
+import createIdByName from "../../utils/createIdByName";
 import InputLink from "../../components/InputLink/InputLink";
 import { isURL } from "validator";
 
@@ -17,12 +17,14 @@ const LinksField = ({ name, lg, title, required, hintText }) => {
 
   const isFinallyValid = useSelector((state) => state.form[name.en].isValid);
   const [focused, setFocused] = useState("");
-  const [valid, setInvalid] = useState({ borderColor: "black" });
+  const [invalid, setInvalid] = useState("");
   const [urls, setUrls] = useState([]);
   const [value, setValue] = useState("");
 
+  const id = createIdByName(name.en);
+
   const onFocus = () => {
-    setFocused("focused");
+    setFocused("--focused");
   };
 
   const createUrlContainer = (e) => {
@@ -30,7 +32,7 @@ const LinksField = ({ name, lg, title, required, hintText }) => {
       setFocused("");
     }
     if (isURL(value)) {
-      setInvalid({ borderColor: "black" });
+      setInvalid("");
       setValue("");
       setUrls((prev) => {
         const newData = [...prev, { name: value, id: Math.random() }];
@@ -45,7 +47,7 @@ const LinksField = ({ name, lg, title, required, hintText }) => {
         return newData;
       });
     } else if (!urls.length && required) {
-      setInvalid({ borderColor: "red" });
+      setInvalid("--invalid");
     } else return;
   };
 
@@ -55,7 +57,7 @@ const LinksField = ({ name, lg, title, required, hintText }) => {
       if (!newData.length) {
         setFocused("");
         setValue("");
-        if (required) setInvalid({ borderColor: "red" });
+        if (required) setInvalid("--invalid");
       }
       dispatch(
         updateThisField({
@@ -73,13 +75,14 @@ const LinksField = ({ name, lg, title, required, hintText }) => {
       setFieldName({
         keyName: name.en,
         name: name[lg],
+        id,
       })
     );
-  }, [name, lg, dispatch]);
+  }, [name, lg, id, dispatch]);
 
   useEffect(() => {
-    if (wasCheckedBySubmitButton === true && isFinallyValid === false) {
-      setInvalid({ borderColor: "red" });
+    if (wasCheckedBySubmitButton !== 0 && isFinallyValid === false) {
+      setInvalid("--invalid");
     }
   }, [wasCheckedBySubmitButton, isFinallyValid]);
 
@@ -87,12 +90,13 @@ const LinksField = ({ name, lg, title, required, hintText }) => {
     <InputLink
       title={title}
       lg={lg}
+      id={id}
       focused={focused}
       name={name}
       hintText={hintText}
       onDelete={onDelete}
       urls={urls}
-      valid={valid}
+      invalid={invalid}
       createUrlContainer={createUrlContainer}
       value={value}
       setValue={setValue}

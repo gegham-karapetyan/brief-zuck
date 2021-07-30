@@ -1,0 +1,15 @@
+.date-input {
+  display: block;
+  position: relative;
+  width: 100%;
+  > .date-title {
+    position: absolute;
+    cursor: pointer;
+    bottom: 5px;
+    left: 0;
+    transition: all 0.1s linear;
+    &.--focused {
+      bottom: 30px;
+    }
+  }
+}

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import SubGroupMan from "./SubGroupMan";
 import SubGroupWoman from "./SubGroupWoman";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateForm, setFieldName } from "../../features/createSliceForm";
+import createIdByName from "../../utils/createIdByName";
 import "./style.scss";
 
 const TargetGroup = ({ title, lg, name }) => {
@@ -10,13 +11,18 @@ const TargetGroup = ({ title, lg, name }) => {
 
   const [percentage, setPercentage] = useState({ man: 50, woman: 50 });
   const [age, setAge] = useState({ man: [24, 44], woman: [24, 44] });
+  const [invalid, setInvalid] = useState("");
 
   const onChangePercentageMan = (num) => {
     const newData = { man: num, woman: 100 - num };
     setPercentage(newData);
-
-    // onAfterChange
   };
+  const wasCheckedBySubmitButton = useSelector(
+    (state) => state.form[name.en].wasCheckedBySubmitButton
+  );
+  const isFinallyValid = useSelector((state) => state.form[name.en].isValid);
+
+  const id = createIdByName(name.en);
   const onChangePercentageWoman = (num) => {
     const newData = { man: 100 - num, woman: num };
     setPercentage(newData);
@@ -44,18 +50,26 @@ const TargetGroup = ({ title, lg, name }) => {
       setFieldName({
         keyName: name.en,
         name: name[lg],
+        id,
       })
     );
-  }, [name, lg, dispatch]);
+  }, [name, id, lg, dispatch]);
+
+  useEffect(() => {
+    if (wasCheckedBySubmitButton && isFinallyValid === false) {
+      setInvalid("--invalid");
+    } else setInvalid("");
+  }, [wasCheckedBySubmitButton, isFinallyValid]);
   return (
-    <div className="targetGroup">
-      <div className={`label ${lg}`}>{title[lg]}</div>
+    <div className="field field-range" id={id}>
+      <div className={`field-title field-range__title`}>{title[lg]}</div>
       <SubGroupMan
         title={{
           am: ["Տղամարդիկ՝", "Տարիք՝", "տ․"],
           en: ["Men", "Age", "age"],
           ru: ["", ""],
         }}
+        invalid={invalid}
         onChangePercentage={onChangePercentageMan}
         onChangeAge={onChangeAge}
         onAfterChange={onAfterChange}
@@ -70,6 +84,7 @@ const TargetGroup = ({ title, lg, name }) => {
           en: ["Women", "Age", "age"],
           ru: ["", ""],
         }}
+        invalid={invalid}
         onAfterChange={onAfterChange}
         onChangePercentage={onChangePercentageWoman}
         onChangeAge={onChangeAge}

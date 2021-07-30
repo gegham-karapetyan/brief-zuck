@@ -1,20 +1,14 @@
-.campaign-budget {
-  .label {
-    margin: 90px 0 45px 0;
-    //font-family: "mardoto-bold";
+.currency-box {
+  float: right;
+  .currency {
+    padding: 2px 8px;
+    margin-right: -1px;
   }
-  .currency-box {
-    float: right;
-  }
-  .budget {
-    margin-bottom: 20px;
-  }
+}
+.budget {
+  margin-bottom: 20px;
   .output {
     float: right;
     font-weight: bold;
   }
-}
-.currency {
-  padding: 2px 8px;
-  margin-right: -1px;
 }

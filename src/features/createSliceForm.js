@@ -1,64 +1,65 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  "Brand *": {
+  Brand: {
     value: "",
     isValid: false,
     type: "text",
-    wasCheckedBySubmitButton: false,
+    wasCheckedBySubmitButton: 0,
   },
 
-  "Name, Surname *": {
+  "Name, Surname": {
     value: "",
     isValid: false,
     type: "text",
-    wasCheckedBySubmitButton: false,
+    wasCheckedBySubmitButton: 0,
   },
 
-  "E-mail *": {
+  "E-mail": {
     value: "",
     isValid: false,
     type: "text",
-    wasCheckedBySubmitButton: false,
+    wasCheckedBySubmitButton: 0,
   },
 
-  "Position *": {
+  Position: {
     value: "",
     isValid: false,
     type: "text",
-    wasCheckedBySubmitButton: false,
+    wasCheckedBySubmitButton: 0,
   },
 
-  "Telephone *": {
+  "Phone number": {
     value: "",
     isValid: false,
     type: "text",
-    wasCheckedBySubmitButton: false,
+    wasCheckedBySubmitButton: 0,
   },
-  "Website, Facebook, Instagram, etc. *": {
+  "Website, Facebook, Instagram, etc.": {
     value: [],
     isValid: false,
     type: "typing_select",
-    wasCheckedBySubmitButton: false,
+    wasCheckedBySubmitButton: 0,
   },
-  "Brief Description *": {
+  Summary: {
     value: "",
     isValid: false,
     type: "text",
-    wasCheckedBySubmitButton: false,
+    wasCheckedBySubmitButton: 0,
   },
-  "Campaign Type *": {
+  "Campaign Type": {
     value: {},
     isValid: false,
     type: "multi_select",
-    wasCheckedBySubmitButton: false,
+    wasCheckedBySubmitButton: 0,
   },
-  "Target Audience *": {
+  "Target group": {
     value: {
       man: [],
       woman: [],
     },
     isValid: false,
+    wasCheckedBySubmitButton: 0,
     type: "target_select",
   },
   "Hyperactive buyer persona": { value: "", isValid: true, type: "text" },
@@ -66,113 +67,114 @@ const initialState = {
     value: "",
     isValid: false,
     type: "text",
-    wasCheckedBySubmitButton: false,
+    wasCheckedBySubmitButton: 0,
   },
   "Current Consumer Behaviour": {
     value: "",
     isValid: false,
     type: "text",
-    wasCheckedBySubmitButton: false,
+    wasCheckedBySubmitButton: 0,
   },
-  "Current Consumer Opinion": {
+  "Current Consumer Feedback": {
     value: "",
     isValid: false,
     type: "text",
-    wasCheckedBySubmitButton: false,
+    wasCheckedBySubmitButton: 0,
   },
-  "Desired Consumer Opinion (after campaign implementation)": {
+  "Expected Consumer Feedback (after the completion of the campaign)": {
     value: "",
     isValid: false,
     type: "text",
-    wasCheckedBySubmitButton: false,
+    wasCheckedBySubmitButton: 0,
   },
-  "Desired Consumer Behaviour (after campaign implementation)": {
+  "Desired Consumer Behavior (after the completion of the campaign)": {
     value: "",
     isValid: false,
     type: "text",
-    wasCheckedBySubmitButton: false,
+    wasCheckedBySubmitButton: 0,
   },
-  "USP (unique selling proposition)/Brand promise *": {
+  "USP (unique selling proposition)/Brand promise": {
     value: "",
     isValid: false,
     type: "text",
-    wasCheckedBySubmitButton: false,
+    wasCheckedBySubmitButton: 0,
   },
-  "Insight/Consumer Insight *": {
+  "Insight/Consumer Insight": {
     value: "",
     isValid: false,
     type: "text",
-    wasCheckedBySubmitButton: false,
+    wasCheckedBySubmitButton: 0,
   },
-  "Primary Message *": {
+  "The main message of the advertising campaign": {
     value: "",
     isValid: false,
     type: "text",
-    wasCheckedBySubmitButton: false,
+    wasCheckedBySubmitButton: 0,
   },
-  "Secondary Message *": {
+  "The secondary message of the advertising campaign": {
     value: "",
     isValid: false,
     type: "text",
-    wasCheckedBySubmitButton: false,
+    wasCheckedBySubmitButton: 0,
   },
   "RTB (reason to believe)": {
     value: "",
     isValid: false,
     type: "text",
-    wasCheckedBySubmitButton: false,
+    wasCheckedBySubmitButton: 0,
   },
   Barrier: {
     value: "",
     isValid: false,
     type: "text",
-    wasCheckedBySubmitButton: false,
+    wasCheckedBySubmitButton: 0,
   },
-  "Advertising campaign / communication elements that are mandatory *": {
+  "Essential advertising campaign/communication elements": {
     value: "",
     isValid: false,
     type: "text",
-    wasCheckedBySubmitButton: false,
+    wasCheckedBySubmitButton: 0,
   },
-  "Advertising campaign / communication elements that are prohibited *": {
+  "Excluded advertising campaign/communication elements": {
     value: "",
     isValid: false,
     type: "text",
-    wasCheckedBySubmitButton: false,
+    wasCheckedBySubmitButton: 0,
   },
-  "Campaign Range *": {
-    value: "Integrated Campaign",
-    isValid: true,
+  "Campaign Scale": {
+    value: "",
+    isValid: false,
     type: "text",
+    wasCheckedBySubmitButton: 0,
   },
-  "Media *": {
+  Media: {
     value: {},
     isValid: false,
     type: "multi_select",
-    wasCheckedBySubmitButton: false,
+    wasCheckedBySubmitButton: 0,
   },
-  "Notes about the competitors": {
+  "Thoughts/Opinions about the competitors": {
     value: [],
     isValid: true,
     type: "typing_select",
   },
-  "Agency Tasks *": {
+  "Agency’s Task": {
     value: "",
     isValid: false,
     type: "text",
-    wasCheckedBySubmitButton: false,
+    wasCheckedBySubmitButton: 0,
   },
-  "KPIs (Key Performance Indicators) *": {
+  "KPIs (Key Performance Indicators)": {
     value: "",
     isValid: false,
     type: "text",
-    wasCheckedBySubmitButton: false,
+    wasCheckedBySubmitButton: 0,
   },
-  "Campaign Implementation Timeframe *": {
+  "Advertising campaign deadlines": {
     value: [],
     isValid: false,
     type: "typing_select",
-    wasCheckedBySubmitButton: false,
+    wasCheckedBySubmitButton: 0,
   },
   "Campaign Budget": { value: "", isValid: true, type: "text" },
   "Similar work that you like": {
@@ -188,8 +190,9 @@ const initialState = {
 
   "Additional Information": {
     value: { files: {}, Other: "" },
-    isValid: true,
+    isValid: false,
     type: "additional",
+    wasCheckedBySubmitButton: 0,
   },
 };
 
@@ -205,9 +208,11 @@ const createSliceForm = createSlice({
       state[keyName].isValid = isValid;
     },
     setFieldName: (state, action) => {
-      const { name, keyName } = action.payload;
+      const { name, keyName, id } = action.payload;
       state[keyName].name = name;
+      state[keyName].id = id;
     },
+
     updateForm: (state, action) => {
       const { keyName, isValid, value } = action.payload;
 
@@ -222,10 +227,22 @@ const createSliceForm = createSlice({
 
       //return state;
     },
+
     setOtherText: (state, action) => {
       const { keyName, value, required } = action.payload;
-      if (required && !value) state[keyName].isValid = false;
+      if (required && value.length < 2) state[keyName].isValid = false;
       else state[keyName].isValid = true;
+      state[keyName].value["Other"] = value;
+    },
+    setAdditionalInfoAsPlainText: (state, action) => {
+      const { keyName, value } = action.payload;
+      if (value.length >= 2) state[keyName].isValid = true;
+      if (
+        value.length <= 2 &&
+        !Object.keys(state[keyName].value.files).length
+      ) {
+        state[keyName].isValid = false;
+      }
       state[keyName].value["Other"] = value;
     },
     setFiles: (state, action) => {
@@ -235,7 +252,13 @@ const createSliceForm = createSlice({
     },
     deleteFiles: (state, action) => {
       const { id, keyName } = action.payload;
+
       delete state[keyName].value.files[id];
+      if (
+        !Object.keys(state[keyName].value.files).length &&
+        !state[keyName].value.Other
+      )
+        state[keyName].isValid = false;
       return state;
     },
     resetForm: (state, action) => {
@@ -244,10 +267,20 @@ const createSliceForm = createSlice({
     createForm: () => {
       return initialState;
     },
-    hasSubmitted: (state) => {
+    scrollToInvalidFields: (state, action) => {
+      const id = action.payload;
+      const element = document.getElementById(id);
+      setTimeout(() => element.scrollIntoView(), 100);
       for (let key in state) {
         if (state[key].wasCheckedBySubmitButton !== undefined)
-          state[key].wasCheckedBySubmitButton = true;
+          state[key].wasCheckedBySubmitButton = ++state[key]
+            .wasCheckedBySubmitButton;
+      }
+    },
+    resetCheckedBySubmitButton: (state) => {
+      for (let key in state) {
+        if (state[key].wasCheckedBySubmitButton !== undefined)
+          state[key].wasCheckedBySubmitButton = 0;
       }
     },
   },
@@ -261,11 +294,22 @@ export const {
   setFieldName,
   resetForm,
   createForm,
-  hasSubmitted,
-
+  scrollToInvalidFields,
+  setAdditionalInfoAsPlainText,
   updateThisField,
+  updatePosition,
+  resetCheckedBySubmitButton,
 } = createSliceForm.actions;
 
 export const FORM = (state) => state.form;
+
+export const First_Invalid_Field = (state) =>
+  Math.min(
+    ...Object.values(state.form).reduce((acc, val) => {
+      if (!val.isValid && val.pos) acc.push(val.pos);
+      return acc;
+    }, [])
+  );
+window.fff = First_Invalid_Field;
 
 export default createSliceForm.reducer;

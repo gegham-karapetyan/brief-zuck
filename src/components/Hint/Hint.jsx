@@ -3,9 +3,12 @@ import hintIcon from "../../info_black_24dp.svg";
 import "./style.scss";
 
 export const HintText = ({ hintText, left, top, additionalClass }) => {
+  console.log(hintText, left, top, additionalClass);
+
   return (
     <div
       className={`hintText ${additionalClass ? additionalClass : ""}`}
+      //style={{ left: 0 + "px", top: 0 + "px" }}
       style={{ left: left + "px", top: top - 20 + "px" }}
     >
       <div>{hintText}</div>

@@ -2,7 +2,7 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 
 import selectBriefReducer from "../features/selectBriefReducer.js";
 
-import textBlockReducer from "../components/test/createTestSlice";
+import textBlockReducer from "../Trash/test/createTestSlice";
 import updateLanguageReducer from "../features/createSliceLanguages";
 import createForm from "../features/createSliceForm";
 

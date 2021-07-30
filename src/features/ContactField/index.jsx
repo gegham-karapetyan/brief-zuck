@@ -4,11 +4,21 @@ import InputText from "../../components/InputText";
 import useTextFieldHandler from "../../Hooks/useTextFieldHandler";
 
 const TextInputField = ({ title, lg, name, hintText, required, isValid }) => {
-  const [focused, invalid, value, onChange, onFocus, onBlur] =
-    useTextFieldHandler(name, required, isValid, lg);
+  const {
+    focused,
+    invalid,
+    id,
+    value,
+    componentRef,
+    onChange,
+    onFocus,
+    onBlur,
+  } = useTextFieldHandler(name, required, isValid, lg);
   return (
     <InputText
+      internalRef={componentRef}
       title={title}
+      id={id}
       name={name}
       lg={lg}
       value={value}

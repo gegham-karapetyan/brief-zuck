@@ -30,8 +30,8 @@ const InputsPicker = ({
         value={dateToString(dateRange.start)}
         title={{
           am: "Մեկնարկ",
-          en: "Start",
-          ru: "",
+          en: "Start*******",
+          ru: "******",
         }}
         lg={lg}
         name="Start"
@@ -45,8 +45,8 @@ const InputsPicker = ({
         onFocus={onFocus}
         title={{
           am: "Ավարտ",
-          en: "End",
-          ru: "",
+          en: "End***********",
+          ru: "***********",
         }}
         lg={lg}
         name="End"

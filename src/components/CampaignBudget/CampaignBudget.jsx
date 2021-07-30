@@ -8,9 +8,9 @@ import "./style.scss";
 import { useEffect } from "react";
 
 const rates = {
-  USD: { degree: 500, sign: "\u0024" },
-  AMD: { degree: 250000, sign: "\u058F" },
-  RUB: { degree: 35000, sign: "\u20BD" },
+  USD: { degree: 500, sign: "$" },
+  AMD: { degree: 250000, sign: "֏" },
+  RUB: { degree: 35000, sign: "₽" },
 };
 
 function formatNumber(num) {
@@ -84,17 +84,16 @@ const CampaignBudget = ({ title, data, lg, name }) => {
     );
   }, [name, lg, dispatch]);
   return (
-    <div className="campaign-budget">
-      <div className={`label ${lg}`}>
-        {title[lg][0]}
-
+    <div className="field field-range">
+      <div className={`container space-between`}>
+        <div className="field-title field-range__title"> {title[lg][0]}</div>
         <div className="currency-box">
           <InputRadio
             checked={currency.USD}
             onChange={changeCurrency}
             name="USD"
             className="currency"
-            title={data[0]}
+            innerText={data[0]}
             lg={lg}
           />
           <InputRadio
@@ -102,7 +101,7 @@ const CampaignBudget = ({ title, data, lg, name }) => {
             onChange={changeCurrency}
             name="AMD"
             className="currency"
-            title={data[1]}
+            innerText={data[1]}
             lg={lg}
           />
           <InputRadio
@@ -110,7 +109,7 @@ const CampaignBudget = ({ title, data, lg, name }) => {
             onChange={changeCurrency}
             name="RUB"
             className="currency"
-            title={data[2]}
+            innerText={data[2]}
             lg={lg}
           />
         </div>

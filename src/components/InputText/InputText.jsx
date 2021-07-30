@@ -2,10 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import Hint from "../Hint";
 
-import "./style.scss";
-
 const InputText = ({
   title,
+  id,
   lg,
   name,
   hintText,
@@ -19,12 +18,12 @@ const InputText = ({
   placeholder,
 }) => {
   return (
-    <div>
-      <label className={`textInput ${lg || "en"}`}>
-        <div className={`textInputLabel ${focused}`}>
+    <div className={"field field-text"} id={id}>
+      <label>
+        <span className={`field-title field-text__title ${focused}`}>
           {title[lg]}
           {hintText && <Hint hintText={hintText[lg]} />}
-        </div>
+        </span>
         <input
           ref={internalRef}
           value={value}
@@ -43,9 +42,10 @@ const InputText = ({
 
 InputText.propTypes = {
   title: PropTypes.object,
+  id: PropTypes.string.isRequired,
   name: PropTypes.object.isRequired,
   lg: PropTypes.string.isRequired,
-  focused: PropTypes.oneOf(["", "focused"]),
+  focused: PropTypes.oneOf(["", "--focused"]),
   required: PropTypes.bool,
   hintText: PropTypes.object,
   hint: PropTypes.bool,

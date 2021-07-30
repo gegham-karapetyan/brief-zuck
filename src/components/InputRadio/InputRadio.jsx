@@ -9,7 +9,7 @@ const InputRadio = ({
   checked,
   name,
   lg,
-  title,
+  innerText,
   onChange,
   invalid,
 }) => {
@@ -38,10 +38,10 @@ const InputRadio = ({
         ref={elemRef}
         onMouseOver={onMouseOver}
         onMouseLeave={onMouseLeave}
-        className={`inputRadio ${invalid} ${className && className}`}
+        className={`radio ${invalid} ${className ? className : ""}`}
         style={checked ? styleChecked : styleUnChecked}
       >
-        <span>{title[lg]}</span>
+        <span>{innerText[lg]}</span>
 
         <input
           type="checkbox"

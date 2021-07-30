@@ -11,10 +11,11 @@ const SubGroupMan = ({
   name,
   age,
   onAfterChange,
+  invalid,
 }) => {
   const ageFormated = age.join("-");
   return (
-    <div className="subgroup man">
+    <div className={`subgroup man ${invalid}`}>
       <div className="gender">
         {title[lg][0]} <span className="output">{percentage} %</span>
         <input type="hidden" name="man" value={percentage} />

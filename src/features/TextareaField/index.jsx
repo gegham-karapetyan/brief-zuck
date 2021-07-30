@@ -5,12 +5,22 @@ import useTextFieldHandler from "../../Hooks/useTextFieldHandler";
 import TextareaBlock from "../../components/TextareaBlock/TextareaBlock";
 
 const TextareaField = ({ title, lg, name, hintText, required, isValid }) => {
-  const [focused, invalid, value, onChange, onFocus, onBlur] =
-    useTextFieldHandler(name, required, isValid, lg);
+  const {
+    focused,
+    invalid,
+    id,
+    value,
+    componentRef,
+    onChange,
+    onFocus,
+    onBlur,
+  } = useTextFieldHandler(name, required, isValid, lg);
 
   return (
     <TextareaBlock
+      internalRef={componentRef}
       title={title}
+      id={id}
       name={name}
       lg={lg}
       value={value}

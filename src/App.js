@@ -8,13 +8,13 @@ import Form from "./components/Form";
 import { useSelector } from "react-redux";
 import { LANG } from "./features/createSliceLanguages";
 
-import "./App.css";
+import "./App.scss";
 
 function App() {
   const lg = useSelector(LANG);
 
   return (
-    <div className="App">
+    <div className={`App --${lg}`}>
       <Router basename="/">
         <SideBar lg={lg} />
         <Form lg={lg} />

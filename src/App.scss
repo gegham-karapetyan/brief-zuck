@@ -1,0 +1,95 @@
+.App {
+  width: inherit;
+  height: inherit;
+  background-color: #feebe1;
+  display: flex;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #feebe1 inset !important;
+  box-shadow: 0 0 0 30px #feebe1 inset !important;
+}
+.field {
+  margin: 90px 0;
+  position: relative;
+  //padding-top: 20px;
+  & input {
+    width: 100%;
+    border: none;
+    padding-bottom: 10px;
+    outline: none;
+    background-color: transparent;
+    border-bottom: 1px solid black;
+    &.--invalid {
+      border-bottom: 1px solid red;
+    }
+  }
+  & textarea {
+    font-family: "mardoto-regular";
+    width: 100%;
+    border: none;
+    padding-bottom: 10px;
+    outline: none;
+    resize: none;
+    background-color: transparent;
+    border-bottom: 1px solid black;
+    &.--invalid {
+      border-bottom: 1px solid red;
+    }
+  }
+  & .checkbox,
+  & .radio {
+    &.--invalid {
+      border: 1px solid red;
+    }
+  }
+}
+.field-text {
+  display: block;
+  width: 100%;
+}
+.field-text__title {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  //transform: translate(0, 22px);
+  left: 0;
+  transition: all 0.1s linear;
+}
+.--focused {
+  //transform: translate(0, calc(50% - 10px));
+  top: -25px;
+}
+
+.--am {
+  .field-title {
+    font-family: "mardoto-bold";
+  }
+}
+.--ru,
+.--en {
+  .field-title {
+    font-family: "PFCentroSansPro-Bold";
+  }
+}
+label {
+  cursor: pointer;
+}
+
+.link-btn {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  text-decoration: underline;
+  font-family: "mardoto-bold";
+  cursor: pointer;
+}
+.container {
+  display: flex;
+}
+
+.space-between {
+  justify-content: space-between;
+}

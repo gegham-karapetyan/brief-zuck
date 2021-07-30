@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   setFiles,
   deleteFiles,
-  setOtherText,
+  setAdditionalInfoAsPlainText,
   setFieldName,
 } from "../../features/createSliceForm";
+import createIdByName from "../../utils/createIdByName";
+
 import InputFile from "../InputFile";
 import TextareaAutosize from "react-autosize-textarea";
 import "./style.scss";
@@ -17,16 +19,25 @@ const FilesBox = ({ name, lg, title }) => {
   const [items, setItems] = useState([]);
   const [value, setValue] = useState("");
   const [loader, setLoader] = useState(true);
+  const [invalid, setInvalid] = useState("");
+  const componentRef = useRef(null);
   const onChange = (e) => {
     const value = e.target.value;
+    if (value.trim().length >= 2 || items.length) {
+      setInvalid("");
+    }
     setValue(value);
   };
+  const wasCheckedBySubmitButton = useSelector(
+    (state) => state.form[name.en].wasCheckedBySubmitButton
+  );
+  const isFinallyValid = useSelector((state) => state.form[name.en].isValid);
 
   const addFile = (e) => {
     const id = Math.random();
     const file = e.target.files[0];
 
-    setFocused("focused");
+    setFocused("--focused");
     if (file !== undefined) {
       if (file.size / 1024 ** 2 > 20) {
         alert("the file is too big");
@@ -35,57 +46,73 @@ const FilesBox = ({ name, lg, title }) => {
 
       const reader = new FileReader();
       reader.readAsDataURL(file);
-      console.log(reader);
+
       reader.addEventListener("load", () => {
         setLoader(false);
+        setInvalid("");
         setItems((prev) => {
           const files = [...prev, { name: file.name, val: file, id }];
+          dispatch(
+            setFiles({
+              keyName: name.en,
+              name: name[lg],
+              id,
+              value: reader.result,
+              isValid: true,
+            })
+          );
           return files;
         });
-        dispatch(
-          setFiles({
-            keyName: name.en,
-            name: name[lg],
-            id,
-            value: reader.result,
-            isValid: true,
-          })
-        );
       });
     }
   };
 
   const onFocus = () => {
-    setFocused("focused");
+    setFocused("--focused");
   };
 
   const onBlur = (e) => {
     const value = e.target.value;
-    dispatch(setOtherText({ keyName: name.en, value }));
+
+    dispatch(setAdditionalInfoAsPlainText({ keyName: name.en, value }));
     if (!value.trim() && !items.length) setFocused("");
+    if (value.trim().length < 2 && !items.length) {
+      setInvalid("--invalid");
+    } else setInvalid("");
   };
 
   const onDelete = (id) => {
     dispatch(deleteFiles({ id, keyName: name.en }));
-    setItems((prev) => prev.filter((url) => url.id !== id));
-    if (!items.length && !value.trim()) {
-      setFocused("");
-    }
+    setItems((prev) => {
+      const newState = prev.filter((url) => url.id !== id);
+      if (!newState.length && value.trim().length < 2) {
+        setInvalid("--invalid");
+      }
+      return newState;
+    });
   };
+
+  const id = createIdByName(name.en);
   useEffect(() => {
     dispatch(
       setFieldName({
         keyName: name.en,
         name: name[lg],
+        id,
       })
     );
-  }, [name, lg, dispatch]);
-  const id = name.en.replace(/[\s*.,]/g, "");
+  }, [name, id, lg, dispatch]);
+
+  useEffect(() => {
+    if (wasCheckedBySubmitButton !== 0 && isFinallyValid === false) {
+      setInvalid("--invalid");
+    }
+  }, [wasCheckedBySubmitButton, isFinallyValid, name, dispatch]);
 
   return (
-    <div className="files-box">
+    <div ref={componentRef} className="field field-files" id={id}>
       <div className={`header ${focused}`}>
-        <label className={lg} htmlFor={id}>
+        <label className={"field-title"} htmlFor={id + "--inner"}>
           {title[lg]}
         </label>
 
@@ -93,12 +120,13 @@ const FilesBox = ({ name, lg, title }) => {
       </div>
       <DynamicBox loader={loader} items={items} onClick={onDelete} />
       <TextareaAutosize
+        className={invalid}
         onChange={onChange}
         onFocus={onFocus}
         onBlur={onBlur}
         value={value}
         name={name.en}
-        id={id}
+        id={id + "--inner"}
       />
     </div>
   );

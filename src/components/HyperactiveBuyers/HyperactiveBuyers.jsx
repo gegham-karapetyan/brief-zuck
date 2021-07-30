@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { updateForm, setFieldName } from "../../features/createSliceForm";
 import { InputRange } from "../InputRC";
 import getTrueKey from "../../utils/getTrueKey";
+import createIdByName from "../../utils/createIdByName";
 import "./style.scss";
 
 const isEqual = (obj1, obj2) => {
@@ -46,7 +47,7 @@ const HyperactiveBuyers = ({ lg, title, name }) => {
       );
     }
   };
-
+  const id = createIdByName(name.en);
   const onChangeAge = (age) => {
     setAge(age);
   };
@@ -65,20 +66,21 @@ const HyperactiveBuyers = ({ lg, title, name }) => {
       setFieldName({
         keyName: name.en,
         name: name[lg],
+        id,
       })
     );
-  }, [name, lg, dispatch]);
+  }, [name, id, lg, dispatch]);
 
   const ageFormated = age.join("-");
   return (
-    <div className="HyperactiveBuyerPersona">
-      <div className={`label ${lg}`}>{title[lg][0]}</div>
+    <div className="field field-range" id={id}>
+      <div className={`field-title field-range__title`}>{title[lg][0]}</div>
       <div className="container">
         <InputRadio
           checked={checked.Men}
           onChange={onChangeRadio}
           name="Men"
-          title={{
+          innerText={{
             am: "Տղամարդիկ",
             en: "Men",
             ru: "",
@@ -89,7 +91,7 @@ const HyperactiveBuyers = ({ lg, title, name }) => {
           checked={checked.Women}
           onChange={onChangeRadio}
           name="Women"
-          title={{
+          innerText={{
             am: "Կանայք",
             en: "Women",
             ru: "",

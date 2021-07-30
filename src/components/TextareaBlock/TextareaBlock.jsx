@@ -3,25 +3,25 @@ import TextareaAutosize from "react-autosize-textarea";
 import PropTypes from "prop-types";
 import Hint from "../Hint";
 
-import "./style.scss";
-
 const TextareaBlock = ({
   title,
   lg,
+  id,
   name,
   hintText,
   focused,
   onFocus,
   onBlur,
+
   invalid,
   value,
   onChange,
   internalRef,
 }) => {
   return (
-    <div>
-      <label className={`textarea ${lg}`}>
-        <div className={`textareaLabel ${focused}`}>
+    <div className={`field field-text`} id={id}>
+      <label>
+        <div className={`field-title field-text__title ${focused}`}>
           {title[lg]}
           {hintText && <Hint hintText={hintText[lg]} />}
         </div>
@@ -43,7 +43,7 @@ TextareaBlock.propTypes = {
   title: PropTypes.object,
   name: PropTypes.object.isRequired,
   lg: PropTypes.string.isRequired,
-  focused: PropTypes.oneOf(["", "focused"]),
+  focused: PropTypes.oneOf(["", "--focused"]),
   required: PropTypes.bool,
   hintText: PropTypes.object,
   hint: PropTypes.bool,

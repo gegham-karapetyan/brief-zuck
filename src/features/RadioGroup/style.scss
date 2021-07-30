@@ -1,6 +1,5 @@
-.radioGroup {
+.radio {
   .title {
-    //font-family: "mardoto-bold";
     margin: 60px 0 30px 0;
   }
 
@@ -9,7 +8,4 @@
     flex-flow: row wrap;
     gap: 20px;
   }
-}
-.invalid-checkbox {
-  border-color: red;
 }
