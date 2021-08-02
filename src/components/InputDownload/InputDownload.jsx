@@ -9,7 +9,7 @@ const title = {
 };
 
 const InputDownload = ({ lg }) => {
-  return <button className="link-btn">{title[lg]}</button>;
+  return <button className={`link-btn ${lg}`}>{title[lg]}</button>;
 };
 
 InputDownload.propTypes = {};
