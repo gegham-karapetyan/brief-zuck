@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { briefType } from "../../features/selectBriefReducer";
+import { Link, useLocation } from "react-router-dom";
+// import { useSelector } from "react-redux";
+// import { briefType } from "../../features/selectBriefReducer";
 import "./style.scss";
 
 const pages = [
