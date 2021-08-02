@@ -31,7 +31,7 @@ const InputsPicker = ({
         title={{
           am: "Մեկնարկ",
           en: "Start*******",
-          ru: "******",
+          ru: "Начало",
         }}
         lg={lg}
         name="Start"
@@ -46,7 +46,7 @@ const InputsPicker = ({
         title={{
           am: "Ավարտ",
           en: "End***********",
-          ru: "***********",
+          ru: "Конец",
         }}
         lg={lg}
         name="End"

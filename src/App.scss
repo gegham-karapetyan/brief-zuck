@@ -86,6 +86,14 @@ label {
   font-family: "mardoto-bold";
   cursor: pointer;
 }
+.link-btn.am,
+.link-btn.en {
+  font-family: "mardoto-bold";
+}
+.link-btn.ru {
+  font-family: "PFCentroSansPro-Bold";
+}
+
 .container {
   display: flex;
 }

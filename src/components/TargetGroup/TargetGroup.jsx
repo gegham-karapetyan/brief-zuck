@@ -67,7 +67,7 @@ const TargetGroup = ({ title, lg, name }) => {
         title={{
           am: ["Տղամարդիկ՝", "Տարիք՝", "տ․"],
           en: ["Men", "Age", "age"],
-          ru: ["", ""],
+          ru: ["Мужчины", "Возраст", "л."],
         }}
         invalid={invalid}
         onChangePercentage={onChangePercentageMan}
@@ -82,7 +82,7 @@ const TargetGroup = ({ title, lg, name }) => {
         title={{
           am: ["Կանայք՝", "Տարիք՝", "տ․"],
           en: ["Women", "Age", "age"],
-          ru: ["", ""],
+          ru: ["Женщины", "Возраст", "л."],
         }}
         invalid={invalid}
         onAfterChange={onAfterChange}

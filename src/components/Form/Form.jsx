@@ -6,10 +6,10 @@ import CommercialVideoBrief from "../../briefTypes/CommercialVideoBrief";
 import SocialMediaActivationBrief from "../../briefTypes/SocialMediaActivationBrief";
 import StrategyBrief from "../../briefTypes/StrategyBrief";
 import LogoBrief from "../../briefTypes/LogoBrief";
-import Paragraph from "../Paragraph";
+// import Paragraph from "../Paragraph";
 import InputDownload from "../InputDownload";
 import InputSubmit from "../InputSubmit";
-import disclaimer from "../../data/Disclaimer";
+// import disclaimer from "../../data/Disclaimer";
 import Gratitude from "../Gratitude";
 
 import "./style.scss";
@@ -60,7 +60,7 @@ const Form = ({ lg }) => {
                 <Redirect to="/" />
               </Route>
             </Switch>
-            <Paragraph data={disclaimer} lg={lg} />
+            {/* <Paragraph data={disclaimer} lg={lg} /> */}
             <div
               style={{
                 marginTop: "60px",

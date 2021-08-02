@@ -83,7 +83,7 @@ const AdvertisingCampaignBrief = ({ lg }) => {
               title={{
                 am: ["Hyperactive buyer persona", "Տարիք՝", "տ․"],
                 en: ["Hyperactive buyer persona", "Age", "age"],
-                ru: ["Hyperactive buyer persona", "Age", "age"],
+                ru: ["Hyperactive buyer persona", "Возраст", "л"],
               }}
               lg={lg}
               name={{
@@ -124,9 +124,9 @@ const AdvertisingCampaignBrief = ({ lg }) => {
             <CampaignBudget
               key={30}
               title={{
-                am: ["Գովազդային արշավի բյուջե", "Ընդհանուր՝"],
+                am: ["Գովազդային արշավի բյուջե", "Ընդհանուր գումար՝"],
                 en: ["Campaign Budget", "Amount"],
-                ru: ["Бюджет рекламной кампании", "Ընդհանուր՝"],
+                ru: ["Бюджет рекламной кампании", "Общая сумма"],
               }}
               data={[
                 {

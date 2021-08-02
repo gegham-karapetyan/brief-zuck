@@ -13,9 +13,9 @@ import loader from "../../spinner.svg";
 import "./style.scss";
 
 const title = {
-  am: "Ուղարկել***************",
+  am: "Ուղարկել Zuck-ին",
   en: "Send to Zuck",
-  ru: "*******************",
+  ru: "Отправить Zuck",
 };
 
 const InputSubmit = ({ lg, scrolledContainer, sayGratitude }) => {
@@ -81,7 +81,7 @@ const InputSubmit = ({ lg, scrolledContainer, sayGratitude }) => {
 
   return (
     <>
-      <button onClick={onSubmit} className="link-btn">
+      <button onClick={onSubmit} className={`link-btn ${lg}`}>
         {title[lg]}
       </button>
       {modal && (

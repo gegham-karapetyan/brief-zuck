@@ -5,7 +5,7 @@ import "./style.scss";
 const title = {
   am: "Ներբեռնել բրիֆը",
   en: "Download",
-  ru: "",
+  ru: "Cкачать",
 };
 
 const InputDownload = ({ lg }) => {

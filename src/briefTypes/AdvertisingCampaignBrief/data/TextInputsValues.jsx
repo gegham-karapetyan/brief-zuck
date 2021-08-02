@@ -36,8 +36,8 @@ const TextInputsValues = [
     isValid: isEmail,
   },
   {
-    title: { am: "Հաստիք", en: "Position", ru: "Должность" },
-    name: { am: "Հաստիք", en: "Position", ru: "Должность" },
+    title: { am: "Պաշտոն", en: "Position", ru: "Должность" },
+    name: { am: "Պաշտոն", en: "Position", ru: "Должность" },
     required: true,
     hint: false,
     key: 4,

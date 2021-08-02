@@ -27,12 +27,12 @@ const TextareValues = [
     title: {
       am: "Հավելյալ տեղեկատվություն թիրախի մասին",
       en: "Additional information about the target",
-      ru: "***************************",
+      ru: "Дополнительная информация о цели",
     },
     name: {
       am: "Հավելյալ տեղեկատվություն թիրախի մասին",
       en: "Additional information about the target",
-      ru: "***************************",
+      ru: "Дополнительная информация о цели",
     },
     required: true,
     isValid: isEmpty,
@@ -83,7 +83,7 @@ const TextareValues = [
       am: (
         <>
           Սպառողների ցանկալի վարքագիծ{" "}
-          <span style={{ fontFamily: "mardoto-regular" }}>
+          <span style={{ fontFamily: "mardoto-regular, sans-serif" }}>
             (արշավի իրականացումից հետո)
           </span>{" "}
         </>
@@ -91,7 +91,7 @@ const TextareValues = [
       en: (
         <>
           Desired Consumer Behaviour{" "}
-          <span style={{ fontFamily: "mardoto-regular" }}>
+          <span style={{ fontFamily: "mardoto-regular, sans-serif" }}>
             (after campaign implementation)
           </span>
         </>
@@ -99,7 +99,7 @@ const TextareValues = [
       ru: (
         <>
           Желаемое поведение потребителей{" "}
-          <span style={{ fontFamily: "mardoto-regular" }}>
+          <span style={{ fontFamily: "mardoto-regular, sans-serif" }}>
             (после реализации кампании)
           </span>
         </>
@@ -120,15 +120,15 @@ const TextareValues = [
       am: (
         <>
           Սպառողների ցանկալի կարծիք
-          <span style={{ fontFamily: "mardoto-regular" }}>
+          <span style={{ fontFamily: "mardoto-regular, sans-serif" }}>
             (արշավի իրականացումից հետո)
           </span>
         </>
       ),
       en: (
         <>
-          Expected Consumer Feedback
-          <span style={{ fontFamily: "mardoto-regular" }}>
+          Expected Consumer Feedback{" "}
+          <span style={{ fontFamily: "mardoto-regular, sans-serif" }}>
             (after campaign implementation)
           </span>
         </>
@@ -136,7 +136,7 @@ const TextareValues = [
       ru: (
         <>
           Желаемое мнение потребителей{" "}
-          <span style={{ fontFamily: "mardoto-regular" }}>
+          <span style={{ fontFamily: "mardoto-regular, sans-serif" }}>
             (после реализации кампании)
           </span>
         </>
@@ -157,7 +157,7 @@ const TextareValues = [
       am: (
         <>
           USP{" "}
-          <span style={{ fontFamily: "mardoto-regular" }}>
+          <span style={{ fontFamily: "mardoto-regular, sans-serif" }}>
             (unique selling proposition)
           </span>
           /Brand promise{" "}
@@ -166,7 +166,7 @@ const TextareValues = [
       en: (
         <>
           USP{" "}
-          <span style={{ fontFamily: "mardoto-regular" }}>
+          <span style={{ fontFamily: "mardoto-regular, sans-serif" }}>
             (unique selling proposition)
           </span>
           /Brand promise{" "}
@@ -175,7 +175,7 @@ const TextareValues = [
       ru: (
         <>
           USP{" "}
-          <span style={{ fontFamily: "mardoto-regular" }}>
+          <span style={{ fontFamily: "mardoto-regular, sans-serif" }}>
             (unique selling proposition)
           </span>
           /Brand promise{" "}
@@ -294,14 +294,18 @@ const TextareValues = [
       am: (
         <>
           Գովազդային արշավի հիմնական ուղերձ{" "}
-          <span style={{ fontFamily: "mardoto-regular" }}>(մեսիջ)</span>
+          <span style={{ fontFamily: "mardoto-regular, sans-serif" }}>
+            (մեսիջ)
+          </span>
         </>
       ),
       en: "The main message of the advertising campaign",
       ru: (
         <>
           Основной посыл рекламной кампании{" "}
-          <span style={{ fontFamily: "mardoto-regular" }}>(месседж)</span>
+          <span style={{ fontFamily: "mardoto-regular, sans-serif" }}>
+            (месседж)
+          </span>
         </>
       ),
     },
@@ -320,14 +324,18 @@ const TextareValues = [
       am: (
         <>
           Գովազդային արշավի երկրորդային ուղերձ{" "}
-          <span style={{ fontFamily: "mardoto-regular" }}>(մեսիջ)</span>
+          <span style={{ fontFamily: "mardoto-regular, sans-serif" }}>
+            (մեսիջ)
+          </span>
         </>
       ),
       en: "The secondary message of the advertising campaign",
       ru: (
         <>
           Второстепенный посыл рекламной кампании{" "}
-          <span style={{ fontFamily: "mardoto-regular" }}>(месседж)</span>
+          <span style={{ fontFamily: "mardoto-regular, sans-serif" }}>
+            (месседж)
+          </span>
         </>
       ),
     },
@@ -346,7 +354,7 @@ const TextareValues = [
       am: (
         <>
           RTB{" "}
-          <span style={{ fontFamily: "mardoto-regular" }}>
+          <span style={{ fontFamily: "mardoto-regular, sans-serif" }}>
             (reason to believe){" "}
           </span>{" "}
         </>
@@ -354,7 +362,7 @@ const TextareValues = [
       en: (
         <>
           RTB{" "}
-          <span style={{ fontFamily: "mardoto-regular" }}>
+          <span style={{ fontFamily: "mardoto-regular, sans-serif" }}>
             (reason to believe){" "}
           </span>{" "}
         </>
@@ -362,7 +370,7 @@ const TextareValues = [
       ru: (
         <>
           RTB{" "}
-          <span style={{ fontFamily: "mardoto-regular" }}>
+          <span style={{ fontFamily: "mardoto-regular, sans-serif" }}>
             (reason to believe){" "}
           </span>{" "}
         </>
@@ -550,7 +558,7 @@ const TextareValues = [
       am: (
         <>
           KPIs{" "}
-          <span style={{ fontFamily: "mardoto-regular" }}>
+          <span style={{ fontFamily: "mardoto-regular, sans-serif" }}>
             (Key Performance Indicators)
           </span>{" "}
         </>
@@ -558,7 +566,7 @@ const TextareValues = [
       en: (
         <>
           KPIs{" "}
-          <span style={{ fontFamily: "mardoto-regular" }}>
+          <span style={{ fontFamily: "mardoto-regular, sans-serif" }}>
             (Key Performance Indicators)
           </span>{" "}
         </>
@@ -566,7 +574,7 @@ const TextareValues = [
       ru: (
         <>
           KPIs{" "}
-          <span style={{ fontFamily: "mardoto-regular" }}>
+          <span style={{ fontFamily: "mardoto-regular, sans-serif" }}>
             (Key Performance Indicators)
           </span>{" "}
         </>

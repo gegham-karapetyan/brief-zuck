@@ -116,7 +116,7 @@ const FilesBox = ({ name, lg, title }) => {
           {title[lg]}
         </label>
 
-        <InputFile onChange={addFile} />
+        <InputFile lg={lg} onChange={addFile} />
       </div>
       <DynamicBox loader={loader} items={items} onClick={onDelete} />
       <TextareaAutosize

@@ -83,7 +83,7 @@ const HyperactiveBuyers = ({ lg, title, name }) => {
           innerText={{
             am: "Տղամարդիկ",
             en: "Men",
-            ru: "",
+            ru: "Мужчины",
           }}
           lg={lg}
         />
@@ -94,7 +94,7 @@ const HyperactiveBuyers = ({ lg, title, name }) => {
           innerText={{
             am: "Կանայք",
             en: "Women",
-            ru: "",
+            ru: "Женщины",
           }}
           lg={lg}
         />

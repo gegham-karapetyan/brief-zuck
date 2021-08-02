@@ -137,14 +137,14 @@ const RadioGroup = ({ data, name, title, lg, require, disabled = false }) => {
       {additionalInput && (
         <TextareaBlock
           name={{
-            am: "Other description",
+            am: "Այլ նկարագրություն",
             en: "Other description",
-            ru: "Other description",
+            ru: "Другое описание",
           }}
           title={{
-            am: "Other description",
+            am: "Այլ նկարագրություն",
             en: "Other description",
-            ru: "Other description",
+            ru: "Другое описание",
           }}
           lg={lg}
           internalRef={additionalTextField}

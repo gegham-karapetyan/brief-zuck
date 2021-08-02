@@ -2,12 +2,12 @@ const LinksFieldProps = [
   {
     key: 6,
     title: {
-      am: "Կայք, Ֆեյսբուք, Ինստագրամ, և այլն",
+      am: "Website, Facebook, Instagram, և այլն",
       en: "Website, Facebook, Instagram, etc.",
       ru: "Website, Facebook, Instagram и т.п. ",
     },
     name: {
-      am: "Կայք, Ֆեյսբուք, Ինստագրամ, և այլն",
+      am: "Website, Facebook, Instagram, և այլն",
       en: "Website, Facebook, Instagram, etc.",
       ru: "Website, Facebook, Instagram и т.п. ",
     },
@@ -40,7 +40,9 @@ const LinksFieldProps = [
       am: (
         <>
           Նմանատիպ աշխատանք, որը դուր է գալիս{" "}
-          <span style={{ fontFamily: "mardoto-regular" }}>(հղումներ)</span>{" "}
+          <span style={{ fontFamily: "mardoto-regular,sans-serif" }}>
+            (հղումներ)
+          </span>{" "}
         </>
       ),
       en: "Similar work that you like",
@@ -65,7 +67,9 @@ const LinksFieldProps = [
       am: (
         <>
           Նմանատիպ աշխատանք, որը դուր չի գալիս{" "}
-          <span style={{ fontFamily: "mardoto-regular" }}>(հղումներ)</span>{" "}
+          <span style={{ fontFamily: "mardoto-regular, sans-serif" }}>
+            (հղումներ)
+          </span>{" "}
         </>
       ),
       en: "Similar work that you don’t like",

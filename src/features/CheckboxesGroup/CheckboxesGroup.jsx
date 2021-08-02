@@ -160,14 +160,14 @@ const CheckboxesGroup = ({
       {additionalInput && (
         <TextareaBlock
           name={{
-            am: "Other description",
+            am: "Այլ նկարագրություն",
             en: "Other description",
-            ru: "",
+            ru: "Другое описание",
           }}
           title={{
-            am: "Other description",
+            am: "Այլ նկարագրություն",
             en: "Other description",
-            ru: "",
+            ru: "Другое описание",
           }}
           lg={lg}
           internalRef={additionalTextField}
