@@ -5,7 +5,7 @@ import {
   deleteFiles,
   setAdditionalInfoAsPlainText,
   setFieldName,
-} from "../../features/createSliceForm";
+} from "../../features/reduxSlices/createSliceForm";
 import createIdByName from "../../utils/createIdByName";
 
 import InputFile from "../InputFile";

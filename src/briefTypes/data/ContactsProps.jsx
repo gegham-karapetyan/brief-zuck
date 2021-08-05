@@ -1,6 +1,6 @@
 import { isEmail } from "validator";
-import isEmpty from "../../../utils/isEmpty";
-import isPhone from "../../../utils/isPhone";
+import isEmpty from "../../utils/isEmpty";
+import isPhone from "../../utils/isPhone";
 
 const TextInputsValues = [
   {

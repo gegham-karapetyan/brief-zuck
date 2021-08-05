@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setFieldName, updateForm } from "../createSliceForm";
+import { setFieldName, updateForm } from "../reduxSlices/createSliceForm";
 
 import Textarea from "../../components/Textarea";
 

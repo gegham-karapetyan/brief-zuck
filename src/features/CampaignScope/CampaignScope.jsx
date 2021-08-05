@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { updateForm, setFieldName } from "../createSliceForm";
+import { updateForm, setFieldName } from "../reduxSlices/createSliceForm";
 //import InputRadio from "../../components/InputRadio";
 import CampaignRange from "./CampaignRange";
 import CheckboxesGroup from "../CheckboxesGroup";

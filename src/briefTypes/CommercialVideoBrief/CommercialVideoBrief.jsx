@@ -1,75 +1,79 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useLocation } from "react-router-dom";
-import { selectBriefAC } from "../../features/selectBriefReducer";
-import Test from "./Test";
-
-import "./style.scss";
+// import { useLocation } from "react-router-dom";
+// import { selectBriefAC } from "../../features/selectBriefReducer";
 //import "react-calendar/dist/Calendar.css";
+// import Test from "./Test";
+import {
+  createVideoBriefForm,
+  resetForm,
+} from "../../features/reduxSlices/createSliceForm";
+import ContactField from "../../features/ContactField";
+import contactsProps from "../data/ContactsProps";
+import TextareaField from "../../features/TextareaField";
 
-function gen(n) {
-  let str = "";
+import {
+  Summary,
+  Additional_information_about_the_target,
+  Scenario_ideas,
+  Adaptations_of_the_video,
+  Current_Consumer_Feedback,
+  Desired_Consumer_Behavior_Video,
+  Expected_Consumer_Feedback_Video,
+  USP_Brand_promise,
+  Insight,
+  Main_message_of_the_video,
+  Secondary_message_of_the_video,
+  RTB,
+  Barrier,
+  Essential_elements,
+  Excluded_elements,
+  Agencys_Task,
+  Preferred_director,
+  Packshot,
+  KPIs,
+  Current_Consumer_Behavior,
+} from "../data/TextareaFieldsProps";
 
-  for (let i = 0; i < n; i++) {
-    let code = Math.floor(65 + Math.random() * 20);
-
-    str += String.fromCharCode(code);
-  }
-  return str;
-}
-
-const data = [];
-
-(function () {
-  for (let i = 0; i < 50; i++) {
-    let name = gen(8);
-    data.push(name);
-  }
-  return data;
-})();
-
-const CommercialVideoBrief = (props) => {
-  const [value, setValue] = useState("");
-  const [focused, setFocused] = useState("");
-  const location = useLocation();
-
+const CommercialVideoBrief = ({ lg }) => {
+  const [showChildren, setShowChildren] = useState(false);
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(selectBriefAC("Commercial Video Brief"));
-  });
+    dispatch(createVideoBriefForm());
+    setShowChildren(true);
+    //return () => dispatch(resetForm());
+  }, [dispatch]);
   return (
     <div>
-      {data.map((name) => (
-        <Test
-          setFocused={setFocused}
-          focused={focused}
-          key={name}
-          name={name}
-        />
-      ))}
-      <input
-        onChange={(e) => {
-          setValue(e.target.value);
-        }}
-        type="text"
-        value={value}
-      />
-      <button
-        onClick={() => {
-          document.getElementById(value).click();
-          console.log("location", location);
-        }}
-      >
-        press
-      </button>
+      {showChildren &&
+        contactsProps.map((item) => <ContactField {...item} lg={lg} />)}
+      <TextareaField {...Summary} lg={lg} />
+      <TextareaField {...Scenario_ideas} lg={lg} />
+      {/* <TextareaField {...Adaptations_of_the_video} lg={lg} /> */}
+      {/* <TextareaField {...Current_Consumer_Behavior} lg={lg} /> */}
+
+      {/* <TextareaField {...Current_Consumer_Feedback} lg={lg} /> */}
+      {/* <TextareaField {...Desired_Consumer_Behavior_Video} lg={lg} /> */}
+
+      {/* <TextareaField {...Expected_Consumer_Feedback_Video} lg={lg} /> */}
+      <TextareaField {...USP_Brand_promise} lg={lg} />
+
+      <TextareaField {...Insight} lg={lg} />
+      {/* <TextareaField {...Main_message_of_the_video} lg={lg} /> */}
+      {/* <TextareaField {...Secondary_message_of_the_video} lg={lg} /> */}
+
+      <TextareaField {...RTB} lg={lg} />
+      {/* <TextareaField {...Barrier} lg={lg} /> */}
+      {/* <TextareaField {...Essential_elements} lg={lg} /> */}
+      {/* <TextareaField {...Excluded_elements} lg={lg} /> */}
+      {/* <TextareaField {...Packshot} lg={lg} /> */}
+      <TextareaField {...Agencys_Task} lg={lg} />
+
+      <TextareaField {...KPIs} lg={lg} />
+      {/* <TextareaField {...Preferred_director} lg={lg} /> */}
     </div>
   );
-};
-
-const useMyHook = () => {
-  const [checked, setChecked] = useState(false);
-
-  return [checked, setChecked];
 };
 
 export default CommercialVideoBrief;

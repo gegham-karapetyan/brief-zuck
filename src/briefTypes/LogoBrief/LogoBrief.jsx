@@ -5,7 +5,10 @@ import { selectBriefAC } from "../../features/selectBriefReducer";
 import TextareaBlock from "../../components/TextareaBlock";
 
 import "./style.scss";
-import { createForm, resetForm } from "../../features/createSliceForm";
+import {
+  createForm,
+  resetForm,
+} from "../../features/reduxSlices/createSliceForm";
 import { useRef } from "react";
 
 const LogoBrief = (props) => {

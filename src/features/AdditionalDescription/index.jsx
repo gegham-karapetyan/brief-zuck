@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { setOtherText } from "../createSliceForm";
+import { setOtherText } from "../../features/reduxSlices/createSliceForm";
 
 import Textarea from "../../components/Textarea";
 

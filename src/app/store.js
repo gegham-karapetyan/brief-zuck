@@ -4,7 +4,7 @@ import selectBriefReducer from "../features/selectBriefReducer.js";
 
 import textBlockReducer from "../Trash/test/createTestSlice";
 import updateLanguageReducer from "../features/createSliceLanguages";
-import createForm from "../features/createSliceForm";
+import createForm from "../features/reduxSlices/createSliceForm";
 
 const appReducer = combineReducers({
   selected: selectBriefReducer,

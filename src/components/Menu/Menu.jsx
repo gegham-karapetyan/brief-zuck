@@ -62,8 +62,8 @@ const pages = [
 
 const choose = {
   am: "Ընտրել բրիֆը՝",
-  en: "Ընտրել բրիֆը*******՝",
-  ru: "Ընտրել բրիֆը********՝",
+  en: "Select the brief",
+  ru: "Выберите бриф",
 };
 
 const Menu = ({ lg }) => {
@@ -90,7 +90,7 @@ const Menu = ({ lg }) => {
   };
   return (
     <menu>
-      <div className="label">{choose[lg]}</div>
+      <div className={`label`}>{choose[lg]}</div>
       <span className={selected.brief1}>
         <Link onClick={selectBrief1} key="1" to="/Advertising-Campaign-Brief">
           Advertising Campaign Brief

@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateForm, setOtherText, setFieldName } from "../createSliceForm";
+import {
+  updateForm,
+  setOtherText,
+  setFieldName,
+} from "../reduxSlices/createSliceForm";
 import TextareaBlock from "../../components/TextareaBlock";
 import isValid from "../../utils/isEmpty";
 import InputRadio from "../../components/InputRadio";

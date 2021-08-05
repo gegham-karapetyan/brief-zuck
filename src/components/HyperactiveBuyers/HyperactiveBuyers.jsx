@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import InputRadio from "../InputRadio";
 import { useDispatch } from "react-redux";
-import { updateForm, setFieldName } from "../../features/createSliceForm";
+import {
+  updateForm,
+  setFieldName,
+} from "../../features/reduxSlices/createSliceForm";
 import { InputRange } from "../InputRC";
 import getTrueKey from "../../utils/getTrueKey";
 import createIdByName from "../../utils/createIdByName";

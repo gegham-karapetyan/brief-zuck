@@ -64,13 +64,15 @@ input:-webkit-autofill:active {
 }
 
 .--am {
-  .field-title {
+  .field-title,
+  menu > .label {
     font-family: "mardoto-bold";
   }
 }
 .--ru,
 .--en {
-  .field-title {
+  .field-title,
+  menu > .label {
     font-family: "PFCentroSansPro-Bold";
   }
 }

@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import TextareaField from "../../features/TextareaField";
 import { selectBriefAC } from "../../features/selectBriefReducer";
-import { createForm, resetForm } from "../../features/createSliceForm";
+import {
+  createForm,
+  resetForm,
+} from "../../features/reduxSlices/createSliceForm";
 //import "./style.scss";
 
 const SocialMediaActivationBrief = (props) => {

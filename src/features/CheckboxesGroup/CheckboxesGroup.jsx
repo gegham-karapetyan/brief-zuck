@@ -6,7 +6,7 @@ import {
   setOtherText,
   setFieldName,
   updateThisField,
-} from "../createSliceForm";
+} from "../reduxSlices/createSliceForm";
 import PropTypes from "prop-types";
 import isValid from "../../utils/isEmpty";
 import createIdByName from "../../utils/createIdByName";

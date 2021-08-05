@@ -1,4 +1,4 @@
-import isEmpty from "../../../utils/isEmpty";
+import isEmpty from "../../utils/isEmpty";
 
 const TextareValues = [
   {
@@ -40,6 +40,8 @@ const TextareValues = [
     hint: true,
     hintText: {
       am: "Աշխարhագրություն, հետաքրքրություններ, մասնագիտություն, սովորույթներ և այլն։",
+      en: "Interests, profession, customs, and etc.",
+      ru: "Интересы, профессия, обычаи и т.д.",
     },
   },
   {

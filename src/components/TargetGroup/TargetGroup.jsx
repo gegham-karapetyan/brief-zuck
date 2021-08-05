@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import SubGroupMan from "./SubGroupMan";
 import SubGroupWoman from "./SubGroupWoman";
 import { useDispatch, useSelector } from "react-redux";
-import { updateForm, setFieldName } from "../../features/createSliceForm";
+import {
+  updateForm,
+  setFieldName,
+} from "../../features/reduxSlices/createSliceForm";
 import createIdByName from "../../utils/createIdByName";
 import "./style.scss";
 

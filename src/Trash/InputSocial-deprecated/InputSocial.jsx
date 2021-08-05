@@ -3,7 +3,10 @@ import React, { useState, useEffect } from "react";
 import DynamicBox from "../DynamicBox/DynamicBox";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
-import { updateThisField, setFieldName } from "../../features/createSliceForm";
+import {
+  updateThisField,
+  setFieldName,
+} from "../../features/reduxSlices/createSliceForm";
 import Hint from "../Hint";
 import { isURL } from "validator";
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setFieldName } from "../../createSliceForm";
+import { setFieldName } from "../../reduxSlices/createSliceForm";
 import createIdByName from "../../../utils/createIdByName";
 import PropTypes from "prop-types";
 import InputRadio from "../../../components/InputRadio";

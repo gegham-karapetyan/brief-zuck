@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 
-import { updateForm, setFieldName } from "../../features/createSliceForm";
+import {
+  updateForm,
+  setFieldName,
+} from "../../features/reduxSlices/createSliceForm";
 
 import Calendar from "react-calendar";
 import InputsPicker from "./InputsPicker";

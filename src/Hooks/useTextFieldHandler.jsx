@@ -1,6 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setFieldName, updateThisField } from "../features/createSliceForm";
+import {
+  setFieldName,
+  updateThisField,
+} from "../features/reduxSlices/createSliceForm";
 import createIdByName from "../utils/createIdByName";
 
 const useTextFieldHandler = (name, required, isValid, lg) => {
@@ -12,6 +15,7 @@ const useTextFieldHandler = (name, required, isValid, lg) => {
   const id = createIdByName(name.en);
   const dispatch = useDispatch();
 
+  console.log("name.en >>>>>>>>", name.en);
   const wasCheckedBySubmitButton = useSelector(
     (state) => state.form[name.en].wasCheckedBySubmitButton
   );

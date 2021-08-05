@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
-import { updateThisField, setFieldName } from "../createSliceForm";
+import { updateThisField, setFieldName } from "../reduxSlices/createSliceForm";
 import createIdByName from "../../utils/createIdByName";
 import InputLink from "../../components/InputLink/InputLink";
 import { isURL } from "validator";

@@ -15,15 +15,18 @@ import DatePicker from "../../components/DatePicker";
 import FilesBox from "../../components/FilesBox";
 import CampaignBudget from "../../components/CampaignBudget";
 
-import campaignTypes from "./data/CampaignTypes";
-import MEDIA_TYPES from "./data/MediaTypes";
-import CAMPAIGN_RANGE from "./data/CampaignRange";
-import textInputsValues from "./data/TextInputsValues";
-import textareaValues from "./data/TextareaValues";
-import LinksFieldProps from "./data/LinksFieldProps";
+import campaignTypes from "../data/CampaignTypes";
+import MEDIA_TYPES from "../data/MediaTypes";
+import CAMPAIGN_RANGE from "../data/CampaignRange";
+import contactsProps from "../data/ContactsProps";
+import textareaValues from "../data/TextareaValues";
+import LinksFieldProps from "../data/LinksFieldProps";
 
 import "./style.scss";
-import { createForm, resetForm } from "../../features/createSliceForm";
+import {
+  createAdCampaignBriefForm,
+  resetForm,
+} from "../../features/reduxSlices/createSliceForm";
 import { useState } from "react";
 
 const AdvertisingCampaignBrief = ({ lg }) => {
@@ -31,15 +34,15 @@ const AdvertisingCampaignBrief = ({ lg }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(selectBriefAC("Advertising Campaign Brief"));
-    dispatch(createForm());
+    dispatch(createAdCampaignBriefForm());
     setShowChildren(true);
-    return () => dispatch(resetForm());
+    // return () => dispatch(resetForm());
   }, [dispatch]);
 
   return (
     <div>
       {showChildren &&
-        textInputsValues
+        contactsProps
           .map((item) => <ContactField {...item} lg={lg} />)
           .concat(
             textareaValues.map((item) => <TextareaField {...item} lg={lg} />)
@@ -83,7 +86,7 @@ const AdvertisingCampaignBrief = ({ lg }) => {
               title={{
                 am: ["Hyperactive buyer persona", "Տարիք՝", "տ․"],
                 en: ["Hyperactive buyer persona", "Age", "age"],
-                ru: ["Hyperactive buyer persona", "Возраст", "л"],
+                ru: ["Hyperactive buyer persona", "Возраст", "лет"],
               }}
               lg={lg}
               name={{

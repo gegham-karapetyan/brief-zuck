@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
 import AdvertisingCampaignBrief from "../../briefTypes/AdvertisingCampaignBrief";
-import VisualKeyVisualBrief from "../../briefTypes/VisualKeyVisualBrief";
+// import VisualKeyVisualBrief from "../../briefTypes/VisualKeyVisualBrief";
 import CommercialVideoBrief from "../../briefTypes/CommercialVideoBrief";
-import SocialMediaActivationBrief from "../../briefTypes/SocialMediaActivationBrief";
-import StrategyBrief from "../../briefTypes/StrategyBrief";
-import LogoBrief from "../../briefTypes/LogoBrief";
+// import SocialMediaActivationBrief from "../../briefTypes/SocialMediaActivationBrief";
+// import StrategyBrief from "../../briefTypes/StrategyBrief";
+// import LogoBrief from "../../briefTypes/LogoBrief";
 // import Paragraph from "../Paragraph";
 import InputDownload from "../InputDownload";
 import InputSubmit from "../InputSubmit";
@@ -45,7 +45,7 @@ const Form = ({ lg }) => {
                 <VisualKeyVisualBrief />
               </Route> */}
               <Route exact path="/Commercial-Video-Brief">
-                <CommercialVideoBrief />
+                <CommercialVideoBrief lg={lg} />
               </Route>
               {/* <Route path="/Social-Media-Activation-Brief">
                 <SocialMediaActivationBrief />
