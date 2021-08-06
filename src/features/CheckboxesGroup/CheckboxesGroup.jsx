@@ -128,6 +128,7 @@ const CheckboxesGroup = ({
       })
     );
   }, [name, lg, id, dispatch]);
+  console.log("id >>>>>>>", id);
 
   useEffect(() => {
     if (additionalInput) additionalTextField.current.focus();
@@ -152,7 +153,7 @@ const CheckboxesGroup = ({
             key={item.name}
             addNewInput={addNewInput}
             innerText={item.innerText}
-            hintText={item.hintText[lg]}
+            hintText={item.hintText ? item.hintText[lg] : false}
           />
         ))}
       </div>

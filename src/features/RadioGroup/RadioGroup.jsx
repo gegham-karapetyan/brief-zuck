@@ -88,6 +88,7 @@ const RadioGroup = ({ data, name, title, lg, require, disabled = false }) => {
   };
   const onBlur = (e) => {
     const value = e.target.value;
+
     dispatch(
       setOtherText({
         value: value,
@@ -122,7 +123,7 @@ const RadioGroup = ({ data, name, title, lg, require, disabled = false }) => {
     } else setInvalidCheckbox("");
   }, [wasCheckedBySubmitButton, isFinallyValid]);
   return (
-    <div className={"field field-select"}>
+    <div className={"field field-select"} id={id}>
       <div className={"field-title field-select__title"}>{title[lg]}</div>
       <div className={"container"}>
         {data.map((item) => (

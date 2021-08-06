@@ -77,7 +77,7 @@ const checkmark = {
 
 InputCheckbox.propTypes = {
   name: PropTypes.string.isRequired,
-  hintText: PropTypes.oneOfType([PropTypes.element, PropTypes.bool]),
+  hintText: PropTypes.oneOfType([PropTypes.node, PropTypes.bool]),
   //if there is a checkbox named "Other"
   addNewInput: PropTypes.func,
 };

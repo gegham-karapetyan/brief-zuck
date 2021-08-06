@@ -1,6 +1,5 @@
 const LinksFieldProps = [
   {
-    key: 6,
     title: {
       am: "Website, Facebook, Instagram, և այլն",
       en: "Website, Facebook, Instagram, etc.",
@@ -15,7 +14,6 @@ const LinksFieldProps = [
     hint: false,
   },
   {
-    key: 25,
     title: {
       am: (
         <>
@@ -35,7 +33,6 @@ const LinksFieldProps = [
     hint: false,
   },
   {
-    key: 31,
     title: {
       am: (
         <>
@@ -62,7 +59,6 @@ const LinksFieldProps = [
     },
   },
   {
-    key: 32,
     title: {
       am: (
         <>

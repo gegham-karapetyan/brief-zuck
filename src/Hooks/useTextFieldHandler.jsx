@@ -15,7 +15,6 @@ const useTextFieldHandler = (name, required, isValid, lg) => {
   const id = createIdByName(name.en);
   const dispatch = useDispatch();
 
-  console.log("name.en >>>>>>>>", name.en);
   const wasCheckedBySubmitButton = useSelector(
     (state) => state.form[name.en].wasCheckedBySubmitButton
   );
@@ -53,7 +52,7 @@ const useTextFieldHandler = (name, required, isValid, lg) => {
     if (wasCheckedBySubmitButton && isFinallyValid === false) {
       setInvalid("--invalid");
     }
-  }, [wasCheckedBySubmitButton, isFinallyValid, name, dispatch]);
+  }, [wasCheckedBySubmitButton, isFinallyValid, dispatch]);
   useEffect(() => {
     dispatch(
       setFieldName({

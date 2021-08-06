@@ -33,12 +33,12 @@ const VideoBriefState = {
     type: "text",
     wasCheckedBySubmitButton: 0,
   },
-  // "Website, Facebook, Instagram, etc.": {
-  //   value: [],
-  //   isValid: false,
-  //   type: "typing_select",
-  //   wasCheckedBySubmitButton: 0,
-  // },
+  "Website, Facebook, Instagram, etc.": {
+    value: [],
+    isValid: false,
+    type: "typing_select",
+    wasCheckedBySubmitButton: 0,
+  },
   Summary: {
     value: "",
     isValid: false,
@@ -51,29 +51,48 @@ const VideoBriefState = {
   //   type: "multi_select",
   //   wasCheckedBySubmitButton: 0,
   // },
-  // "Target group": {
-  //   value: {
-  //     man: [],
-  //     woman: [],
-  //   },
-  //   isValid: false,
-  //   wasCheckedBySubmitButton: 0,
-  //   type: "target_select",
-  // },
-  // "Hyperactive buyer persona": { value: "", isValid: true, type: "text" },
-  // "Additional information about the target": {
-  //   value: "",
-  //   isValid: false,
-  //   type: "text",
-  //   wasCheckedBySubmitButton: 0,
-  // },
+
   "Scenario ideas": {
     value: "",
     isValid: false,
     type: "text",
     wasCheckedBySubmitButton: 0,
   },
+  "Video format": {
+    value: {},
+    isValid: false,
+    type: "multi_select",
+    wasCheckedBySubmitButton: 0,
+  },
+  "Video type": {
+    value: {},
+    isValid: false,
+    type: "multi_select",
+    wasCheckedBySubmitButton: 0,
+  },
   "Adaptations of the video": {
+    value: "",
+    isValid: false,
+    type: "text",
+    wasCheckedBySubmitButton: 0,
+  },
+  Mood: {
+    value: {},
+    isValid: false,
+    type: "multi_select",
+    wasCheckedBySubmitButton: 0,
+  },
+  "Target group": {
+    value: {
+      man: [],
+      woman: [],
+    },
+    isValid: false,
+    wasCheckedBySubmitButton: 0,
+    type: "target_select",
+  },
+  "Hyperactive buyer persona": { value: "", isValid: true, type: "text" },
+  "Additional information about the target": {
     value: "",
     isValid: false,
     type: "text",
@@ -153,40 +172,30 @@ const VideoBriefState = {
     type: "text",
     wasCheckedBySubmitButton: 0,
   },
-  // "Campaign Scale": {
-  //   value: "",
-  //   isValid: false,
-  //   type: "text",
-  //   wasCheckedBySubmitButton: 0,
-  // },
-  // Media: {
-  //   value: {},
-  //   isValid: false,
-  //   type: "multi_select",
-  //   wasCheckedBySubmitButton: 0,
-  // },
-  // "Thoughts/Opinions about the competitors": {
-  //   value: [],
-  //   isValid: true,
-  //   type: "typing_select",
-  // },
+
   "Agency’s Task": {
     value: "",
     isValid: false,
     type: "text",
     wasCheckedBySubmitButton: 0,
   },
-  "Preferred director, cameraman, production agency/artist": {
-    value: "",
-    isValid: false,
-    type: "text",
-    wasCheckedBySubmitButton: 0,
-  },
+
   "Packshot (last shot of the video, informative part)": {
     value: "",
     isValid: false,
     type: "text",
     wasCheckedBySubmitButton: 0,
+  },
+  "Media for video promotion": {
+    value: {},
+    isValid: false,
+    type: "multi_select",
+    wasCheckedBySubmitButton: 0,
+  },
+  "Thoughts/Opinions about the competitors": {
+    value: [],
+    isValid: true,
+    type: "typing_select",
   },
   "KPIs (Key Performance Indicators)": {
     value: "",
@@ -194,29 +203,35 @@ const VideoBriefState = {
     type: "text",
     wasCheckedBySubmitButton: 0,
   },
-  // "Advertising campaign deadlines": {
-  //   value: [],
-  //   isValid: false,
-  //   type: "typing_select",
-  //   wasCheckedBySubmitButton: 0,
-  // },
-  // "Campaign Budget": { value: "", isValid: true, type: "text" },
-  // "Similar work that you like": {
-  //   value: [],
-  //   isValid: true,
-  //   type: "typing_select",
-  // },
-  // "Similar work that you don’t like": {
-  //   value: [],
-  //   isValid: true,
-  //   type: "typing_select",
-  // },
+  "Video Implementation Deadlines": {
+    value: [],
+    isValid: false,
+    type: "typing_select",
+    wasCheckedBySubmitButton: 0,
+  },
+  "Video Implementation Budget": { value: "", isValid: true, type: "text" },
+  "Similar work that you like": {
+    value: [],
+    isValid: true,
+    type: "typing_select",
+  },
+  "Similar work that you don’t like": {
+    value: [],
+    isValid: true,
+    type: "typing_select",
+  },
+  "Preferred director, cameraman, production agency/artist": {
+    value: "",
+    isValid: false,
+    type: "text",
+    wasCheckedBySubmitButton: 0,
+  },
 
-  // "Additional Information": {
-  //   value: { files: {}, Other: "" },
-  //   isValid: false,
-  //   type: "additional",
-  //   wasCheckedBySubmitButton: 0,
-  // },
+  "Additional Information": {
+    value: { files: {}, Other: "" },
+    isValid: false,
+    type: "additional",
+    wasCheckedBySubmitButton: 0,
+  },
 };
 export default VideoBriefState;

@@ -14,7 +14,12 @@ const Gratitude = ({ setGratitude }) => {
         <p>Այդ ընթացքում պատրաստվիր ZUCK-ի հետ էպիկ ճանապարհորդության:</p>
       </div>
       <div>
-        <button onClick={() => setGratitude(false)}>Վերադառնալ</button>
+        <button
+          style={{ cursor: "pointer" }}
+          onClick={() => setGratitude(false)}
+        >
+          Վերադառնալ
+        </button>
       </div>
     </div>
   );
