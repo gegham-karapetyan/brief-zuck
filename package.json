@@ -1,6 +1,7 @@
 {
   "name": "brief",
   "version": "0.1.0",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "@datepicker-react/styled": "^2.8.0",

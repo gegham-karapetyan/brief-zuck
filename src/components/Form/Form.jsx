@@ -68,7 +68,7 @@ const Form = ({ lg }) => {
                 justifyContent: "space-between",
               }}
             >
-              <InputDownload lg={lg} />
+              <InputDownload lg={lg} style={{ visibility: "hidden" }} />
               <InputSubmit
                 sayGratitude={setGratitude}
                 scrolledContainer={nodeRef}

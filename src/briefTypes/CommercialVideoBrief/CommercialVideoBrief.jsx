@@ -97,7 +97,7 @@ const CommercialVideoBrief = ({ lg }) => {
           lg={lg}
         />
         <TextareaField {...Adaptations_of_the_video} lg={lg} />
-        <RadioGroup
+        <CampaignType
           name={{
             en: "Mood",
             am: "Տեսահոլովակի տրամադրություն (Mood)",

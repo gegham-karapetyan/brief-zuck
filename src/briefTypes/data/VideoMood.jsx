@@ -211,19 +211,19 @@ const VideoMood = [
       ru: "напрягающий, держащий в напряжении, беспокойный",
     },
   },
-  {
-    name: "Mix of above mentioned options",
-    innerText: {
-      am: "Mix of above mentioned options",
-      en: "Mix of above mentioned options",
-      ru: "Mix of above mentioned options",
-    },
-    hintText: {
-      am: "նշվածներից մի քանիսի համախումբ",
-      en: "combination of some of the aforementioned",
-      ru: "группа нескольких из вышеперечисленных",
-    },
-  },
+  // {
+  //   name: "Mix of above mentioned options",
+  //   innerText: {
+  //     am: "Mix of above mentioned options",
+  //     en: "Mix of above mentioned options",
+  //     ru: "Mix of above mentioned options",
+  //   },
+  //   hintText: {
+  //     am: "նշվածներից մի քանիսի համախումբ",
+  //     en: "combination of some of the aforementioned",
+  //     ru: "группа нескольких из вышеперечисленных",
+  //   },
+  // },
   {
     name: "Other",
     innerText: {

@@ -8,8 +8,12 @@ const title = {
   ru: "Cкачать",
 };
 
-const InputDownload = ({ lg }) => {
-  return <button className={`link-btn ${lg}`}>{title[lg]}</button>;
+const InputDownload = ({ lg, style }) => {
+  return (
+    <button style={style} className={`link-btn ${lg}`}>
+      {title[lg]}
+    </button>
+  );
 };
 
 InputDownload.propTypes = {};
