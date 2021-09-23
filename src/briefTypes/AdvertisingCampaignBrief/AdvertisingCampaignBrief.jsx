@@ -14,7 +14,7 @@ import CampaignScope from "../../features/CampaignScope";
 import DatePicker from "../../components/DatePicker";
 import FilesBox from "../../components/FilesBox";
 import CampaignBudget from "../../components/CampaignBudget";
-
+import ContentTypes from "../../components/ContentTypes";
 import campaignTypes from "../data/CampaignTypes";
 import MEDIA_TYPES from "../data/MediaTypes";
 import CAMPAIGN_RANGE from "../data/CampaignRange";
@@ -279,6 +279,19 @@ const AdvertisingCampaignBrief = ({ lg }) => {
           data={{ MEDIA_TYPES, CAMPAIGN_RANGE }}
           lg={lg}
         />
+        <ContentTypes
+          lg={lg}
+          title={{
+            am: "Կոնտենտի տեսակի, քանակի ընտրություն",
+            en: "Selection of content type and quantity",
+            ru: "Выбор типа и количества контента",
+          }}
+          name={{
+            am: "Կոնտենտի տեսակի, քանակի ընտրություն",
+            en: "Selection of content type and quantity",
+            ru: "Выбор типа и количества контента",
+          }}
+        />
         <LinksField {...LinksFieldProps[1]} lg={lg} />
         <TextareaField {...Agencys_Task} lg={lg} />
         <TextareaField {...KPIs_Campaign} lg={lg} />
@@ -296,11 +309,12 @@ const AdvertisingCampaignBrief = ({ lg }) => {
           }}
         />
         <CampaignBudget
-          key={30}
+          degree={2000}
+          initVal={[44, 64]}
           title={{
-            am: ["Գովազդային արշավի բյուջե", "Ընդհանուր գումար՝"],
-            en: ["Campaign Budget", "Amount"],
-            ru: ["Бюджет рекламной кампании", "Общая сумма"],
+            am: ["Գովազդային արշավի իրականացման բյուջե ", "Ընդհանուր գումար՝"],
+            en: ["Advertising campaign execution budget", "Amount"],
+            ru: ["Бюджет проведения рекламной кампании", "Общая сумма"],
           }}
           data={[
             {
@@ -321,9 +335,41 @@ const AdvertisingCampaignBrief = ({ lg }) => {
           ]}
           lg={lg}
           name={{
-            am: "Գովազդային արշավի բյուջե",
-            en: "Campaign Budget",
-            ru: "Бюджет рекламной кампании",
+            am: "Գովազդային արշավի իրականացման բյուջե",
+            en: "Advertising campaign execution budget",
+            ru: "Бюджет проведения рекламной кампании",
+          }}
+        />
+        <CampaignBudget
+          degree={2000}
+          initVal={[44, 64]}
+          title={{
+            am: ["Գովազդային արշավի մեդիաների բյուջե", "Ընդհանուր գումար՝"],
+            en: ["Advertising campaign media budget", "Amount"],
+            ru: ["Бюджет медиа рекламной кампании", "Общая сумма"],
+          }}
+          data={[
+            {
+              am: "USD",
+              en: "USD",
+              ru: "USD",
+            },
+            {
+              am: "AMD",
+              en: "AMD",
+              ru: "AMD",
+            },
+            {
+              am: "RUB",
+              en: "RUB",
+              ru: "RUB",
+            },
+          ]}
+          lg={lg}
+          name={{
+            am: "Գովազդային արշավի մեդիաների բյուջե",
+            en: "Advertising campaign media budget",
+            ru: "Бюджет медиа рекламной кампании",
           }}
         />
         <LinksField {...LinksFieldProps[2]} lg={lg} />

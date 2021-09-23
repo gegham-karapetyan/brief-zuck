@@ -9,6 +9,12 @@ import {
 import createIdByName from "../../utils/createIdByName";
 import "./style.scss";
 
+const names = {
+  am: ["Տղամարդիկ", "Կանայք", "տ․"],
+  en: ["Men", "Women", "age"],
+  ru: ["Мужчины", "Женщины", "л."],
+};
+
 const TargetGroup = ({ title, lg, name }) => {
   const dispatch = useDispatch();
 
@@ -41,8 +47,14 @@ const TargetGroup = ({ title, lg, name }) => {
         keyName: name.en,
         name: name[lg],
         value: {
-          man: [percentage.man + " %", age.man.join("-") + " age"],
-          woman: [percentage.woman + " %", age.woman.join("-") + " age"],
+          man: [
+            names[lg][0] + " " + percentage.man + " %",
+            age.man.join("-") + " " + names[lg][2],
+          ],
+          woman: [
+            names[lg][1] + " " + percentage.woman + " %",
+            age.woman.join("-") + " " + names[lg][2],
+          ],
         },
         isValid: true,
       })

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import { BrowserRouter as Router } from "react-router-dom";
 
@@ -15,7 +15,7 @@ function App() {
 
   return (
     <div className={`App --${lg}`}>
-      <Router basename="/">
+      <Router basename="/brief">
         <SideBar lg={lg} />
         <Form lg={lg} />
       </Router>

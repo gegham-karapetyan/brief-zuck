@@ -128,7 +128,7 @@ const CheckboxesGroup = ({
       })
     );
   }, [name, lg, id, dispatch]);
-  console.log("id >>>>>>>", id);
+  // console.log("id >>>>>>>", id);
 
   useEffect(() => {
     if (additionalInput) additionalTextField.current.focus();

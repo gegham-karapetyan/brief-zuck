@@ -151,6 +151,12 @@ const AdvertisingCampaignBriefState = {
     type: "multi_select",
     wasCheckedBySubmitButton: 0,
   },
+  "Selection of content type and quantity": {
+    value: "",
+    isValid: false,
+    type: "text",
+    wasCheckedBySubmitButton: 0,
+  },
   "Thoughts/Opinions about the competitors": {
     value: [],
     isValid: true,
@@ -174,7 +180,16 @@ const AdvertisingCampaignBriefState = {
     type: "typing_select",
     wasCheckedBySubmitButton: 0,
   },
-  "Campaign Budget": { value: "", isValid: true, type: "text" },
+  "Advertising campaign execution budget": {
+    value: "",
+    isValid: true,
+    type: "text",
+  },
+  "Advertising campaign media budget": {
+    value: "",
+    isValid: true,
+    type: "text",
+  },
   "Similar work that you like": {
     value: [],
     isValid: true,

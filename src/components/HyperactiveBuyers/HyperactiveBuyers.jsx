@@ -14,6 +14,26 @@ const isEqual = (obj1, obj2) => {
   return JSON.stringify(obj1) === JSON.stringify(obj2);
 };
 
+const ages = {
+  am: "տ․",
+  en: "age",
+  ru: "л.",
+};
+
+const names = {
+  Men: {
+    am: "Տղամարդիկ",
+    en: "Men",
+    ru: "Мужчины",
+  },
+
+  Women: {
+    am: "Կանայք",
+    en: "Women",
+    ru: "Женщины",
+  },
+};
+
 const reset = { Men: false, Women: false };
 
 const HyperactiveBuyers = ({ lg, title, name }) => {
@@ -42,7 +62,9 @@ const HyperactiveBuyers = ({ lg, title, name }) => {
       setChecked(newChecked);
       dispatch(
         updateForm({
-          value: `${getTrueKey(newChecked)} ${age.join("-")} age`,
+          value: `${names[getTrueKey(newChecked)][lg]} ${age.join("-")} ${
+            ages[lg]
+          }`,
           keyName: name.en,
           name: name[lg],
           isValid: true,
@@ -57,7 +79,7 @@ const HyperactiveBuyers = ({ lg, title, name }) => {
   const onAfterChange = (age) => {
     dispatch(
       updateForm({
-        value: `${getTrueKey(checked)} ${age.join("-")} age`,
+        value: `${names[getTrueKey(checked)][lg]} ${age.join("-")} ${ages[lg]}`,
         keyName: name.en,
         name: name[lg],
         isValid: true,

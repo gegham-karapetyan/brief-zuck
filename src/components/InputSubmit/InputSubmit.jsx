@@ -8,7 +8,7 @@ import {
   // First_Invalid_Field,
   scrollToInvalidFields,
 } from "../../features/reduxSlices/createSliceForm";
-import loader from "../../spinner.svg";
+import loader from "../../loader.svg";
 
 import "./style.scss";
 
@@ -18,8 +18,14 @@ const title = {
   ru: "Отправить Zuck",
 };
 
-const InputSubmit = ({ lg, scrolledContainer, sayGratitude }) => {
-  const [modal, setModal] = useState(false);
+const waitText = {
+  am: "Խնդրում ենք սպասել",
+  ru: "Подождите, пожалуйста",
+  en: "Wait, please",
+};
+
+const InputSubmit = ({ lg, sayGratitude }) => {
+  const [wait, setWait] = useState(false);
   //const [hash, setHash] = useState("");
   //const dispatch = useDispatch();
 
@@ -47,6 +53,7 @@ const InputSubmit = ({ lg, scrolledContainer, sayGratitude }) => {
 
       return;
     }
+    setWait(true);
 
     formData.data = data;
     const stringifiedData = JSON.stringify(formData);
@@ -59,6 +66,7 @@ const InputSubmit = ({ lg, scrolledContainer, sayGratitude }) => {
         return res.json();
       })
       .then((res) => {
+        setWait(false);
         if (res.result === true) {
           sayGratitude(true);
         } else {
@@ -66,6 +74,7 @@ const InputSubmit = ({ lg, scrolledContainer, sayGratitude }) => {
         }
       })
       .catch((e) => {
+        setWait(false);
         alert("something went wrong,\nplease try again later");
       });
     // sayGratitude(true);
@@ -79,42 +88,21 @@ const InputSubmit = ({ lg, scrolledContainer, sayGratitude }) => {
   //   if (hash) window.location.href = hash;
   // }, [hash]);
 
-  return (
-    <>
-      <button onClick={onSubmit} className={`link-btn ${lg}`}>
-        {title[lg]}
-      </button>
-      {modal && (
-        <div
-          style={{
-            position: "fixed",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            overflow: "auto",
-            background: "rgba(0,0,0,0.5)",
-            zIndex: 100000,
-          }}
-        >
-          <button
-            onClick={() => setModal(false)}
-            style={{
-              position: "absolute",
-              top: "40px",
-              right: "40px",
-              padding: "15px",
-            }}
-          >
-            X
-          </button>
-          <img src={loader} alt="loader" />
-        </div>
-      )}
-    </>
+  return wait ? (
+    <div style={{ fontWeight: "bold" }}>
+      {waitText[lg]}
+      <img
+        src={loader}
+        alt="loader"
+        width={24}
+        height={30}
+        style={{ verticalAlign: "middle", marginLeft: "10px" }}
+      />
+    </div>
+  ) : (
+    <button onClick={onSubmit} className={`link-btn ${lg}`}>
+      {title[lg]}
+    </button>
   );
 };
 

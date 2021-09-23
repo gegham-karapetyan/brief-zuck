@@ -14,12 +14,12 @@ import { useRef } from "react";
 const LogoBrief = (props) => {
   const dispatch = useDispatch();
   const [show, setShow] = useState("false");
-  const node = useRef();
+  // const node = useRef();
 
-  const onClick = () => {
-    console.log("node onclick", node);
-    node.current.focus();
-  };
+  // const onClick = () => {
+  //   console.log("node onclick", node);
+  //   node.current.focus();
+  // };
 
   useEffect(() => {
     dispatch(selectBriefAC("Logo Brief"));

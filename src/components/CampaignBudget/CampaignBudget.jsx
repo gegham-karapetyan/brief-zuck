@@ -11,9 +11,9 @@ import "./style.scss";
 import { useEffect } from "react";
 
 const rates = {
-  USD: { degree: 500, sign: "$" },
-  AMD: { degree: 250000, sign: "֏" },
-  RUB: { degree: 35000, sign: "₽" },
+  USD: { degree: 500, sign: "$", coefficient: 1 },
+  AMD: { degree: 250000, sign: "֏", coefficient: 500 },
+  RUB: { degree: 35000, sign: "₽", coefficient: 7 },
 };
 
 function formatNumber(num) {
@@ -33,13 +33,22 @@ const formatCurrencyValue = (value, rate) => {
   let value2 = value[1] * rate.degree;
   let sign = rate.sign;
 
-  return `≈ ${sign} ${formatNumber(value1)} - ${sign} ${formatNumber(value2)}`;
+  return `≈ ${sign} ${formatNumber(value1)} - ${sign} ${formatNumber(value2)}${
+    value[1] === 100 ? " + " : ""
+  }`;
 };
 
-const CampaignBudget = ({ title, data, lg, name }) => {
+const CampaignBudget = ({
+  title,
+  data,
+  lg,
+  name,
+  initVal = [24, 44],
+  degree = 500,
+}) => {
   const dispatch = useDispatch();
-  const [value, setValue] = useState([24, 44]);
-  const [rate, setRate] = useState({ degree: 500, sign: "$" });
+  const [value, setValue] = useState(initVal);
+  const [rate, setRate] = useState({ degree: degree, sign: "$" });
   const [currency, setCurrency] = useState({
     USD: true,
     AMD: false,
@@ -61,7 +70,10 @@ const CampaignBudget = ({ title, data, lg, name }) => {
   };
   const changeCurrency = (e) => {
     const currencyName = e.target.name;
-    setRate(rates[currencyName]);
+    setRate({
+      ...rates[currencyName],
+      degree: rates[currencyName].coefficient * degree,
+    });
 
     setCurrency({
       USD: false,
@@ -123,7 +135,11 @@ const CampaignBudget = ({ title, data, lg, name }) => {
         <span className="output">{formatCurrencyValue(value, rate)}</span>
       </div>
       <div>
-        <InputRange onAfterChange={onAfterChange} onChange={onChange} />
+        <InputRange
+          defaultValue={initVal}
+          onAfterChange={onAfterChange}
+          onChange={onChange}
+        />
       </div>
     </div>
   );

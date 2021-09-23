@@ -10,6 +10,7 @@ import CommercialVideoBrief from "../../briefTypes/CommercialVideoBrief";
 import InputDownload from "../InputDownload";
 import InputSubmit from "../InputSubmit";
 // import disclaimer from "../../data/Disclaimer";
+import useGaTracker from "../../useGaTracker";
 import Gratitude from "../Gratitude";
 
 import "./style.scss";
@@ -18,6 +19,7 @@ import { useRef } from "react";
 
 const Form = ({ lg }) => {
   const nodeRef = useRef(null);
+  useGaTracker();
   //const isOpenGratitude = useSelector(IS_SENDING_SUCCESS);
   //const isOpenGratitude = false;
   const [isOpenGratitude, setGratitude] = useState(false);
@@ -26,7 +28,7 @@ const Form = ({ lg }) => {
     <div ref={nodeRef} className="form">
       <div className={"wrapper"}>
         {isOpenGratitude ? (
-          <Gratitude setGratitude={setGratitude} />
+          <Gratitude lg={lg} setGratitude={setGratitude} />
         ) : (
           <>
             <h1>
