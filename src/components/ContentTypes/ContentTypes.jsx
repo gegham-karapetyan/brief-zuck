@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { InputSlider } from "../InputRC";
+// import { InputSlider } from "../InputRC";
 import {
   updateForm,
   setFieldName,
 } from "../../features/reduxSlices/createSliceForm";
 import createIdByName from "../../utils/createIdByName";
+import InputCheckboxPlusNumber from "../InputCheckboxPlusNumber/InputCheckboxPlusNumber";
 import "./style.scss";
 
 const ContentTypes = ({ title, lg, name }) => {
@@ -53,20 +54,15 @@ const ContentTypes = ({ title, lg, name }) => {
   }, [wasCheckedBySubmitButton, isFinallyValid]);
 
   return (
-    <div className="field field-range" id={id}>
-      <div className={`field-title field-range__title`}>{title[lg]}</div>
-
-      <Contetnt invalid={invalid} onLastChange={onAfterChange} lg={lg} />
+    <div className={"field field-select"} id={id}>
+      <div className={`field-title field-select__title`}>{title[lg]}</div>
+      <div className={"container"}>
+        <Contetnt invalid={invalid} onLastChange={onAfterChange} lg={lg} />
+      </div>
     </div>
   );
 };
 
-const types = {
-  "Main visual": 0,
-  "Radio clip": 0,
-  Video: 0,
-  "Activation mechanics (Sampling / Influencer etc.)": 0,
-};
 const names = {
   "Main visual": {
     am: "Հիմնական վիզուալ",
@@ -83,105 +79,65 @@ const names = {
     ru: "Видеоролик",
     en: "Video",
   },
-  "Activation mechanics (Sampling / Influencer etc.)": {
-    am: "Ակտիվացիայի մեխանիկա (Sampling / Influencer etc.)",
-    ru: "Механика активации (Sampling / Influencer и т. д.)",
-    en: "Activation mechanics (Sampling / Influencer etc.)",
+  "Activation mechanics": {
+    am: "Ակտիվացիայի մեխանիկա",
+    ru: "Механика активации",
+    en: "Activation mechanics",
   },
 };
 
 const Contetnt = ({ lg, onLastChange, invalid }) => {
-  const [values, setValues] = useState(types);
-
-  const onChangeVisual = (val) => {
-    setValues((prev) => ({
-      ...prev,
-      "Main visual": val,
-    }));
-  };
-  const onChangeVideo = (val) => {
-    setValues((prev) => ({
-      ...prev,
-      Video: val,
-    }));
-  };
-  const onChangeRadio = (val) => {
-    setValues((prev) => ({
-      ...prev,
-      "Radio clip": val,
-    }));
-  };
-  const onChangeActivation = (val) => {
-    setValues((prev) => ({
-      ...prev,
-      "Activation mechanics (Sampling / Influencer etc.)": val,
-    }));
+  // const [values, setValues] = useState(types);
+  let types = {
+    "Main visual": 0,
+    "Radio clip": 0,
+    Video: 0,
+    "Activation mechanics": 0,
   };
 
-  const onAfterChange = () => {
-    const tmp = {};
-    const Keys = Object.keys(names);
-    Keys.forEach((k) => {
-      const n = names[k][lg];
-      tmp[n] = values[k];
-    });
-    console.log(tmp);
-    onLastChange(tmp);
+  const onChange = (val) => {
+    types = {
+      ...types,
+      ...val,
+    };
+    onLastChange(types);
   };
-
   return (
-    <div className={`subgroup man ${invalid}`}>
-      <div className="gender">
-        {names["Main visual"][lg]}
-        <span className="output">{values["Main visual"]} </span>
-      </div>
-      <div className="percentage">
-        <InputSlider
-          max={20}
-          onAfterChange={onAfterChange}
-          value={values["Main visual"]}
-          onChange={onChangeVisual}
-        />
-      </div>
-      <div className="gender">
-        {names["Video"][lg]} <span className="output">{values.Video}</span>
-      </div>
-      <div className="percentage">
-        <InputSlider
-          max={20}
-          onAfterChange={onAfterChange}
-          value={values.Video}
-          onChange={onChangeVideo}
-        />
-      </div>
-      <div className="gender">
-        {names["Radio clip"][lg]}{" "}
-        <span className="output">{values["Radio clip"]} </span>
-      </div>
-      <div className="percentage">
-        <InputSlider
-          max={20}
-          onAfterChange={onAfterChange}
-          value={values["Radio clip"]}
-          onChange={onChangeRadio}
-        />
-      </div>
-      <div className="gender">
-        {names["Activation mechanics (Sampling / Influencer etc.)"][lg]}
-
-        <span className="output">
-          {values["Activation mechanics (Sampling / Influencer etc.)"]}
-        </span>
-      </div>
-      <div className="percentage">
-        <InputSlider
-          max={20}
-          onAfterChange={onAfterChange}
-          value={values["Activation mechanics (Sampling / Influencer etc.)"]}
-          onChange={onChangeActivation}
-        />
-      </div>
-    </div>
+    <>
+      <InputCheckboxPlusNumber
+        name="Main visual"
+        title={names["Main visual"][lg]}
+        onChange={onChange}
+        lg={lg}
+        invalid={invalid}
+      />
+      <InputCheckboxPlusNumber
+        lg={lg}
+        title={names["Radio clip"][lg]}
+        onChange={onChange}
+        name="Radio clip"
+        invalid={invalid}
+      />
+      <InputCheckboxPlusNumber
+        lg={lg}
+        title={names["Video"][lg]}
+        onChange={onChange}
+        name="Video"
+        invalid={invalid}
+      />
+      <InputCheckboxPlusNumber
+        lg={lg}
+        title={names["Activation mechanics"][lg]}
+        onChange={onChange}
+        name="Activation mechanics"
+        invalid={invalid}
+        hintText={{
+          am: "Sampling / Influencer etc.",
+          ru: "Sampling / Influencer и т. д.",
+          en: "Sampling / Influencer etc.",
+        }}
+      />
+    </>
   );
 };
 

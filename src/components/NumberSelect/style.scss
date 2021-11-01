@@ -1,0 +1,25 @@
+.number-select {
+  display: inline-flex;
+  float: right;
+  flex-flow: row nowrap;
+  user-select: none;
+
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+  .number-select__input-place {
+    // text-decoration: underline;
+    width: 42px;
+    text-align: center;
+  }
+  .number-select__inc,
+  .number-select__dec {
+    height: 100%;
+    // width: 21px;
+
+    // & img {
+    //   vertical-align: middle;
+    //   margin-bottom: 1 px;
+    // }
+  }
+}
