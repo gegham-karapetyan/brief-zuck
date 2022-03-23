@@ -58,7 +58,7 @@ const InputSubmit = ({ lg, sayGratitude }) => {
     formData.data = data;
     const stringifiedData = JSON.stringify(formData);
 
-    fetch("https://api.zuckandberg.com/api/v1/store", {
+    fetch("https://api.zuckagency.com/api/v1/store", {
       method: "POST",
       body: stringifiedData,
     })
